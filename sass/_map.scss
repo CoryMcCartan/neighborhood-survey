@@ -1,0 +1,27 @@
+#map {
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+
+.brush-tool {
+    cursor: pointer;
+}
+
+.inspect-tool {
+    cursor: pointer;
+}
+
+.geocoder {
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    left: 50px;
+}
+.mapboxgl-ctrl-geocoder {
+    max-width: 24rem;
+    min-width: 16rem;
+}

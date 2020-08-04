@@ -1,0 +1,38 @@
+// Sepia
+$sepia-background: rgb(247, 241, 238);
+$sepia-accent: #806463;
+$sepia-accent-dark: #503f3e;
+$sepia-accent-light: #bdaaa8;
+
+.sepia {
+    background-color: $sepia-background;
+}
+
+.sepia a,
+.sepia a:visited {
+    color: $sepia-accent;
+}
+
+.sepia a:hover,
+.sepia a:active {
+    color: $sepia-accent-dark;
+    // color: #ac8682;
+}
+
+.sepia mark {
+    background: $sepia-accent-light;
+    color: white;
+}
+
+.sepia mark:hover {
+    background: $districtr-red;
+}
+
+.sepia {
+    .button,
+    .button:visited,
+    .button:hover,
+    .button:active {
+        color: white;
+    }
+}

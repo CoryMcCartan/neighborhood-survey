@@ -1,0 +1,42 @@
+$font-family: Arial; /*"Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;*/
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: $font-family;
+    color: black;
+    font-size: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+// Fix for IE:
+main {
+    display: block;
+}
+
+mark {
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.4rem;
+    transition: background 100ms ease;
+}
+
+.l-content {
+    padding: 2rem 0;
+}
+
+@media only screen and (max-width: 800px) {
+    .l-content {
+        padding: 1rem 0;
+    }
+}
+
+.splash-grid__left {
+    grid-column: 2 / 4;
+}

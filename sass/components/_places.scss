@@ -1,0 +1,155 @@
+@import "shadows";
+@import "../mixins";
+
+.places-list-container {
+    margin: 0 auto;
+    width: 65%;
+    max-width: 72rem;
+    padding: 0;
+}
+
+.places-list {
+    list-style: none;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.places-list--columns {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.places-list__item {
+    @include user-select(none);
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    font-weight: bold;
+    // background: #eee;
+
+    transition: all ease 100ms;
+    // width: 10rem;
+    // height: 10rem;
+
+    border-radius: 0.5rem;
+    background-color: $mggg-blue;
+    color: white;
+    cursor: pointer;
+
+    &:focus {
+        box-shadow: $focus-shadow;
+    }
+    &:hover {
+        background-color: $mggg-dark-blue;
+    }
+}
+
+.communities {
+    .state--available {
+        fill: $districtr-red;
+        &:hover {
+            fill: $districtr-red-dark;
+        }
+        &:active {
+            fill: $districtr-red-very-dark;
+        }
+    }
+    .places-list__item {
+        background-color: $districtr-red;
+        &:hover {
+            background-color: $districtr-red-dark;
+        }
+    }
+    .place-map__search {
+        color: #444;
+        border-bottom-color: #444;
+        caret-color: #444;
+    }
+    .media__title--primary,
+    .button--transparent {
+        color: #444;
+    }
+}
+
+.places-list__item--small {
+    max-width: 14rem;
+    margin: 0.5rem;
+}
+
+.place-info {
+    margin: 0.25rem 0;
+    font-weight: normal;
+}
+
+.plan-loader {
+    margin: 1rem auto;
+    text-align: center;
+    color: #444;
+}
+
+// @media only screen and (max-width: 600px) {
+.places-list-container {
+    width: 100%;
+}
+.places-list__item {
+    height: auto;
+    width: auto;
+}
+// }
+
+.start-districting {
+    background: $districtr-light-grey;
+    display: grid;
+    width: 100%;
+    grid-template-areas:
+        "title title title title"
+        "form form form form"
+        "map map map map";
+    grid-template-rows: 2fr 1fr 15fr;
+    grid-template-columns: auto 1fr 1fr auto;
+    height: 700px;
+    height: 110vh;
+    min-height: 600px;
+    overflow: hidden;
+}
+
+.start-districting--alone {
+    padding: 1rem 0;
+}
+
+.start-districting__title {
+    text-align: center;
+    margin: 0;
+    grid-area: title;
+    color: black;
+}
+
+.request-new-place {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    align-items: center;
+    padding: 3rem 0;
+}
+
+.call-to-request {
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1.5;
+    margin: 0 0.5rem;
+}
+
+@media only screen and (max-width: 800px) {
+    .call-to-request {
+        font-size: 1.5rem;
+    }
+}

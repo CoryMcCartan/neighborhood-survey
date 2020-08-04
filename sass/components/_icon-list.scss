@@ -1,0 +1,127 @@
+@import "../mixins";
+
+.icon-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+    list-style: none;
+}
+
+.icon-list__item i {
+    // color: $districtr-light-grey;
+    color: black;
+    z-index: 100;
+    font-size: 1.75rem;
+}
+
+.icon-list__item__text {
+    color: white;
+}
+
+.icon-list__item label {
+    display: none;
+}
+
+/* Customize the label (the container) */
+.icon-list__item {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0;
+    margin: 0.1rem;
+    cursor: pointer;
+    @include user-select(none);
+    text-transform: uppercase;
+}
+
+/* Hide the browser's default radio button, lay it on top
+of the whole element */
+.icon-list__item input {
+    margin: 0;
+    padding: 0;
+
+    position: absolute;
+
+    opacity: 0;
+
+    cursor: pointer;
+
+    height: 100%;
+    width: 100%;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
+    z-index: 1000;
+}
+
+/* Create a custom radio button */
+.icon-list__item__radio {
+    transition: all 160ms cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    // background: #111;
+    background-color: white;
+}
+
+.icon-list__item:hover input ~ .icon-list__item__radio {
+    border-radius: 20%;
+    background-color: $districtr-grey-hover;
+}
+
+.icon-list__item input:active ~ .icon-list__item__radio {
+    border-radius: 20%;
+    background-color: $districtr-grey-active;
+}
+
+.icon-list__item input:focus ~ .icon-list__item__radio {
+    border-radius: 20%;
+    background-color: $districtr-grey-active;
+}
+
+.icon-list__item input:checked ~ .icon-list__item__radio {
+    border-radius: 50%;
+    background-color: $districtr-grey-active;
+}
+
+i {
+    transition: color 160ms ease;
+}
+
+.subtle-button {
+    @include grey-hovers;
+    outline: none;
+    background: none;
+    border: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0.1rem;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+
+    cursor: pointer;
+    transition: transform 100ms ease;
+}
+
+.subtle-button i {
+    color: #777;
+}

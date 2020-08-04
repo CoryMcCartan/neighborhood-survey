@@ -1,0 +1,26 @@
+a {
+    transition: color 100ms, background 100ms;
+}
+
+a,
+a:visited {
+    font-weight: 600;
+    text-decoration: none;
+    color: $mggg-dark-blue;
+}
+
+a:hover,
+a:active {
+    color: $mggg-very-dark-blue;
+}
+
+.link--no-style {
+    font-weight: unset;
+    color: unset;
+    &:hover,
+    &:active,
+    &:visited {
+        color: unset;
+    }
+    display: flex;
+}
