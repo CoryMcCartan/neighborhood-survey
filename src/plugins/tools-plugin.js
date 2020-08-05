@@ -4,7 +4,7 @@ import InspectTool from "../components/Toolbar/InspectTool";
 import PanTool from "../components/Toolbar/PanTool";
 import Brush from "../map/Brush";
 import { renderAboutModal } from "../components/Modal";
-import { navigateTo } from "../routes";
+//import { navigateTo } from "../routes";
 import { download } from "../utils";
 
 export default function ToolsPlugin(editor) {
@@ -30,7 +30,7 @@ export default function ToolsPlugin(editor) {
         toolbar.addTool(tool);
     }
     toolbar.selectTool("brush");
-    toolbar.setMenuItems(getMenuItems(editor.state));
+    //toolbar.setMenuItems(getMenuItems(editor.state));
 }
 
 function exportPlanAsJSON(state) {
@@ -44,26 +44,4 @@ function exportPlanAsAssignmentFile(plan, delimiter = ",", extension = "csv") {
         .map(unitId => `${unitId}${delimiter}${plan.assignment[unitId]}`)
         .join("\n");
     download(`assignment-${plan.id}.${extension}`, text);
-}
-
-function getMenuItems(state) {
-    let items = [
-        {
-            name: "About this module",
-            onClick: () => renderAboutModal(state)
-        },
-        {
-            name: "New plan",
-            onClick: () => navigateTo("/new")
-        },
-        {
-            name: "Export this plan",
-            onClick: () => exportPlanAsJSON(state)
-        },
-        {
-            name: "Export as assignment CSV",
-            onClick: () => exportPlanAsAssignmentFile(state.plan)
-        }
-    ];
-    return items;
 }

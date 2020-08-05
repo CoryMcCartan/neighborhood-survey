@@ -53,8 +53,8 @@ fieldset {
 
 .tool-options {
     background: $districtr-light-grey;
-    box-shadow: 0px -10px 15px -20px rgba(0, 0, 0, 0.3) inset,
-        0px 10px 15px -20px rgba(0, 0, 0, 0.3) inset;
+    //box-shadow: 0px -10px 15px -20px rgba(0, 0, 0, 0.3) inset,
+    //    0px 10px 15px -20px rgba(0, 0, 0, 0.3) inset;
     max-height: 0px;
     overflow: hidden;
     transition: all 200ms ease;
@@ -65,7 +65,7 @@ fieldset {
 .tool-options.active {
     opacity: 1;
     max-height: 100%;
-    border-bottom: solid 1px $outline-grey;
+    //border-bottom: solid 1px $outline-grey;
 }
 
 .tool-option-container {

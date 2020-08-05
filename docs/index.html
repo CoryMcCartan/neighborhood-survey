@@ -15,8 +15,7 @@
     <body>
         <script src="es6/embedded.js"></script>
 
-        <form id="root" action="javascript:void(0);"
-                style="padding: 1rem; max-width: 800px; margin: 0 auto">
+        <form id="root" action="javascript:void(0);">
             <h1>Survey Name</h1>
 
             <h2>Enter your address</h2>
@@ -55,7 +54,7 @@
             $ = s => document.querySelector(s);
 
             window.map = window.Districtr("map-container", {
-                url: "assets/little-rock2.json"
+                url: "assets/little-rock.json"
             });
 
             fetch("assets/little_rock_graph.json")
@@ -68,7 +67,6 @@
                 let query = $("#address-box").value;
                 if (query.trim() == "") return;
 
-                map.enableMap();
                 map.loadAddress(query);
             }
             $("#address-go").addEventListener("click", addressSearch);

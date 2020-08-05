@@ -2,7 +2,6 @@
 @import "base";
 @import "colors";
 @import "links";
-@import "sepia";
 
 .form-button {
     color: white;
@@ -35,7 +34,7 @@
 }
 
 .form-button:disabled {
-    background: $sepia-accent-light;
+    background: #bdaaa8;
     color: #504746;
 }
 
@@ -142,6 +141,15 @@
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     transition: height ease 100ms;
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-decoration {
+    display: none;
+    -webkit-appearance: none;
 }
 
 .alert {

@@ -19,8 +19,8 @@ const sources = {
 
 export const clean = () => new Promise(resolve => fs.rmdir("./docs", resolve));
 
-export const deployFiles = () =>
-    gulp.src(sources.deployFiles).pipe(gulp.dest("./docs"));
+//export const deployFiles = () =>
+//    gulp.src(sources.deployFiles).pipe(gulp.dest("./docs"));
 
 export const js = () => bundleViews();
 
@@ -38,7 +38,8 @@ export const assets = () =>
 
 export const build = gulp.series(
     clean,
-    gulp.parallel(js, css, html, assets, deployFiles)
+    //gulp.parallel(js, css, html, assets, deployFiles)
+    gulp.parallel(js, css, html, assets)
 );
 
 export const devBuild = gulp.series(

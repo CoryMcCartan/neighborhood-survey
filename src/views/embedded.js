@@ -3,37 +3,12 @@ import { render, html } from "lit-html";
 import { MapState } from "../map";
 import State from "../models/State";
 import ToolsPlugin from "../plugins/tools-plugin";
-import { loadPlanFromURL } from "../routes";
-import { client } from "../api/client";
 import { generateId } from "../utils";
 import UIStateStore from "../models/UIStateStore";
 import MiniToolbar from "../components/Toolbar/MiniToolbar";
 import mapboxgl from "mapbox-gl";
 
 const plugins = [ToolsPlugin];
-
-function getContext({ place, url, units, number, ...districtrModule }) {
-    if (url) {
-        return loadPlanFromURL(url);
-    } else {
-        const problem = {
-            name: "Districts",
-            pluralNoun: "Districts",
-            type: "districts",
-            numberOfParts: number,
-            ...districtrModule
-        };
-        return client
-            .get(`/places/${place}`)
-            .then(r => r.json())
-            .then(placeRecord => {
-                let unitsRecord = placeRecord.units.find(
-                    item => item.slug === units
-                );
-                return { place: placeRecord, problem, units: unitsRecord };
-            });
-    }
-}
 
 export class EmbeddedDistrictr {
     constructor(target, districtrModule, options) {
@@ -53,8 +28,11 @@ export class EmbeddedDistrictr {
 
         this.addressMarker = null;
 
-        getContext(districtrModule)
+        fetch(districtrModule.url)
+            .then(r => r.json())
             .then(context => {
+                this.bounds = context.units.bounds;
+
                 this.mapState = new MapState(
                     mapContainerId,
                     {
@@ -158,10 +136,10 @@ export class EmbeddedDistrictr {
     loadAddress(str) {
         let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(str)}.json` + 
             `?autocomplete=false&limit=1&bbox=` +
-            map.state.place.units[0].bounds[0][0] + "," +
-            map.state.place.units[0].bounds[0][1] + "," +
-            map.state.place.units[0].bounds[1][0] + "," +
-            map.state.place.units[0].bounds[1][1] +
+            this.bounds[0][0] + "," +
+            this.bounds[0][1] + "," +
+            this.bounds[1][0] + "," +
+            this.bounds[1][1] +
             `&access_token=${mapboxgl.accessToken}`;
 
         fetch(url)
