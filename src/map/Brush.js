@@ -9,7 +9,7 @@ export default class Brush extends HoverWithRadius {
         this.coloring = false;
         this.locked = false;
 
-        this.listeners = { colorend: [], colorfeature: [] };
+        this.listeners = { colorend: [], colorfeature: [], mouseup: [] };
 
         bindAll(["onMouseDown", "onMouseUp", "onClick", "onTouchStart"], this);
     }
@@ -48,7 +48,7 @@ export default class Brush extends HoverWithRadius {
     _colorFeatures(filter) {
         let seenFeatures = new Set();
         for (let feature of this.hoveredFeatures) {
-            if (filter(feature)) {
+            if (filter(feature) && !feature.state.home) {
                 if (!seenFeatures.has(feature.id)) {
                     seenFeatures.add(feature.id);
                     for (let listener of this.listeners.colorfeature) {
@@ -88,6 +88,9 @@ export default class Brush extends HoverWithRadius {
         window.removeEventListener("mouseup", this.onMouseUp);
         window.removeEventListener("touchend", this.onMouseUp);
         window.removeEventListener("touchcancel", this.onMouseUp);
+        for (let listener of this.listeners.mouseup) {
+            listener();
+        }
     }
     onTouchStart(e) {
         if (e.points && e.points.length <= 1) {

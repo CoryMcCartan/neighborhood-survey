@@ -3,9 +3,7 @@ import { unitBordersPaintProperty, getUnitColorProperty } from "../colors";
 import Layer from "./Layer";
 
 mapboxgl.accessToken =
-    "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGZidjA3YjF0cW8yeHQxdDNqd2Y4cTEifQ.8elwvE-aLuIZsKVQ7Tsq9g";
-    //"sk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGZkOWhycTRobWMyeHF2b2J6N2ZxNzgifQ.AF7F9fRVn5aqFGmjJD1Twg";  MINE
-    //"pk.eyJ1IjoiZGlzdHJpY3RyIiwiYSI6ImNqbjUzMTE5ZTBmcXgzcG81ZHBwMnFsOXYifQ.8HRRLKHEJA0AismGk2SX2g"; MGGG
+    "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A";
 
 export class MapState {
     constructor(mapContainer, options, mapStyle) {

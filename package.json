@@ -5,7 +5,8 @@
     "private": true,
     "scripts": {
         "build": "gulp build",
-        "develop": "gulp develop"
+        "develop": "gulp develop",
+        "clean": "gulp clean"
     },
     "repository": {
         "type": "git",

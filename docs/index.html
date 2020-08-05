@@ -3,21 +3,22 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Survey</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>Survey</title>
+
         <link rel="stylesheet" type="text/css" media="screen" href="css/embedded.css" />
         <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-<!--        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
-            integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
-            crossorigin="anonymous" /> -->
     </head>
 
     <body>
         <script src="es6/embedded.js"></script>
 
-        <main id="root" style="padding: 1rem; max-width: 800px; margin: 0 auto">
+        <form id="root" action="javascript:void(0);"
+                style="padding: 1rem; max-width: 800px; margin: 0 auto">
             <h1>Survey Name</h1>
+
             <h2>Enter your address</h2>
             <p style="display: flex; flex-direction: row;">
                 <input type="search" id="address-box" class="text-input" 
@@ -25,6 +26,7 @@
                     style="margin: 0.5em 0;flex-grow: 1;" />
                 <button id="address-go" class="form-button" style="margin: 0.5em">Go</button>
             </p>
+            <div id="search-msg" hidden class="msg" style="margin-top: -1em"></div>
 
             <h2>Draw your neighborhood</h2>
 
@@ -34,24 +36,45 @@
                 eraser to make corrections.
             </p>
             <p>
-                [More instructions for how to draw.]
+                [More instructions for how to draw].
             </p>
 
+
             <div id="map-container"></div>
-        </main>
+
+            <br />
+
+            <h2>Demographic information</h2>
+            <p>
+                What is your age?
+                <input type="number" class="text-input" min=0 />
+            </p>
+        </form>
+
         <script>
             $ = s => document.querySelector(s);
+
             window.map = window.Districtr("map-container", {
-                url: "/assets/little-rock2.json"
+                url: "assets/little-rock2.json"
             });
 
-            $("#address-go").addEventListener("click", function() {
+            fetch("assets/little_rock_graph.json")
+                .then(x => x.json())
+                .then(g => {
+                    window.graph = g;
+                });
+
+            function addressSearch() {
                 let query = $("#address-box").value;
-                if (query.trim() != "") map.loadAddress(query);
-            });
+                if (query.trim() == "") return;
+
+                map.enableMap();
+                map.loadAddress(query);
+            }
+            $("#address-go").addEventListener("click", addressSearch);
             $("#address-box").addEventListener("keydown", function(e) {
                 if (e.keyCode == 13) 
-                    map.loadAddress(this.value);
+                    addressSearch();
             });
         </script>
     </body>

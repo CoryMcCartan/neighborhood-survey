@@ -51,6 +51,8 @@ export class EmbeddedDistrictr {
         this.toolbarTarget = document.createElement("div");
         targetElement.appendChild(this.toolbarTarget);
 
+        this.addressMarker = null;
+
         getContext(districtrModule)
             .then(context => {
                 this.mapState = new MapState(
@@ -77,24 +79,57 @@ export class EmbeddedDistrictr {
                         context,
                         () => null
                     );
-                    this.store = new UIStateStore(reducer, {
-                        toolbar: {
-                            activeTab: "criteria",
-                            dropdownMenuOpen: false
-                        },
-                        elections: {
-                            activeElectionIndex: 0
-                        },
-                        charts: {}
-                    });
-                    this.toolbar = new MiniToolbar(this.store, this);
 
-                    for (let plugin of plugins) {
-                        plugin(this);
+                    // delayed enabling
+                    this.enableMap = function() {
+                        if (this.enabled) return;
+                        else this.enabled = true;
+
+                        this.store = new UIStateStore(reducer, {
+                            toolbar: {
+                                activeTab: "criteria",
+                                dropdownMenuOpen: false
+                            },
+                            elections: {
+                                activeElectionIndex: 0
+                            },
+                            charts: {}
+                        });
+                        this.toolbar = new MiniToolbar(this.store, this);
+
+                        for (let plugin of plugins) {
+                            plugin(this);
+                        }
+
+                        this.store.subscribe(this.render);
+                        this.state.subscribe(this.render);
+
+                        // contiguity check
+                        let draw_msg = document.createElement("div");
+                        draw_msg.hidden = true;
+                        draw_msg.className = "msg";
+                        draw_msg.id = "draw-msg";
+                        this.toolbarTarget.prepend(draw_msg);
+
+                        let timeout_id = -1;
+                        this.toolbar.toolsById.brush.brush.on("mouseup", () => {
+                            window.clearTimeout(timeout_id);
+                            timeout_id = window.setTimeout(window.checkConnected, 50);
+                        });
+
+                        // fix tabbing
+                        let els = "#map-container input, #map-container button, #map-container a";
+                        for (let el of document.querySelectorAll(els)) {
+                            el.tabIndex = -1; 
+                        }
+                    };
+                    this.enabled = false;
+
+                    // fix tabbing
+                    let els = "#map-container input, #map-container button, #map-container a";
+                    for (let el of document.querySelectorAll(els)) {
+                        el.tabIndex = -1; 
                     }
-
-                    this.store.subscribe(this.render);
-                    this.state.subscribe(this.render);
                 });
             })
             .catch(e => {
@@ -132,14 +167,46 @@ export class EmbeddedDistrictr {
         fetch(url)
             .then(x => x.json()) 
             .then(d => {
+                let msg = document.querySelector("#search-msg");
+                if (d.features.length == 0) {
+                    msg.innerHTML = "Address not found.";
+                    msg.hidden = false;
+                    return;
+                } else {
+                    msg.innerHTML = null;
+                    msg.hidden = true;
+                    this.enableMap();
+                }
+
                 let center = d.features[0].center;
-                new mapboxgl.Marker({ color: "#ff4f49" })
+                // put down marker
+                if (!!this.addressMarker) this.addressMarker.remove();
+                this.addressMarker = new mapboxgl.Marker({ color: "#ff4f49" })
                     .setLngLat(center)
-                    .addTo(map.map);
+                    .addTo(this.map);
+                
+                // zoom to
                 this.map.easeTo({ 
                     center,
                     zoom: 15,
+                    pitch: 45,
                 });
+
+                // color block
+                let block = this.map.queryRenderedFeatures(
+                    this.map.project(center),
+                    { layers: [this.state.units.id], validate: false }
+                )[0];
+                block.state.home = true;
+                if (!!this.homeBlock) {
+                    this.map.setFeatureState(this.homeBlock, {
+                        ...this.homeBlock.state,
+                        home: false
+                    });
+                }
+                this.state.units.setAssignment(block, 0);
+                this.state.plan.assignment[block.properties.GEOID10] = 0;
+                this.homeBlock = block;
             });
     }
 }
@@ -147,3 +214,40 @@ export class EmbeddedDistrictr {
 
 window.Districtr = (target, districtrModule, options) =>
     new EmbeddedDistrictr(target, districtrModule, options);
+
+window.checkConnected = function() {
+    if (!window.map || !window.graph) return null;
+    let assignment = window.map.state.plan.assignment;
+
+    let visited = {};
+    let total = 0;
+    for (let id in assignment) {
+        if (assignment[id] != 0) continue;
+        visited[id.slice(5)] = false; // CHANGE once not LITTLE ROCK
+        total++;
+    }
+    
+    let root = window.map.homeBlock.properties.GEOID10.slice(5);
+    let found = walkNeighborhood(visited, root);
+
+    let draw_msg = document.querySelector("#draw-msg");
+    if (found === total) {
+        draw_msg.hidden = true;
+    } else {
+        draw_msg.innerHTML = "Your neighborhood must be in one piece only.";
+        draw_msg.hidden = false;
+    }
+
+    return found === total;
+}
+
+window.walkNeighborhood = function(visited, node) {
+    let desc = 1;
+    visited[node] = true;
+    for (let nbor of window.graph[node]) {
+        if (visited[nbor] === false) {
+            desc += walkNeighborhood(visited, nbor);
+        }
+    }
+    return desc;
+}

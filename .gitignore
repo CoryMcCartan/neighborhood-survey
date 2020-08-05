@@ -4,6 +4,7 @@ dist/**
 .Rhistory
 *.tmp
 *.bak
+*.Rproj
 
 # Logs
 logs
@@ -80,3 +81,4 @@ typings/
 .serverless
 
 assets/raw
+.Rproj.user
