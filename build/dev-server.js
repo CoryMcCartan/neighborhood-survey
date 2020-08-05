@@ -1,5 +1,5 @@
 import browserSync from "browser-sync";
-import bundleViews from "./bundle-js";
+import bundle from "./bundle-js";
 
 const server = browserSync.create();
 
@@ -22,5 +22,5 @@ export function serve(done) {
 
 let caches = {};
 export function bundleWithCacheForDevelopment() {
-    return bundleViews(false, caches);
+    return bundle(false, caches);
 }

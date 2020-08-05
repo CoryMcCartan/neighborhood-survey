@@ -7,25 +7,23 @@
 
         <title>Survey</title>
 
-        <link rel="stylesheet" type="text/css" media="screen" href="css/embedded.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="embedded.css" />
+
         <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+        <script src="embedded.js"></script>
     </head>
 
     <body>
-        <script src="es6/embedded.js"></script>
-
         <form id="root" action="javascript:void(0);">
-            <h1>Survey Name</h1>
-
             <h2>Enter your address</h2>
             <p style="display: flex; flex-direction: row;">
-                <input type="search" id="address-box" class="text-input" 
+                <input type="search" id="ns__address-box" class="text-input" 
                     placeholder="e.g. '617 S Louisiana'" autofocus 
                     style="margin: 0.5em 0;flex-grow: 1;" />
-                <button id="address-go" class="form-button" style="margin: 0.5em">Go</button>
+                <button id="ns__address-go" class="form-button" style="margin: 0.5em">Go</button>
             </p>
-            <div id="search-msg" hidden class="msg" style="margin-top: -1em"></div>
+            <div id="ns__search-msg" hidden class="ns__msg" style="margin-top: -1em"></div>
 
             <h2>Draw your neighborhood</h2>
 
@@ -34,43 +32,32 @@
                 Use the brush tool to draw your neighborhood, and the
                 eraser to make corrections.
             </p>
-            <p>
-                [More instructions for how to draw].
-            </p>
 
-
-            <div id="map-container"></div>
-
-            <br />
-
-            <h2>Demographic information</h2>
-            <p>
-                What is your age?
-                <input type="number" class="text-input" min=0 />
-            </p>
+            <div id="ns__container"></div>
         </form>
 
         <script>
             $ = s => document.querySelector(s);
 
-            window.map = window.Districtr("map-container", {
+            window.map = window.Districtr("#ns__container", {
                 url: "assets/little-rock.json"
             });
 
             fetch("assets/little_rock_graph.json")
                 .then(x => x.json())
                 .then(g => {
-                    window.graph = g;
+                    window.map.graph = g;
                 });
 
             function addressSearch() {
-                let query = $("#address-box").value;
+                let query = $("#ns__address-box").value;
                 if (query.trim() == "") return;
 
                 map.loadAddress(query);
             }
-            $("#address-go").addEventListener("click", addressSearch);
-            $("#address-box").addEventListener("keydown", function(e) {
+
+            $("#ns__address-go").addEventListener("click", addressSearch);
+            $("#ns__address-box").addEventListener("keydown", function(e) {
                 if (e.keyCode == 13) 
                     addressSearch();
             });

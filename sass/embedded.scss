@@ -8,9 +8,7 @@
 @import "components/toolbar";
 @import "components/charts";
 @import "components/tooltip";
-//@import "components/places";
 @import "components/button";
-//@import "components/header-with-toggle";
 
 #root {
     display: block;
@@ -25,16 +23,16 @@
     background: white;
 }
 
-#map-container {
+#ns__container {
     width: 100%;
     max-width: 800px;
     height: 600px;
-    max-height: 85vh;
+    max-height: 75vh;
     margin: 2rem 0;
     border: 1px solid $outline-grey;
 }
 
-.msg {
+.ns__msg {
     background: #ffc0ba;
     padding: 1em;
     margin: 0.5em 0;
@@ -42,7 +40,7 @@
     border-radius: 2px;
 }
 
-#draw-msg {
+#ns__draw-msg {
     margin: 0;
     border-radius: 0;
 }

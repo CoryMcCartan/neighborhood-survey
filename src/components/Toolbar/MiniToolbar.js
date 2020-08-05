@@ -8,7 +8,6 @@ export default class MiniToolbar {
         this.tools = [];
         this.toolsById = {};
         this.menuItems = [];
-        this.tabs = [];
 
         this.renderCallback = editor.render;
 
@@ -27,12 +26,6 @@ export default class MiniToolbar {
         }
         this.toolsById[toolId].activate();
         this.store.dispatch(actions.selectTool({ id: toolId }));
-    }
-    addTab(tab) {
-        this.tabs.push(tab);
-    }
-    addTabFirst(tab) {
-        this.tabs.splice(0, 0, tab);
     }
     addTool(tool) {
         if (tool.options !== undefined) {

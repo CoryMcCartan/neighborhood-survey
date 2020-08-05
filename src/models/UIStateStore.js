@@ -6,14 +6,9 @@ export default class UIStateStore {
         this.state = initialState;
         this.subscribers = [];
 
-        this.DEBUG = Boolean(localStorage.getItem("DEBUG"));
-
         bindAll(["dispatch", "subscribe"], this);
     }
     dispatch(action) {
-        if (this.DEBUG) {
-            console.log(action);
-        }
         const nextState = this.reducer(this.state, action);
         if (nextState !== this.state) {
             this.state = nextState;

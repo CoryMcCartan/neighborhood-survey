@@ -34,7 +34,8 @@ export default class State {
         this.initializeMapState(
             map,
             units,
-            problem.type === "community" ? addBelowLabels : addBelowSymbols
+            addBelowLabels
+            //problem.type === "community" ? addBelowLabels : addBelowSymbols
         );
         this.columnSets = getColumnSets(this, units);
 

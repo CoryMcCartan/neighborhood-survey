@@ -1,8 +1,7 @@
-import browserSync from "browser-sync";
 import fs from "fs";
 import gulp from "gulp";
 import sass from "gulp-dart-sass";
-import bundleViews from "./build/bundle-js";
+import bundle from "./build/bundle-js";
 import {
     bundleWithCacheForDevelopment,
     reload,
@@ -22,14 +21,19 @@ export const clean = () => new Promise(resolve => fs.rmdir("./docs", resolve));
 //export const deployFiles = () =>
 //    gulp.src(sources.deployFiles).pipe(gulp.dest("./docs"));
 
-export const js = () => bundleViews();
+export const js = () => bundle();
 
 export const css = () =>
     gulp
         .src(sources.css)
         .pipe(sass())
-        .pipe(gulp.dest("./docs/css"))
-        .pipe(browserSync.stream());
+        .pipe(gulp.dest("./docs/"));
+
+export const css_min = () =>
+    gulp
+        .src(sources.css)
+        .pipe(sass({outputStyle: 'compressed'}))
+        .pipe(gulp.dest("./docs/"));
 
 export const html = () => gulp.src(sources.html).pipe(gulp.dest("./docs"));
 
@@ -39,7 +43,7 @@ export const assets = () =>
 export const build = gulp.series(
     clean,
     //gulp.parallel(js, css, html, assets, deployFiles)
-    gulp.parallel(js, css, html, assets)
+    gulp.parallel(js, css_min, html, assets)
 );
 
 export const devBuild = gulp.series(

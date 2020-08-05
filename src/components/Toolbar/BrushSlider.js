@@ -11,7 +11,7 @@ export default (radius, onChange, options) => html`
                 type="range"
                 value="${radius}"
                 min="1"
-                max="100"
+                max="40"
                 @change=${onChange}
             />
             <input
@@ -19,7 +19,7 @@ export default (radius, onChange, options) => html`
                 type="number"
                 value="${radius}"
                 min="1"
-                max="100"
+                max="40"
                 @change=${onChange}
             />
         </div>

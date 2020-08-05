@@ -1,24 +1,17 @@
 import { html } from "lit-html";
-import BrushColorPicker from "./BrushColorPicker";
 import BrushSlider from "./BrushSlider";
 import Tool from "./Tool";
 
-const icon = (active, colorId, colors) => {
-    if (active && colorId !== undefined) {
-        return html`
-            <i class="material-icons" style="color: ${colors[colorId].color};"
-                >brush</i
-            >
-        `;
-    } else {
-        return html`
-            <i class="material-icons">brush</i>
-        `;
-    }
-};
-
 export default class BrushTool extends Tool {
     constructor(brush, colors) {
+        const img_data = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAABXUlEQVR4Ae3ZEXT" +
+            "DYBiF4UGhUBgMCoNBoVAYDmrDQGFQrNNwfgrDwnBQKASCxcEgEJxTITAMFAPfXgj1bH/W5Kev957z+Dmv3itN0zRN0zRNu6QNsUSBPR" +
+            "JozUbIYSc2OJ3ihCMpTjiS4oQjKU5Yojhhe8UJKxQnbKk4f8swgJMpjuIojuIojuIojuIojuIojuIojuIojuIojuI43afihPeEOlocRQ" +
+            "rHUaRwHEUKx1EkV3EesEGBQyPHGrMOkdzEmeAD1iLFuD2SrzhzVLB/KjFtiZR6iTPFEXamEmO4XwHrKIXrJbCeZnC7HaynNdyuhPWUw+0"+
+            "sggNc7hYWQQmXe4RFUMDl3mERZHC3e9SwCFZwtTm+YRHUuPEQZYQ5UlhEb3CxDBZZhbEumt/VSOBqA+xgETzD7VaoYB0csYD7XeP1zFBb"+
+            "3OGiNsQCW3yhhjVK5HjBBJqmaZqmaZrmcz/pIiIIU7ugBgAAAABJRU5ErkJggg==";
+        const icon = html`<img src="${img_data}" alt="Brush" 
+            style="display: inline-block; height: 1.75em; z-index: 100;"></img>`;
         super("brush", "Draw", icon);
         this.brush = brush;
         this.colors = colors;
@@ -32,10 +25,6 @@ export default class BrushTool extends Tool {
         super.deactivate();
         this.brush.deactivate();
     }
-    render(selectTool) {
-        this.icon = icon(this.active, this.brush.color, this.colors);
-        return super.render(selectTool);
-    }
 }
 
 class BrushToolOptions {
@@ -43,13 +32,7 @@ class BrushToolOptions {
         this.brush = brush;
         this.colors = colors;
         this.renderToolbar = renderToolbar;
-        this.selectColor = this.selectColor.bind(this);
         this.changeRadius = this.changeRadius.bind(this);
-        this.toggleBrushLock = this.toggleBrushLock.bind(this);
-    }
-    selectColor(e) {
-        this.brush.setColor(e.target.value);
-        this.renderToolbar();
     }
     changeRadius(e) {
         e.stopPropagation();
@@ -59,34 +42,7 @@ class BrushToolOptions {
         }
         this.renderToolbar();
     }
-    toggleBrushLock() {
-        this.brush.locked = this.brush.locked ? false : true;
-    }
     render() {
-        const activeColor = this.colors[this.brush.color].id;
-        return html`
-            ${this.colors.length > 1
-                ? BrushColorPicker(this.colors, this.selectColor, activeColor)
-                : ""}
-            ${BrushSlider(this.brush.radius, this.changeRadius)}
-            ${this.colors.length > 1
-                ? BrushLock(this.brush.locked, this.toggleBrushLock)
-                : ""}
-        `;
+        return html`${BrushSlider(this.brush.radius, this.changeRadius)}`;
     }
 }
-
-const BrushLock = (locked, toggle) => html`
-    <div class="ui-option">
-        <label class="toolbar-checkbox">
-            <input
-                type="checkbox"
-                name="brush-lock"
-                value="brush-lock"
-                ?checked=${locked}
-                @change=${toggle}
-            />
-            Lock already-drawn districts
-        </label>
-    </div>
-`;

@@ -5,8 +5,8 @@ import { terser } from "rollup-plugin-terser";
 
 export default function plugins(targets, development = false) {
     return [
-        resolve({ preferBuiltins: false }),
-        commonjs(),
+        resolve({ preferBuiltins: false, browser: true }),
+        commonjs({ sourceMap: false }),
         babel({
             babelrc: false,
             presets: [

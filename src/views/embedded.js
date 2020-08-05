@@ -14,19 +14,25 @@ export class EmbeddedDistrictr {
     constructor(target, districtrModule, options) {
         this.render = this.render.bind(this);
 
-        options = { style: "mapbox://styles/mapbox/light-v10", ...options };
+        options = { 
+            style: "mapbox://styles/mapbox/outdoors-v11", 
+            ...options 
+        };
 
-        const targetElement = document.getElementById(target);
+        const targetElement = document.querySelector(target);
         targetElement.classList.add("districtr__embed-container");
+
         const mapContainer = document.createElement("div");
         const mapContainerId = generateId(8);
         mapContainer.setAttribute("id", mapContainerId);
         mapContainer.style = "height: 100%; width: 100%";
+
         targetElement.appendChild(mapContainer);
         this.toolbarTarget = document.createElement("div");
         targetElement.appendChild(this.toolbarTarget);
 
         this.addressMarker = null;
+        this.graph = null;
 
         fetch(districtrModule.url)
             .then(r => r.json())
@@ -63,16 +69,7 @@ export class EmbeddedDistrictr {
                         if (this.enabled) return;
                         else this.enabled = true;
 
-                        this.store = new UIStateStore(reducer, {
-                            toolbar: {
-                                activeTab: "criteria",
-                                dropdownMenuOpen: false
-                            },
-                            elections: {
-                                activeElectionIndex: 0
-                            },
-                            charts: {}
-                        });
+                        this.store = new UIStateStore(reducer, {toolbar: {}});
                         this.toolbar = new MiniToolbar(this.store, this);
 
                         for (let plugin of plugins) {
@@ -85,29 +82,17 @@ export class EmbeddedDistrictr {
                         // contiguity check
                         let draw_msg = document.createElement("div");
                         draw_msg.hidden = true;
-                        draw_msg.className = "msg";
-                        draw_msg.id = "draw-msg";
+                        draw_msg.className = "ns__msg";
+                        draw_msg.id = "ns__draw-msg";
                         this.toolbarTarget.prepend(draw_msg);
 
                         let timeout_id = -1;
                         this.toolbar.toolsById.brush.brush.on("mouseup", () => {
                             window.clearTimeout(timeout_id);
-                            timeout_id = window.setTimeout(window.checkConnected, 50);
+                            timeout_id = window.setTimeout(this.checkConnected.bind(this), 50);
                         });
-
-                        // fix tabbing
-                        let els = "#map-container input, #map-container button, #map-container a";
-                        for (let el of document.querySelectorAll(els)) {
-                            el.tabIndex = -1; 
-                        }
                     };
                     this.enabled = false;
-
-                    // fix tabbing
-                    let els = "#map-container input, #map-container button, #map-container a";
-                    for (let el of document.querySelectorAll(els)) {
-                        el.tabIndex = -1; 
-                    }
                 });
             })
             .catch(e => {
@@ -133,6 +118,44 @@ export class EmbeddedDistrictr {
         render(this.toolbar.render(), this.toolbarTarget);
     }
 
+    checkConnected() {
+        let graph = this.graph;
+        if (!graph) return null;
+        let assignment = this.state.plan.assignment;
+
+        let visited = {};
+        let total = 0;
+        for (let id in assignment) {
+            if (assignment[id] != 0) continue;
+            visited[id.slice(5)] = false; // CHANGE once not LITTLE ROCK
+            total++;
+        }
+        
+        let walkNeighborhood = function(visited, node) {
+            let desc = 1;
+            visited[node] = true;
+            for (let nbor of graph[node]) {
+                if (visited[nbor] === false) {
+                    desc += walkNeighborhood(visited, nbor);
+                }
+            }
+            return desc;
+        };
+
+        let root = this.homeBlock.properties.GEOID10.slice(5);
+        let found = walkNeighborhood(visited, root);
+
+        let draw_msg = document.querySelector("#ns__draw-msg");
+        if (found === total) {
+            draw_msg.hidden = true;
+        } else {
+            draw_msg.innerHTML = "Your neighborhood must be in one piece only.";
+            draw_msg.hidden = false;
+        }
+
+        return found === total;
+    }
+
     loadAddress(str) {
         let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(str)}.json` + 
             `?autocomplete=false&limit=1&bbox=` +
@@ -145,7 +168,7 @@ export class EmbeddedDistrictr {
         fetch(url)
             .then(x => x.json()) 
             .then(d => {
-                let msg = document.querySelector("#search-msg");
+                let msg = document.querySelector("#ns__search-msg");
                 if (d.features.length == 0) {
                     msg.innerHTML = "Address not found.";
                     msg.hidden = false;
@@ -167,7 +190,6 @@ export class EmbeddedDistrictr {
                 this.map.easeTo({ 
                     center,
                     zoom: 15,
-                    pitch: 45,
                 });
 
                 // color block
@@ -193,39 +215,4 @@ export class EmbeddedDistrictr {
 window.Districtr = (target, districtrModule, options) =>
     new EmbeddedDistrictr(target, districtrModule, options);
 
-window.checkConnected = function() {
-    if (!window.map || !window.graph) return null;
-    let assignment = window.map.state.plan.assignment;
 
-    let visited = {};
-    let total = 0;
-    for (let id in assignment) {
-        if (assignment[id] != 0) continue;
-        visited[id.slice(5)] = false; // CHANGE once not LITTLE ROCK
-        total++;
-    }
-    
-    let root = window.map.homeBlock.properties.GEOID10.slice(5);
-    let found = walkNeighborhood(visited, root);
-
-    let draw_msg = document.querySelector("#draw-msg");
-    if (found === total) {
-        draw_msg.hidden = true;
-    } else {
-        draw_msg.innerHTML = "Your neighborhood must be in one piece only.";
-        draw_msg.hidden = false;
-    }
-
-    return found === total;
-}
-
-window.walkNeighborhood = function(visited, node) {
-    let desc = 1;
-    visited[node] = true;
-    for (let nbor of window.graph[node]) {
-        if (visited[nbor] === false) {
-            desc += walkNeighborhood(visited, nbor);
-        }
-    }
-    return desc;
-}

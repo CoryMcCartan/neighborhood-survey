@@ -1,14 +1,12 @@
-import Election from "../Election";
 import Part from "../Part";
 import Population from "../Population";
 import { districtColors } from "../../colors";
 
-// This module provides functions that creates Part and ColumnSet (Election
-// and Population) objects from the Place and DistrictingProblem records
-// provided from the backend (specified in the YAML config files used when
-// generating tilesets). This is currently a sort of ad hoc process, where
-// we identify Population and VAP based on the ColumnSet type and name,
-// and Elections by their type ("election"). These are saved as
+// This module provides functions that creates Part and ColumnSet (Population)
+// objects from the Place and DistrictingProblem records provided from the
+// backend (specified in the YAML config files used when generating tilesets).
+// This is currently a sort of ad hoc process, where we identify Population and
+// VAP based on the ColumnSet type and name.  These are saved as
 // `state.population` and `state.vap`, respectively.
 
 // In the future, it would be better to just create the ColumnSets based
@@ -56,43 +54,14 @@ function getVAP(place, parts) {
     }
 }
 
-function getElections(place, parts) {
-    const elections = place.columnSets.filter(
-        columnSet => columnSet.type === "election"
-    );
-    elections.forEach(election => {
-        election.year = election.metadata
-            ? election.metadata.year
-            : election.name.split(" ")[0];
-    });
-    return elections
-        .sort((a, b) => b.year - a.year)
-        .map(
-            election =>
-                new Election(
-                    election.metadata
-                        ? `${election.metadata.year} ${
-                              election.metadata.race
-                          } Election`
-                        : `${election.name} Election`,
-                    election.subgroups,
-                    parts
-                )
-        );
-}
 
 export function getColumnSets(state, unitsRecord) {
-    state.elections = getElections(unitsRecord, state.parts);
     state.population = getPopulation(unitsRecord, state.parts);
     state.vap = getVAP(unitsRecord, state.parts);
 
     state.columns = [
         state.population.total,
         ...state.population.subgroups,
-        ...state.elections.reduce(
-            (cols, election) => [...cols, ...election.subgroups],
-            []
-        )
     ];
     if (state.vap) {
         state.columns = [
@@ -102,7 +71,7 @@ export function getColumnSets(state, unitsRecord) {
         ];
     }
 
-    let columnSets = [state.population, ...state.elections];
+    let columnSets = [state.population];
     if (state.vap) {
         columnSets.push(state.vap);
     }
