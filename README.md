@@ -8,9 +8,13 @@ Add the following lines in HTML mode to your survey header
 (under "Look and Feel > General > Header > edit"):
 
 ```html
-<link href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet" />
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/CoryMcCartan/neighborhood-survey/docs/embedded.js"></script>
+```
+
+Under "Look and Feel > Style > External CSS", paste:
+```
+https://cdn.jsdelivr.net/gh/CoryMcCartan/neighborhood-survey/docs/embedded.css
 ```
 
 In the question you'd like to have the map appear in, edit the question HTML

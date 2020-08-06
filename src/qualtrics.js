@@ -7,24 +7,21 @@ Qualtrics.SurveyEngine.addOnload(function() {
         url: baseurl + "assets/little-rock.json",
         graph: baseurl + "assets/little-rock_graph.json"
     });
+});
 
-
+Qualtrics.SurveyEngine.addOnReady(function() {
     function addressSearch() {
-        var query = $("#ns__address-box").value;
+        var query = jQuery("#ns__address-box").value;
         if (query.trim() == "") return;
 
         map.loadAddress(query);
     }
 
-    $("#ns__address-go").addEventListener("click", addressSearch);
-    $("#ns__address-box").addEventListener("keydown", function(e) {
+    jQuery("#ns__address-go").on("click", addressSearch);
+    jQuery("#ns__address-box").on("keydown", function(e) {
         if (e.keyCode == 13) 
             addressSearch();
     });
-});
-
-Qualtrics.SurveyEngine.addOnReady(function() {
-
 });
 
 Qualtrics.SurveyEngine.addOnUnload(function() {
