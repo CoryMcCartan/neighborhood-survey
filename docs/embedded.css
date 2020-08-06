@@ -1719,7 +1719,7 @@ dl {
   color: white;
   outline: none;
   border: none;
-  margin: 1rem 0;
+  margin: 0 0 0 0.5em;
   padding: 0.5rem;
   font-weight: 400;
   font-family: Arial;
@@ -1748,9 +1748,11 @@ dl {
 }
 
 #ns__address-box {
+  margin: 0.5em 0;
+  flex-grow: 1;
   outline: none;
   border: 1px solid #aaaaaa;
-  margin: 0 0 1rem;
+  margin: 0;
   padding: 0.5rem;
   border-radius: 0.25rem;
   font-size: 1.5rem;
