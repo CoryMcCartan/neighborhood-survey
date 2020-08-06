@@ -13,7 +13,7 @@ export default function plugins(targets, development = false) {
                 [
                     "@babel/preset-env",
                     {
-                        targets: targets || "> 0.25%, not op_mini all, not dead"
+                        targets: targets || "> 0.25%, Firefox ESR, not op_mini all, not dead"
                     }
                 ]
             ],

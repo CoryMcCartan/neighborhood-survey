@@ -11,7 +11,7 @@ import mapboxgl from "mapbox-gl";
 const plugins = [ToolsPlugin];
 
 export class EmbeddedDistrictr {
-    constructor(target, districtrModule, options) {
+    constructor(target, module, options) {
         this.render = this.render.bind(this);
 
         options = { 
@@ -34,7 +34,13 @@ export class EmbeddedDistrictr {
         this.addressMarker = null;
         this.graph = null;
 
-        fetch(districtrModule.url)
+        fetch(module.graph)
+            .then(r => r.json())
+            .then(g => {
+                this.graph = g;
+            });
+
+        fetch(module.url)
             .then(r => r.json())
             .then(context => {
                 this.bounds = context.units.bounds;
@@ -96,12 +102,9 @@ export class EmbeddedDistrictr {
                 });
             })
             .catch(e => {
-                // eslint-disable-next-line no-console
                 console.error(e);
                 render(
-                    html`
-                        <h4>An error occurred.</h4>
-                    `,
+                    html`<h4>An error occurred.</h4>`,
                     targetElement
                 );
             });
@@ -212,7 +215,7 @@ export class EmbeddedDistrictr {
 }
 
 
-window.Districtr = (target, districtrModule, options) =>
-    new EmbeddedDistrictr(target, districtrModule, options);
+window.Districtr = (target, module, options) =>
+    new EmbeddedDistrictr(target, module, options);
 
 

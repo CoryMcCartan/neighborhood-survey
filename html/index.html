@@ -40,17 +40,12 @@
             $ = s => document.querySelector(s);
 
             window.map = window.Districtr("#ns__container", {
-                url: "assets/little-rock.json"
+                url: "assets/little-rock.json",
+                graph: "assets/little-rock_graph.json"
             });
 
-            fetch("assets/little_rock_graph.json")
-                .then(x => x.json())
-                .then(g => {
-                    window.map.graph = g;
-                });
-
             function addressSearch() {
-                let query = $("#ns__address-box").value;
+                var query = $("#ns__address-box").value;
                 if (query.trim() == "") return;
 
                 map.loadAddress(query);
