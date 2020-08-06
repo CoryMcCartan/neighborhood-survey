@@ -3046,7 +3046,7 @@
   }
 
   function _templateObject$3() {
-    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Brush\" \n            style=\"display: inline-block; height: 1.75em; z-index: 100;\"></img>"]);
+    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Brush\" \n            style=\"display: inline-block; height: 1.75em !important; z-index: 100;\"></img>"]);
 
     _templateObject$3 = function _templateObject() {
       return data;
@@ -3136,7 +3136,7 @@
   }
 
   function _templateObject$4() {
-    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Erase\" \n            style=\"display: inline-block; height: 1.75em; z-index: 100;\"></img>"]);
+    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Erase\" \n            style=\"display: inline-block; height: 1.75em !important; z-index: 100;\"></img>"]);
 
     _templateObject$4 = function _templateObject() {
       return data;
@@ -3218,7 +3218,7 @@
   }();
 
   function _templateObject$5() {
-    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Pan\" \n            style=\"display: inline-block; height: 1.65em; z-index: 100;\"></img>"]);
+    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Pan\" \n            style=\"display: inline-block; height: 1.65em !important; z-index: 100;\"></img>"]);
 
     _templateObject$5 = function _templateObject() {
       return data;

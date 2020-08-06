@@ -11,7 +11,7 @@ export default class BrushTool extends Tool {
             "sggNc7hYWQQmXe4RFUMDl3mERZHC3e9SwCFZwtTm+YRHUuPEQZYQ5UlhEb3CxDBZZhbEumt/VSOBqA+xgETzD7VaoYB0csYD7XeP1zFBb"+
             "3OGiNsQCW3yhhjVK5HjBBJqmaZqmaZrmcz/pIiIIU7ugBgAAAABJRU5ErkJggg==";
         const icon = html`<img src="${img_data}" alt="Brush" 
-            style="display: inline-block; height: 1.75em; z-index: 100;"></img>`;
+            style="display: inline-block; height: 1.75em !important; z-index: 100;"></img>`;
         super("brush", "Draw", icon);
         this.brush = brush;
         this.colors = colors;
