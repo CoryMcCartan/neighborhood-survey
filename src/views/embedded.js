@@ -33,6 +33,7 @@ export class EmbeddedDistrictr {
 
         this.addressMarker = null;
         this.graph = null;
+        this.showError = module.errors;
 
         fetch(module.graph)
             .then(r => r.json())
@@ -86,12 +87,6 @@ export class EmbeddedDistrictr {
                         this.state.subscribe(this.render);
 
                         // contiguity check
-                        let draw_msg = document.createElement("div");
-                        draw_msg.hidden = true;
-                        draw_msg.className = "ns__msg";
-                        draw_msg.id = "ns__draw-msg";
-                        this.toolbarTarget.prepend(draw_msg);
-
                         let timeout_id = -1;
                         this.toolbar.toolsById.brush.brush.on("mouseup", () => {
                             window.clearTimeout(timeout_id);
@@ -147,14 +142,8 @@ export class EmbeddedDistrictr {
 
         let root = this.homeBlock.properties.GEOID10.slice(5);
         let found = walkNeighborhood(visited, root);
-
-        let draw_msg = document.querySelector("#ns__draw-msg");
-        if (found === total) {
-            draw_msg.hidden = true;
-        } else {
-            draw_msg.innerHTML = "Your neighborhood must be in one piece only.";
-            draw_msg.hidden = false;
-        }
+        this.showError(found !== total ? 
+                       "Your neighborhood must be in one piece only." : null);
 
         return found === total;
     }
@@ -171,14 +160,11 @@ export class EmbeddedDistrictr {
         fetch(url)
             .then(x => x.json()) 
             .then(d => {
-                let msg = document.querySelector("#ns__search-msg");
                 if (d.features.length == 0) {
-                    msg.innerHTML = "Address not found.";
-                    msg.hidden = false;
+                    this.showError("Address not found.");
                     return;
                 } else {
-                    msg.innerHTML = null;
-                    msg.hidden = true;
+                    this.showError(null);
                     this.enableMap();
                 }
 

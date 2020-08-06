@@ -5,13 +5,14 @@ Qualtrics.SurveyEngine.addOnload(function() {
     // TODO make local
     window.map = window.Districtr("#ns__container", {
         url: baseurl + "assets/little-rock.json",
-        graph: baseurl + "assets/little-rock_graph.json"
+        graph: baseurl + "assets/little-rock_graph.json",
+        errors: Qualtrics.displayErrorMessage
     });
 });
 
 Qualtrics.SurveyEngine.addOnReady(function() {
     function addressSearch() {
-        var query = jQuery("#ns__address-box").value;
+        var query = jQuery("#ns__address-box").val();
         if (query.trim() == "") return;
 
         map.loadAddress(query);
