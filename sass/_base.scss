@@ -28,16 +28,3 @@ mark {
     transition: background 100ms ease;
 }
 
-.l-content {
-    padding: 2rem 0;
-}
-
-@media only screen and (max-width: 800px) {
-    .l-content {
-        padding: 1rem 0;
-    }
-}
-
-.splash-grid__left {
-    grid-column: 2 / 4;
-}

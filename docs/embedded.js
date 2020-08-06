@@ -3046,7 +3046,7 @@
   }
 
   function _templateObject$3() {
-    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Brush\" \n            style=\"display: inline-block; height: 1.75em !important; z-index: 100;\"></img>"]);
+    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Brush\" \n            style=\"display: inline-block; height: 26px !important; z-index: 100;\"></img>"]);
 
     _templateObject$3 = function _templateObject() {
       return data;
@@ -3136,7 +3136,7 @@
   }
 
   function _templateObject$4() {
-    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Erase\" \n            style=\"display: inline-block; height: 1.75em !important; z-index: 100;\"></img>"]);
+    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Erase\" \n            style=\"display: inline-block; height: 26px !important; z-index: 100;\"></img>"]);
 
     _templateObject$4 = function _templateObject() {
       return data;
@@ -3218,7 +3218,7 @@
   }();
 
   function _templateObject$5() {
-    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Pan\" \n            style=\"display: inline-block; height: 1.65em !important; z-index: 100;\"></img>"]);
+    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Pan\" \n            style=\"display: inline-block; height: 24px !important; z-index: 100;\"></img>"]);
 
     _templateObject$5 = function _templateObject() {
       return data;
@@ -3290,7 +3290,9 @@
       value: function activate() {
         this.layer.on("mousemove", this.onMouseMove);
         this.layer.on("mouseleave", this.onMouseLeave);
-        this.layer.on("touchmove", this.onMouseMove);
+        this.layer.on("touchmove", this.onMouseMove, {
+          passive: false
+        });
         this.layer.on("touchend", this.onMouseLeave);
       }
     }, {
@@ -3507,12 +3509,13 @@
     }, {
       key: "onMouseDown",
       value: function onMouseDown(e) {
-        e.preventDefault();
-        e.originalEvent.preventDefault();
+        e.preventDefault(); //e.originalEvent.preventDefault();
+
         this.coloring = true;
         window.addEventListener("mouseup", this.onMouseUp);
         window.addEventListener("touchend", this.onMouseUp);
         window.addEventListener("touchcancel", this.onMouseUp);
+        document.body.classList.add("stop-scrolling");
       }
     }, {
       key: "onMouseUp",
@@ -3521,6 +3524,7 @@
         window.removeEventListener("mouseup", this.onMouseUp);
         window.removeEventListener("touchend", this.onMouseUp);
         window.removeEventListener("touchcancel", this.onMouseUp);
+        document.body.classList.remove("stop-scrolling");
 
         var _iterator4 = _createForOfIteratorHelper(this.listeners.mouseup),
             _step4;
@@ -3544,11 +3548,6 @@
         }
       }
     }, {
-      key: "onTouchMove",
-      value: function onTouchMove(e) {
-        e.preventDefault();
-      }
-    }, {
       key: "activate",
       value: function activate() {
         this.layer.map.getCanvas().classList.add("brush-tool");
@@ -3559,15 +3558,10 @@
         this.layer.map.touchZoomRotate.disable();
         this.layer.map.doubleClickZoom.disable();
         this.layer.on("click", this.onClick);
-        this.layer.map.on("touchstart", this.onTouchStart, {
-          passive: true
-        });
-        this.layer.map.on("mousedown", this.onMouseDown);
+        this.layer.map.on("touchstart", this.onTouchStart); //, {capture: true, passive: false});
 
-        this.layer.map._canvas.addEventListener("touchmove", this.onTouchMove, {
-          capture: true,
-          passive: false
-        });
+        this.layer.map.on("mousedown", this.onMouseDown); //, {capture: true, passive: false});
+        //this.layer.map._canvas.addEventListener("touchmove", this.onTouchMove, {capture: true, passive: false});
       }
     }, {
       key: "deactivate",
@@ -3580,7 +3574,7 @@
         this.layer.map.doubleClickZoom.enable();
         this.layer.map.touchZoomRotate.enable();
         this.layer.off("click", this.onClick);
-        this.layer.map.off("touchstart", this.onMouseDown);
+        this.layer.map.off("touchstart", this.onTouchStart);
         this.layer.map.off("mousedown", this.onMouseDown);
       }
     }, {
@@ -4368,6 +4362,14 @@
           _this2.state.plan.assignment[block.properties.GEOID10] = 0;
           _this2.homeBlock = block;
         });
+      }
+    }, {
+      key: "getNeighborhood",
+      value: function getNeighborhood() {
+        var assignment = this.state.plan.assignment;
+        return Object.keys(assignment).filter(function (b) {
+          return assignment[b] == 0;
+        }).join(",");
       }
     }, {
       key: "map",

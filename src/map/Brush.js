@@ -77,17 +77,19 @@ export default class Brush extends HoverWithRadius {
     }
     onMouseDown(e) {
         e.preventDefault();
-        e.originalEvent.preventDefault();
+        //e.originalEvent.preventDefault();
         this.coloring = true;
         window.addEventListener("mouseup", this.onMouseUp);
         window.addEventListener("touchend", this.onMouseUp);
         window.addEventListener("touchcancel", this.onMouseUp);
+        document.body.classList.add("stop-scrolling");
     }
     onMouseUp() {
         this.coloring = false;
         window.removeEventListener("mouseup", this.onMouseUp);
         window.removeEventListener("touchend", this.onMouseUp);
         window.removeEventListener("touchcancel", this.onMouseUp);
+        document.body.classList.remove("stop-scrolling");
         for (let listener of this.listeners.mouseup) {
             listener();
         }
@@ -96,9 +98,6 @@ export default class Brush extends HoverWithRadius {
         if (e.points && e.points.length <= 1) {
             this.onMouseDown(e);
         }
-    }
-    onTouchMove(e) {
-        e.preventDefault();
     }
     activate() {
         this.layer.map.getCanvas().classList.add("brush-tool");
@@ -110,9 +109,9 @@ export default class Brush extends HoverWithRadius {
         this.layer.map.doubleClickZoom.disable();
 
         this.layer.on("click", this.onClick);
-        this.layer.map.on("touchstart", this.onTouchStart, {passive: true});
-        this.layer.map.on("mousedown", this.onMouseDown);
-        this.layer.map._canvas.addEventListener("touchmove", this.onTouchMove, {capture: true, passive: false});
+        this.layer.map.on("touchstart", this.onTouchStart);//, {capture: true, passive: false});
+        this.layer.map.on("mousedown", this.onMouseDown);//, {capture: true, passive: false});
+        //this.layer.map._canvas.addEventListener("touchmove", this.onTouchMove, {capture: true, passive: false});
     }
     deactivate() {
         this.layer.map.getCanvas().classList.remove("brush-tool");
@@ -124,7 +123,7 @@ export default class Brush extends HoverWithRadius {
         this.layer.map.touchZoomRotate.enable();
 
         this.layer.off("click", this.onClick);
-        this.layer.map.off("touchstart", this.onMouseDown);
+        this.layer.map.off("touchstart", this.onTouchStart);
         this.layer.map.off("mousedown", this.onMouseDown);
     }
     on(event, listener) {

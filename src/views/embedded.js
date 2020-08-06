@@ -215,6 +215,11 @@ export class EmbeddedDistrictr {
                 this.homeBlock = block;
             });
     }
+
+    getNeighborhood() {
+        let assignment = this.state.plan.assignment;
+        return Object.keys(assignment).filter(b => assignment[b] == 0).join(",");
+    }
 }
 
 

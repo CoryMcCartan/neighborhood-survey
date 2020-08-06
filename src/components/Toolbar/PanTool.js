@@ -13,7 +13,7 @@ export default class PanTool extends Tool {
             "VA/iwMlmGCQgfDCNTELd4s0wyIAKEK8fBKlmPvhglUEMdIC4Gdpy/UynLsRh6FydCrGOBABk1k0h3bUP" + 
             "JgAAAABJRU5ErkJggg==";
         const icon = html`<img src="${img_data}" alt="Pan" 
-            style="display: inline-block; height: 1.65em !important; z-index: 100;"></img>`;
+            style="display: inline-block; height: 24px !important; z-index: 100;"></img>`;
         super("pan", "Pan", icon);
     }
 }

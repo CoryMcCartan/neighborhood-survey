@@ -13,7 +13,7 @@ export default class EraserTool extends Tool {
             "U6Y3JlYXRlADIwMjAtMDgtMDRUMDI6NDg6NDkrMDA6MDADjPrkAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTA0VDAyOjQ4O" +
             "jQ5KzAwOjAwctFCWAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=";
         const icon = html`<img src="${img_data}" alt="Erase" 
-            style="display: inline-block; height: 1.75em !important; z-index: 100;"></img>`;
+            style="display: inline-block; height: 26px !important; z-index: 100;"></img>`;
 
         super("eraser", "Erase", icon);
         this.brush = brush;

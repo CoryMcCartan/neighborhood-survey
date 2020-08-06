@@ -1,6 +1,5 @@
 @import "base";
 @import "colors";
-@import "headings";
 @import "map";
 @import "links";
 @import "shadows";
@@ -107,4 +106,16 @@ input[type="search"]::-webkit-search-decoration {
 }
 .districtr__mini-toolbar-top {
     background-color: $districtr-light-grey;
+}
+
+.Skin #Buttons #NextButton {
+    margin-right: 4px
+}
+.Skin #Buttons #PreviousButton {
+    margin-left: 4px
+}
+
+.stop-scrolling { 
+    height: 100%; 
+    overflow: hidden; 
 }

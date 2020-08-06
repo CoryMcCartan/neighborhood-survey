@@ -1,9 +1,11 @@
+var map; 
+
 Qualtrics.SurveyEngine.addOnload(function() {
     this.disableNextButton();
 
     var baseurl = "https://corymccartan.github.io/neighborhood-survey/"; 
     // TODO make local
-    window.map = window.Districtr("#ns__container", {
+    map = window.Districtr("#ns__container", {
         url: baseurl + "assets/little-rock.json",
         graph: baseurl + "assets/little-rock_graph.json",
         errors: showError,
@@ -30,6 +32,6 @@ Qualtrics.SurveyEngine.addOnReady(function() {
 });
 
 Qualtrics.SurveyEngine.addOnUnload(function() {
-
+    Qualtrics.SurveyEngine.setEmbeddedData("neighborhood", map.getNeighborhood());
 });
 

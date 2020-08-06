@@ -25,81 +25,6 @@ mark {
   transition: background 100ms ease;
 }
 
-.l-content {
-  padding: 2rem 0;
-}
-
-@media only screen and (max-width: 800px) {
-  .l-content {
-    padding: 1rem 0;
-  }
-}
-.splash-grid__left {
-  grid-column: 2/4;
-}
-
-h1 {
-  font-size: 3rem;
-  line-height: 2;
-  margin: 0 0 0.5rem;
-  color: black;
-}
-
-.headline {
-  font-size: 4rem;
-  line-height: 1.5;
-}
-
-.headline--light {
-  font-weight: normal;
-}
-
-h2 {
-  margin: 0;
-  font-size: 2rem;
-  line-height: 1.25;
-  margin: 0 0 0.5rem;
-}
-
-h3 {
-  line-height: 1.25;
-  margin: 0;
-  font-size: 1.5rem;
-  margin: 0 0 0.5rem;
-}
-
-.section__heading {
-  font-size: 2.5rem;
-  line-height: 1.25;
-  margin: 0 0 0.5rem;
-  color: black;
-}
-
-@media only screen and (max-width: 700px) {
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-  }
-
-  .headline {
-    font-size: 3rem;
-    line-height: 1.25;
-    margin-bottom: 1rem;
-  }
-
-  .section__heading {
-    font-size: 2rem;
-    line-height: 1.25;
-    margin: 1rem 0;
-  }
-}
 #map {
   width: 100%;
   top: 0;
@@ -1780,4 +1705,17 @@ input[type=search]::-webkit-search-decoration {
 
 .districtr__mini-toolbar-top {
   background-color: #f9f9f9;
+}
+
+.Skin #Buttons #NextButton {
+  margin-right: 4px;
+}
+
+.Skin #Buttons #PreviousButton {
+  margin-left: 4px;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }
