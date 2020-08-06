@@ -2,9 +2,12 @@
 
 An web map on which survey participants can draw a region, embeddable in Qualtrics.
 
+## To Create Your Own Map
+_Coming soon._
+
 ## To Embed in Qualtrics
 
-Add the following lines in HTML mode to your survey header 
+First, add the following lines in HTML mode to your survey header 
 (under "Look and Feel > General > Header > edit"):
 
 ```html
@@ -12,13 +15,13 @@ Add the following lines in HTML mode to your survey header
 <script src="https://cdn.jsdelivr.net/gh/CoryMcCartan/neighborhood-survey/docs/embedded.js"></script>
 ```
 
-Under "Look and Feel > Style > External CSS", paste:
+Second, under "Look and Feel > Style > External CSS", paste:
 ```
 https://cdn.jsdelivr.net/gh/CoryMcCartan/neighborhood-survey/docs/embedded.css
 ```
 
-In the question you'd like to have the map appear in, edit the question HTML
-to include 
+Third, in the question you'd like to have the map appear in, edit the question HTML
+and paste:
 ```html
 <h2>Enter your address</h2>
 <p style="display: flex; flex-direction: row;">
@@ -26,17 +29,33 @@ to include
     <button id="ns__address-go">Go</button>
 </p>
 
-<div id="ns__msg-search" hidden class="ns__msg">&nbsp;</div>
+<div id="ns__msg-search" hidden class="ns__msg"></div>
 
 <h2>Draw your neighborhood</h2>
 
-<p>
+<p> 
+    <!-- ADD ADDITIONAL INSTRUCTIONS HERE -->
     Use the brush tool to draw your neighborhood, and the
     eraser to make corrections.
 </p>
 
 <div id="ns__container"></div>
 ```
+You may add additional instructions where indicated. 
 
-Then copy the code in `src/qualtrics.js` into the JavaScript section of the
-question.
+Fourth, go to `src/qualtrics-basic.js` and edit the top few lines to
+include your Mapbox API token and the URLs to your map and ajacency graph:
+```js
+var map; 
+
+var MAPBOX_TOKEN = "<MAPBOX API KEY>";
+var SPECIFICATION = "<URL TO SPECIFICATION>";
+var ADJACENCY_GRAPH = "<URL TO ADJACENCY GRAPH>";
+```
+Then copy the code in the entire file into the JavaScript section of the
+map question.  The user's address will be saved in the `home_address` field,
+and the selected block group IDs will be saved in the `neighborhood` field.
+
+Finally, go to "Survey Flow" and add a "Set Embedded Data" element **before**
+the question with the map. Inside, add a field for `neighborhood` and one for
+`home_address`.

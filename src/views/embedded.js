@@ -13,6 +13,7 @@ const plugins = [ToolsPlugin];
 export class EmbeddedDistrictr {
     constructor(target, module, options) {
         this.render = this.render.bind(this);
+        mapboxgl.accessToken = module.token;
 
         options = { 
             style: "mapbox://styles/mapbox/outdoors-v11", 
@@ -223,7 +224,7 @@ export class EmbeddedDistrictr {
 }
 
 
-window.Districtr = (target, module, options) =>
+window.MapDraw = (target, module, options) =>
     new EmbeddedDistrictr(target, module, options);
 
 

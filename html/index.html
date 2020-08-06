@@ -22,7 +22,7 @@
                 <button id="ns__address-go">Go</button>
             </p>
 
-            <div id="ns__msg-search" hidden class="ns__msg">&nbsp;</div>
+            <div id="ns__msg-search" hidden class="ns__msg"></div>
 
             <h3 style="margin-top: 0.5em">Draw your neighborhood</h3>
 
@@ -39,7 +39,8 @@
             $ = s => document.querySelector(s);
             /* END DO NOT INCLUDE */
 
-            window.map = window.Districtr("#ns__container", {
+            window.map = window.MapDraw("#ns__container", {
+                token: "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A",
                 url: "assets/little-rock.json",
                 graph: "assets/little-rock_graph.json",
                 errors: showError,
@@ -55,8 +56,10 @@
 
             $("#ns__address-go").addEventListener("click", addressSearch);
             $("#ns__address-box").addEventListener("keydown", function(e) {
-                if (e.keyCode == 13) 
+                if (e.keyCode == 13) {
+                    e.preventDefault();
                     addressSearch();
+                }
             });
         </script>
     </body>

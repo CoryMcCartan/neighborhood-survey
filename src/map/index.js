@@ -2,9 +2,6 @@ import mapboxgl from "mapbox-gl";
 import { unitBordersPaintProperty, getUnitColorProperty } from "../colors";
 import Layer from "./Layer";
 
-mapboxgl.accessToken =
-    "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A";
-
 export class MapState {
     constructor(mapContainer, options, mapStyle) {
         this.map = new mapboxgl.Map({
