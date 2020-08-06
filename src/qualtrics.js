@@ -7,10 +7,10 @@ Qualtrics.SurveyEngine.addOnload(function() {
         url: baseurl + "assets/little-rock.json",
         graph: baseurl + "assets/little-rock_graph.json",
         errors: showError,
-        allowProceed: function(allow) {
+        allowProceed: (function(allow) {
             if (allow) this.enableNextButton();
             else this.disableNextButton();
-        }
+        }).bind(this)
     });
 });
 

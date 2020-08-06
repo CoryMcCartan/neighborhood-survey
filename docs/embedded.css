@@ -10,7 +10,7 @@ html {
   font-size: 100%;
 }
 
-body {
+body, p {
   margin: 0;
   padding: 0;
 }
@@ -1701,7 +1701,7 @@ dl {
   max-width: 800px;
   height: 600px;
   max-height: 75vh;
-  margin: 2rem 0;
+  margin: 1rem 0;
   border: 1px solid #aaaaaa;
 }
 
@@ -1710,6 +1710,7 @@ dl {
   padding: 1em;
   margin: -0.75em 0 0.25em;
   height: 3em;
+  line-height: 1.2rem;
   font-size: 1.2rem;
   font-weight: bold;
   border-radius: 2px;
