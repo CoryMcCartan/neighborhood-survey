@@ -25,7 +25,6 @@
 
             <h2>Draw your neighborhood</h2>
 
-
             <p>
                 Use the brush tool to draw your neighborhood, and the
                 eraser to make corrections.
@@ -40,6 +39,8 @@
             /* DO NOT INCLUDE IN QUALTRICS */
             $ = s => document.querySelector(s);
             let msg_box = document.querySelector("#ns__msg");
+            /* END DO NOT INCLUDE */
+
             function showError(msg) {
                 if (msg !== null) {
                     msg_box.innerHTML = msg;
@@ -49,7 +50,6 @@
                     msg_box.hidden = true;
                 }
             }
-            /* END DO NOT INCLUDE */
 
             window.map = window.Districtr("#ns__container", {
                 url: "assets/little-rock.json",

@@ -34,6 +34,7 @@ export class EmbeddedDistrictr {
         this.addressMarker = null;
         this.graph = null;
         this.showError = module.errors;
+        this.allowProceed = module.allowProceed;
 
         fetch(module.graph)
             .then(r => r.json())
@@ -142,10 +143,11 @@ export class EmbeddedDistrictr {
 
         let root = this.homeBlock.properties.GEOID10.slice(5);
         let found = walkNeighborhood(visited, root);
-        this.showError(found !== total ? 
-                       "Your neighborhood must be in one piece only." : null);
+        let ok = found === total;
+        this.showError(!ok ?  "Your neighborhood must be in one piece only." : null);
+        this.allowProceed(ok);
 
-        return found === total;
+        return ok;
     }
 
     loadAddress(str) {
