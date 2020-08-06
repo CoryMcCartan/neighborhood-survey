@@ -1,7 +1,6 @@
 @import "base";
 @import "colors";
 @import "headings";
-@import "form";
 @import "map";
 @import "links";
 @import "shadows";
@@ -36,14 +35,67 @@
 .ns__msg {
     background: #ffc0ba;
     padding: 1em;
-    margin: 0.5em 0;
+    margin: -0.75em 0 0.25em;
+    height: 3em;
+    font-size: 1.2rem;
     font-weight: bold;
     border-radius: 2px;
 }
 
-#ns__draw-msg {
-    margin: 0;
-    border-radius: 0;
+#ns__address-go {
+    color: white;
+    outline: none;
+    border: none;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    font-weight: 400;
+    font-family: $font-family;
+    font-size: 1.5rem;
+    // background: #eee;
+
+    transition: all ease 40ms;
+
+    border-radius: 0.25rem;
+    background: $districtr-red;
+}
+
+#ns__address-go:hover {
+    cursor: pointer;
+    background: $districtr-red-dark;
+}
+
+#ns__address-go:active {
+    background: $districtr-red-dark;
+}
+
+#ns__address-go:focus {
+    box-shadow: $focus-shadow;
+}
+
+#ns__address-go:disabled {
+    background: #bdaaa8;
+    color: #504746;
+}
+
+
+#ns__address-box {
+    outline: none;
+    border: 1px solid $outline-grey;
+    margin: 0 0 1rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 1.5rem;
+    color: #111;
+    font-family: $font-family;
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-decoration {
+    display: none;
+    -webkit-appearance: none;
 }
 
 .districtr__mini-toolbar {

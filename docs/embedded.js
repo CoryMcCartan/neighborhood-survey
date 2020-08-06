@@ -1,5 +1,454 @@
-!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports,require("mapbox-gl")):"function"==typeof define&&define.amd?define(["exports","mapbox-gl"],e):e((t=t||self).bundle={},t.mapboxgl)}(this,(function(t,e){"use strict";function n(t){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function i(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function r(t,e){for(var n=0;n<e.length;n++){var i=e[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(t,i.key,i)}}function o(t,e,n){return e&&r(t.prototype,e),n&&r(t,n),t}function a(t,e,n){return e in t?Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}function s(t,e){var n=Object.keys(t);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(t);e&&(i=i.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),n.push.apply(n,i)}return n}function u(t){for(var e=1;e<arguments.length;e++){var n=null!=arguments[e]?arguments[e]:{};e%2?s(Object(n),!0).forEach((function(e){a(t,e,n[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(n)):s(Object(n)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(n,e))}))}return t}function l(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function");t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,writable:!0,configurable:!0}}),e&&h(t,e)}function c(t){return(c=Object.setPrototypeOf?Object.getPrototypeOf:function(t){return t.__proto__||Object.getPrototypeOf(t)})(t)}function h(t,e){return(h=Object.setPrototypeOf||function(t,e){return t.__proto__=e,t})(t,e)}function f(t,e){if(null==t)return{};var n,i,r=function(t,e){if(null==t)return{};var n,i,r={},o=Object.keys(t);for(i=0;i<o.length;i++)n=o[i],e.indexOf(n)>=0||(r[n]=t[n]);return r}(t,e);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(t);for(i=0;i<o.length;i++)n=o[i],e.indexOf(n)>=0||Object.prototype.propertyIsEnumerable.call(t,n)&&(r[n]=t[n])}return r}function d(t){if(void 0===t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return t}function p(t,e){return!e||"object"!=typeof e&&"function"!=typeof e?d(t):e}function v(t){var e=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Date.prototype.toString.call(Reflect.construct(Date,[],(function(){}))),!0}catch(t){return!1}}();return function(){var n,i=c(t);if(e){var r=c(this).constructor;n=Reflect.construct(i,arguments,r)}else n=i.apply(this,arguments);return p(this,n)}}function y(t,e,n){return(y="undefined"!=typeof Reflect&&Reflect.get?Reflect.get:function(t,e,n){var i=function(t,e){for(;!Object.prototype.hasOwnProperty.call(t,e)&&null!==(t=c(t)););return t}(t,e);if(i){var r=Object.getOwnPropertyDescriptor(i,e);return r.get?r.get.call(n):r.value}})(t,e,n||t)}function m(t,e){return e||(e=t.slice(0)),Object.freeze(Object.defineProperties(t,{raw:{value:Object.freeze(e)}}))}function g(t){return function(t){if(Array.isArray(t))return A(t)}(t)||function(t){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(t))return Array.from(t)}(t)||b(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function b(t,e){if(t){if("string"==typeof t)return A(t,e);var n=Object.prototype.toString.call(t).slice(8,-1);return"Object"===n&&t.constructor&&(n=t.constructor.name),"Map"===n||"Set"===n?Array.from(t):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?A(t,e):void 0}}function A(t,e){(null==e||e>t.length)&&(e=t.length);for(var n=0,i=new Array(e);n<e;n++)i[n]=t[n];return i}function k(t,e){var n;if("undefined"==typeof Symbol||null==t[Symbol.iterator]){if(Array.isArray(t)||(n=b(t))||e&&t&&"number"==typeof t.length){n&&(t=n);var i=0,r=function(){};return{s:r,n:function(){return i>=t.length?{done:!0}:{done:!1,value:t[i++]}},e:function(t){throw t},f:r}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var o,a=!0,s=!1;return{s:function(){n=t[Symbol.iterator]()},n:function(){var t=n.next();return a=t.done,t},e:function(t){s=!0,o=t},f:function(){try{a||null==n.return||n.return()}finally{if(s)throw o}}}}function w(t){for(var e=[],n=0;n<t;n++)e.push(0);return e}function x(t){return t.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",")}function _(t){return t.reduce((function(t,e){return t+e}),0)}function E(t){return("0"+t.toString(16)).substr(-2)}function S(t){var e=new Uint8Array((t||40)/2);return(window.crypto?window.crypto:window.msCrypto).getRandomValues(e),Array.from(e,E).join("")}function M(t,e){t.forEach((function(t){e[t]=e[t].bind(e)}))}e=e&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e;var O,N={selectTool:function(t,e){return u(u({},t),{},{activeTool:e.id})},openDropdownMenu:function(t){return u(u({},t),{},{dropdownMenuOpen:!0})},closeDropdownMenu:function(t){return u(u({},t),{},{dropdownMenuOpen:!1})}},P=function(t){var e={},n=function(t){e[t]=function(e){return u(u({},e),{},{type:t})}};for(var i in t)n(i);return e}(N),V=function(t){return function(e,n){return t.hasOwnProperty(n.type)?t[n.type](e,n):e}}(N),B=(O={toolbar:V},function(t,e){var n=!1,i={};for(var r in O)i[r]=O[r](t[r],e),n=n||i[r]!==t[r];return n?i:t}),I=new WeakMap,T=function(t){return"function"==typeof t&&I.has(t)},F="undefined"!=typeof window&&null!=window.customElements&&void 0!==window.customElements.polyfillWrapFlushCallback,j=function(t,e){for(var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null;e!==n;){var i=e.nextSibling;t.removeChild(e),e=i}},C={},L={},R="{{lit-".concat(String(Math.random()).slice(2),"}}"),D="\x3c!--".concat(R,"--\x3e"),H=new RegExp("".concat(R,"|").concat(D)),U=function t(e,n){i(this,t),this.parts=[],this.element=n;for(var r=[],o=[],a=document.createTreeWalker(n.content,133,null,!1),s=0,u=-1,l=0,c=e.strings,h=e.values.length;l<h;){var f=a.nextNode();if(null!==f){if(u++,1===f.nodeType){if(f.hasAttributes()){for(var d=f.attributes,p=d.length,v=0,y=0;y<p;y++)Q(d[y].name,"$lit$")&&v++;for(;v-- >0;){var m=c[l],g=G.exec(m)[2],b=g.toLowerCase()+"$lit$",A=f.getAttribute(b);f.removeAttribute(b);var k=A.split(H);this.parts.push({type:"attribute",index:u,name:g,strings:k}),l+=k.length-1}}"TEMPLATE"===f.tagName&&(o.push(f),a.currentNode=f.content)}else if(3===f.nodeType){var w=f.data;if(w.indexOf(R)>=0){for(var x=f.parentNode,_=w.split(H),E=_.length-1,S=0;S<E;S++){var M=void 0,O=_[S];if(""===O)M=Y();else{var N=G.exec(O);null!==N&&Q(N[2],"$lit$")&&(O=O.slice(0,N.index)+N[1]+N[2].slice(0,-"$lit$".length)+N[3]),M=document.createTextNode(O)}x.insertBefore(M,f),this.parts.push({type:"node",index:++u})}""===_[E]?(x.insertBefore(Y(),f),r.push(f)):f.data=_[E],l+=E}}else if(8===f.nodeType)if(f.data===R){var P=f.parentNode;null!==f.previousSibling&&u!==s||(u++,P.insertBefore(Y(),f)),s=u,this.parts.push({type:"node",index:u}),null===f.nextSibling?f.data="":(r.push(f),u--),l++}else for(var V=-1;-1!==(V=f.data.indexOf(R,V+1));)this.parts.push({type:"node",index:-1}),l++}else a.currentNode=o.pop()}for(var B=0,I=r;B<I.length;B++){var T=I[B];T.parentNode.removeChild(T)}},Q=function(t,e){var n=t.length-e.length;return n>=0&&t.slice(n)===e},z=function(t){return-1!==t.index},Y=function(){return document.createComment("")},G=/([ \x09\x0a\x0c\x0d])([^\0-\x1F\x7F-\x9F "'>=/]+)([ \x09\x0a\x0c\x0d]*=[ \x09\x0a\x0c\x0d]*(?:[^ \x09\x0a\x0c\x0d"'`<>=]*|"[^"]*|'[^']*))$/,J=function(){function t(e,n,r){i(this,t),this.__parts=[],this.template=e,this.processor=n,this.options=r}return o(t,[{key:"update",value:function(t){var e,n=0,i=k(this.__parts);try{for(i.s();!(e=i.n()).done;){var r=e.value;void 0!==r&&r.setValue(t[n]),n++}}catch(t){i.e(t)}finally{i.f()}var o,a=k(this.__parts);try{for(a.s();!(o=a.n()).done;){var s=o.value;void 0!==s&&s.commit()}}catch(t){a.e(t)}finally{a.f()}}},{key:"_clone",value:function(){for(var t,e=F?this.template.element.content.cloneNode(!0):document.importNode(this.template.element.content,!0),n=[],i=this.template.parts,r=document.createTreeWalker(e,133,null,!1),o=0,a=0,s=r.nextNode();o<i.length;)if(t=i[o],z(t)){for(;a<t.index;)a++,"TEMPLATE"===s.nodeName&&(n.push(s),r.currentNode=s.content),null===(s=r.nextNode())&&(r.currentNode=n.pop(),s=r.nextNode());if("node"===t.type){var u=this.processor.handleTextExpression(this.options);u.insertAfterNode(s.previousSibling),this.__parts.push(u)}else{var l;(l=this.__parts).push.apply(l,g(this.processor.handleAttributeExpressions(s,t.name,t.strings,this.options)))}o++}else this.__parts.push(void 0),o++;return F&&(document.adoptNode(e),customElements.upgrade(e)),e}}]),t}(),K=" ".concat(R," "),Z=function(){function t(e,n,r,o){i(this,t),this.strings=e,this.values=n,this.type=r,this.processor=o}return o(t,[{key:"getHTML",value:function(){for(var t=this.strings.length-1,e="",n=!1,i=0;i<t;i++){var r=this.strings[i],o=r.lastIndexOf("\x3c!--");n=(o>-1||n)&&-1===r.indexOf("--\x3e",o+1);var a=G.exec(r);e+=null===a?r+(n?K:D):r.substr(0,a.index)+a[1]+a[2]+"$lit$"+a[3]+R}return e+=this.strings[t]}},{key:"getTemplateElement",value:function(){var t=document.createElement("template");return t.innerHTML=this.getHTML(),t}}]),t}(),W=function(t){return null===t||!("object"===n(t)||"function"==typeof t)},X=function(t){return Array.isArray(t)||!(!t||!t[Symbol.iterator])},q=function(){function t(e,n,r){i(this,t),this.dirty=!0,this.element=e,this.name=n,this.strings=r,this.parts=[];for(var o=0;o<r.length-1;o++)this.parts[o]=this._createPart()}return o(t,[{key:"_createPart",value:function(){return new $(this)}},{key:"_getValue",value:function(){for(var t=this.strings,e=t.length-1,n="",i=0;i<e;i++){n+=t[i];var r=this.parts[i];if(void 0!==r){var o=r.value;if(W(o)||!X(o))n+="string"==typeof o?o:String(o);else{var a,s=k(o);try{for(s.s();!(a=s.n()).done;){var u=a.value;n+="string"==typeof u?u:String(u)}}catch(t){s.e(t)}finally{s.f()}}}}return n+=t[e]}},{key:"commit",value:function(){this.dirty&&(this.dirty=!1,this.element.setAttribute(this.name,this._getValue()))}}]),t}(),$=function(){function t(e){i(this,t),this.value=void 0,this.committer=e}return o(t,[{key:"setValue",value:function(t){t===C||W(t)&&t===this.value||(this.value=t,T(t)||(this.committer.dirty=!0))}},{key:"commit",value:function(){for(;T(this.value);){var t=this.value;this.value=C,t(this)}this.value!==C&&this.committer.commit()}}]),t}(),tt=function(){function t(e){i(this,t),this.value=void 0,this.__pendingValue=void 0,this.options=e}return o(t,[{key:"appendInto",value:function(t){this.startNode=t.appendChild(Y()),this.endNode=t.appendChild(Y())}},{key:"insertAfterNode",value:function(t){this.startNode=t,this.endNode=t.nextSibling}},{key:"appendIntoPart",value:function(t){t.__insert(this.startNode=Y()),t.__insert(this.endNode=Y())}},{key:"insertAfterPart",value:function(t){t.__insert(this.startNode=Y()),this.endNode=t.endNode,t.endNode=this.startNode}},{key:"setValue",value:function(t){this.__pendingValue=t}},{key:"commit",value:function(){if(null!==this.startNode.parentNode){for(;T(this.__pendingValue);){var t=this.__pendingValue;this.__pendingValue=C,t(this)}var e=this.__pendingValue;e!==C&&(W(e)?e!==this.value&&this.__commitText(e):e instanceof Z?this.__commitTemplateResult(e):e instanceof Node?this.__commitNode(e):X(e)?this.__commitIterable(e):e===L?(this.value=L,this.clear()):this.__commitText(e))}}},{key:"__insert",value:function(t){this.endNode.parentNode.insertBefore(t,this.endNode)}},{key:"__commitNode",value:function(t){this.value!==t&&(this.clear(),this.__insert(t),this.value=t)}},{key:"__commitText",value:function(t){var e=this.startNode.nextSibling,n="string"==typeof(t=null==t?"":t)?t:String(t);e===this.endNode.previousSibling&&3===e.nodeType?e.data=n:this.__commitNode(document.createTextNode(n)),this.value=t}},{key:"__commitTemplateResult",value:function(t){var e=this.options.templateFactory(t);if(this.value instanceof J&&this.value.template===e)this.value.update(t.values);else{var n=new J(e,t.processor,this.options),i=n._clone();n.update(t.values),this.__commitNode(i),this.value=n}}},{key:"__commitIterable",value:function(e){Array.isArray(this.value)||(this.value=[],this.clear());var n,i,r=this.value,o=0,a=k(e);try{for(a.s();!(i=a.n()).done;){var s=i.value;void 0===(n=r[o])&&(n=new t(this.options),r.push(n),0===o?n.appendIntoPart(this):n.insertAfterPart(r[o-1])),n.setValue(s),n.commit(),o++}}catch(t){a.e(t)}finally{a.f()}o<r.length&&(r.length=o,this.clear(n&&n.endNode))}},{key:"clear",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:this.startNode;j(this.startNode.parentNode,t.nextSibling,this.endNode)}}]),t}(),et=function(){function t(e,n,r){if(i(this,t),this.value=void 0,this.__pendingValue=void 0,2!==r.length||""!==r[0]||""!==r[1])throw new Error("Boolean attributes can only contain a single expression");this.element=e,this.name=n,this.strings=r}return o(t,[{key:"setValue",value:function(t){this.__pendingValue=t}},{key:"commit",value:function(){for(;T(this.__pendingValue);){var t=this.__pendingValue;this.__pendingValue=C,t(this)}if(this.__pendingValue!==C){var e=!!this.__pendingValue;this.value!==e&&(e?this.element.setAttribute(this.name,""):this.element.removeAttribute(this.name),this.value=e),this.__pendingValue=C}}}]),t}(),nt=function(t){l(n,t);var e=v(n);function n(t,r,o){var a;return i(this,n),(a=e.call(this,t,r,o)).single=2===o.length&&""===o[0]&&""===o[1],a}return o(n,[{key:"_createPart",value:function(){return new it(this)}},{key:"_getValue",value:function(){return this.single?this.parts[0].value:y(c(n.prototype),"_getValue",this).call(this)}},{key:"commit",value:function(){this.dirty&&(this.dirty=!1,this.element[this.name]=this._getValue())}}]),n}(q),it=function(t){l(n,t);var e=v(n);function n(){return i(this,n),e.apply(this,arguments)}return n}($),rt=!1;!function(){try{var t={get capture(){return rt=!0,!1}};window.addEventListener("test",t,t),window.removeEventListener("test",t,t)}catch(t){}}();var ot=function(){function t(e,n,r){var o=this;i(this,t),this.value=void 0,this.__pendingValue=void 0,this.element=e,this.eventName=n,this.eventContext=r,this.__boundHandleEvent=function(t){return o.handleEvent(t)}}return o(t,[{key:"setValue",value:function(t){this.__pendingValue=t}},{key:"commit",value:function(){for(;T(this.__pendingValue);){var t=this.__pendingValue;this.__pendingValue=C,t(this)}if(this.__pendingValue!==C){var e=this.__pendingValue,n=this.value,i=null==e||null!=n&&(e.capture!==n.capture||e.once!==n.once||e.passive!==n.passive),r=null!=e&&(null==n||i);i&&this.element.removeEventListener(this.eventName,this.__boundHandleEvent,this.__options),r&&(this.__options=at(e),this.element.addEventListener(this.eventName,this.__boundHandleEvent,this.__options)),this.value=e,this.__pendingValue=C}}},{key:"handleEvent",value:function(t){"function"==typeof this.value?this.value.call(this.eventContext||this.element,t):this.value.handleEvent(t)}}]),t}(),at=function(t){return t&&(rt?{capture:t.capture,passive:t.passive,once:t.once}:t.capture)},st=new(function(){function t(){i(this,t)}return o(t,[{key:"handleAttributeExpressions",value:function(t,e,n,i){var r=e[0];return"."===r?new nt(t,e.slice(1),n).parts:"@"===r?[new ot(t,e.slice(1),i.eventContext)]:"?"===r?[new et(t,e.slice(1),n)]:new q(t,e,n).parts}},{key:"handleTextExpression",value:function(t){return new tt(t)}}]),t}());
-/**
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('mapbox-gl')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'mapbox-gl'], factory) :
+  (global = global || self, factory(global.bundle = {}, global.mapboxgl));
+}(this, (function (exports, mapboxgl) { 'use strict';
+
+  mapboxgl = mapboxgl && Object.prototype.hasOwnProperty.call(mapboxgl, 'default') ? mapboxgl['default'] : mapboxgl;
+
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function (obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof = function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+    }
+
+    return _typeof(obj);
+  }
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+  }
+
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
+  }
+
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function");
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) _setPrototypeOf(subClass, superClass);
+  }
+
+  function _getPrototypeOf(o) {
+    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+      return o.__proto__ || Object.getPrototypeOf(o);
+    };
+    return _getPrototypeOf(o);
+  }
+
+  function _setPrototypeOf(o, p) {
+    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+      o.__proto__ = p;
+      return o;
+    };
+
+    return _setPrototypeOf(o, p);
+  }
+
+  function _isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+
+    try {
+      Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function _objectWithoutPropertiesLoose(source, excluded) {
+    if (source == null) return {};
+    var target = {};
+    var sourceKeys = Object.keys(source);
+    var key, i;
+
+    for (i = 0; i < sourceKeys.length; i++) {
+      key = sourceKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      target[key] = source[key];
+    }
+
+    return target;
+  }
+
+  function _objectWithoutProperties(source, excluded) {
+    if (source == null) return {};
+
+    var target = _objectWithoutPropertiesLoose(source, excluded);
+
+    var key, i;
+
+    if (Object.getOwnPropertySymbols) {
+      var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+      for (i = 0; i < sourceSymbolKeys.length; i++) {
+        key = sourceSymbolKeys[i];
+        if (excluded.indexOf(key) >= 0) continue;
+        if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+        target[key] = source[key];
+      }
+    }
+
+    return target;
+  }
+
+  function _assertThisInitialized(self) {
+    if (self === void 0) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return self;
+  }
+
+  function _possibleConstructorReturn(self, call) {
+    if (call && (typeof call === "object" || typeof call === "function")) {
+      return call;
+    }
+
+    return _assertThisInitialized(self);
+  }
+
+  function _createSuper(Derived) {
+    var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+    return function _createSuperInternal() {
+      var Super = _getPrototypeOf(Derived),
+          result;
+
+      if (hasNativeReflectConstruct) {
+        var NewTarget = _getPrototypeOf(this).constructor;
+
+        result = Reflect.construct(Super, arguments, NewTarget);
+      } else {
+        result = Super.apply(this, arguments);
+      }
+
+      return _possibleConstructorReturn(this, result);
+    };
+  }
+
+  function _superPropBase(object, property) {
+    while (!Object.prototype.hasOwnProperty.call(object, property)) {
+      object = _getPrototypeOf(object);
+      if (object === null) break;
+    }
+
+    return object;
+  }
+
+  function _get(target, property, receiver) {
+    if (typeof Reflect !== "undefined" && Reflect.get) {
+      _get = Reflect.get;
+    } else {
+      _get = function _get(target, property, receiver) {
+        var base = _superPropBase(target, property);
+
+        if (!base) return;
+        var desc = Object.getOwnPropertyDescriptor(base, property);
+
+        if (desc.get) {
+          return desc.get.call(receiver);
+        }
+
+        return desc.value;
+      };
+    }
+
+    return _get(target, property, receiver || target);
+  }
+
+  function _taggedTemplateLiteral(strings, raw) {
+    if (!raw) {
+      raw = strings.slice(0);
+    }
+
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  function _toConsumableArray(arr) {
+    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+  }
+
+  function _arrayWithoutHoles(arr) {
+    if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+  }
+
+  function _iterableToArray(iter) {
+    if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+  }
+
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+
+  function _nonIterableSpread() {
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+
+  function _createForOfIteratorHelper(o, allowArrayLike) {
+    var it;
+
+    if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
+      if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+        if (it) o = it;
+        var i = 0;
+
+        var F = function () {};
+
+        return {
+          s: F,
+          n: function () {
+            if (i >= o.length) return {
+              done: true
+            };
+            return {
+              done: false,
+              value: o[i++]
+            };
+          },
+          e: function (e) {
+            throw e;
+          },
+          f: F
+        };
+      }
+
+      throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+    }
+
+    var normalCompletion = true,
+        didErr = false,
+        err;
+    return {
+      s: function () {
+        it = o[Symbol.iterator]();
+      },
+      n: function () {
+        var step = it.next();
+        normalCompletion = step.done;
+        return step;
+      },
+      e: function (e) {
+        didErr = true;
+        err = e;
+      },
+      f: function () {
+        try {
+          if (!normalCompletion && it.return != null) it.return();
+        } finally {
+          if (didErr) throw err;
+        }
+      }
+    };
+  }
+
+  function zeros(n) {
+    var vector = [];
+
+    for (var i = 0; i < n; i++) {
+      vector.push(0);
+    }
+
+    return vector;
+  }
+  // how-to-print-a-number-with-commas-as-thousands-separators-in-javascript#2901298
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  function roundToDecimal(n, places) {
+    return Math.round(n * Math.pow(10, places)) / Math.pow(10, places);
+  }
+  function sum(values) {
+    return values.reduce(function (total, value) {
+      return total + value;
+    }, 0);
+  }
+  function divideOrZeroIfNaN(x, y) {
+    return ["case", [">", y, 0], ["/", x, y], 0];
+  }
+
+  function createReducer(handlers) {
+    return function (state, action) {
+      if (handlers.hasOwnProperty(action.type)) {
+        return handlers[action.type](state, action);
+      }
+
+      return state;
+    };
+  }
+  function combineReducers(reducers) {
+    return function (state, action) {
+      var hasChanged = false;
+      var nextState = {};
+
+      for (var key in reducers) {
+        nextState[key] = reducers[key](state[key], action);
+        hasChanged = hasChanged || nextState[key] !== state[key];
+      }
+
+      return hasChanged ? nextState : state;
+    };
+  }
+  function createActions(handlers) {
+    var actions = {};
+
+    var _loop = function _loop(actionType) {
+      actions[actionType] = function (actionInfo) {
+        return _objectSpread2(_objectSpread2({}, actionInfo), {}, {
+          type: actionType
+        });
+      };
+    };
+
+    for (var actionType in handlers) {
+      _loop(actionType);
+    }
+
+    return actions;
+  }
+  function isString(x) {
+    return typeof x === "string" || x instanceof String;
+  } // Copied from stackoverflow https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+
+  function dec2hex(dec) {
+    return ("0" + dec.toString(16)).substr(-2);
+  }
+  function generateId(len) {
+    var arr = new Uint8Array((len || 40) / 2);
+    var crypto = window.crypto ? window.crypto : window.msCrypto;
+    crypto.getRandomValues(arr);
+    return Array.from(arr, dec2hex).join("");
+  }
+  function bindAll(keys, obj) {
+    keys.forEach(function (key) {
+      obj[key] = obj[key].bind(obj);
+    });
+  }
+
+  var handlers = {
+    selectTool: function selectTool(state, action) {
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        activeTool: action.id
+      });
+    },
+    openDropdownMenu: function openDropdownMenu(state) {
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        dropdownMenuOpen: true
+      });
+    },
+    closeDropdownMenu: function closeDropdownMenu(state) {
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        dropdownMenuOpen: false
+      });
+    }
+  };
+  var actions = createActions(handlers);
+  var toolbarReducer = createReducer(handlers);
+
+  var reducer = combineReducers({
+    toolbar: toolbarReducer
+  });
+
+  /**
    * @license
    * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
    * This code may only be used under the BSD style license found at
@@ -12,8 +461,60 @@
    * subject to an additional IP rights grant found at
    * http://polymer.github.io/PATENTS.txt
    */
-function ut(t){var e=lt.get(t.type);void 0===e&&(e={stringsArray:new WeakMap,keyString:new Map},lt.set(t.type,e));var n=e.stringsArray.get(t.strings);if(void 0!==n)return n;var i=t.strings.join(R);return void 0===(n=e.keyString.get(i))&&(n=new U(t,t.getTemplateElement()),e.keyString.set(i,n)),e.stringsArray.set(t.strings,n),n}var lt=new Map,ct=new WeakMap,ht=function(t,e,n){var i=ct.get(e);void 0===i&&(j(e,e.firstChild),ct.set(e,i=new tt(Object.assign({templateFactory:ut},n))),i.appendInto(e)),i.setValue(t),i.commit()};
-/**
+  var directives = new WeakMap();
+  /**
+   * Brands a function as a directive factory function so that lit-html will call
+   * the function during template rendering, rather than passing as a value.
+   *
+   * A _directive_ is a function that takes a Part as an argument. It has the
+   * signature: `(part: Part) => void`.
+   *
+   * A directive _factory_ is a function that takes arguments for data and
+   * configuration and returns a directive. Users of directive usually refer to
+   * the directive factory as the directive. For example, "The repeat directive".
+   *
+   * Usually a template author will invoke a directive factory in their template
+   * with relevant arguments, which will then return a directive function.
+   *
+   * Here's an example of using the `repeat()` directive factory that takes an
+   * array and a function to render an item:
+   *
+   * ```js
+   * html`<ul><${repeat(items, (item) => html`<li>${item}</li>`)}</ul>`
+   * ```
+   *
+   * When `repeat` is invoked, it returns a directive function that closes over
+   * `items` and the template function. When the outer template is rendered, the
+   * return directive function is called with the Part for the expression.
+   * `repeat` then performs it's custom logic to render multiple items.
+   *
+   * @param f The directive factory function. Must be a function that returns a
+   * function of the signature `(part: Part) => void`. The returned function will
+   * be called with the part object.
+   *
+   * @example
+   *
+   * import {directive, html} from 'lit-html';
+   *
+   * const immutable = directive((v) => (part) => {
+   *   if (part.value !== v) {
+   *     part.setValue(v)
+   *   }
+   * });
+   */
+
+  var directive = function directive(f) {
+    return function () {
+      var d = f.apply(void 0, arguments);
+      directives.set(d, true);
+      return d;
+    };
+  };
+  var isDirective = function isDirective(o) {
+    return typeof o === 'function' && directives.has(o);
+  };
+
+  /**
    * @license
    * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
    * This code may only be used under the BSD style license found at
@@ -26,7 +527,68 @@ function ut(t){var e=lt.get(t.type);void 0===e&&(e={stringsArray:new WeakMap,key
    * subject to an additional IP rights grant found at
    * http://polymer.github.io/PATENTS.txt
    */
-/**
+
+  /**
+   * True if the custom elements polyfill is in use.
+   */
+  var isCEPolyfill = typeof window !== 'undefined' && window.customElements != null && window.customElements.polyfillWrapFlushCallback !== undefined;
+  /**
+   * Reparents nodes, starting from `start` (inclusive) to `end` (exclusive),
+   * into another container (could be the same container), before `before`. If
+   * `before` is null, it appends the nodes to the container.
+   */
+
+  var reparentNodes = function reparentNodes(container, start) {
+    var end = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    var before = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+    while (start !== end) {
+      var n = start.nextSibling;
+      container.insertBefore(start, before);
+      start = n;
+    }
+  };
+  /**
+   * Removes nodes, starting from `start` (inclusive) to `end` (exclusive), from
+   * `container`.
+   */
+
+  var removeNodes = function removeNodes(container, start) {
+    var end = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+    while (start !== end) {
+      var n = start.nextSibling;
+      container.removeChild(start);
+      start = n;
+    }
+  };
+
+  /**
+   * @license
+   * Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
+   * This code may only be used under the BSD style license found at
+   * http://polymer.github.io/LICENSE.txt
+   * The complete set of authors may be found at
+   * http://polymer.github.io/AUTHORS.txt
+   * The complete set of contributors may be found at
+   * http://polymer.github.io/CONTRIBUTORS.txt
+   * Code distributed by Google as part of the polymer project is also
+   * subject to an additional IP rights grant found at
+   * http://polymer.github.io/PATENTS.txt
+   */
+
+  /**
+   * A sentinel value that signals that a value was handled by a directive and
+   * should not be written to the DOM.
+   */
+  var noChange = {};
+  /**
+   * A sentinel value that signals a NodePart to fully clear its content.
+   */
+
+  var nothing = {};
+
+  /**
    * @license
    * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
    * This code may only be used under the BSD style license found at
@@ -39,4 +601,3803 @@ function ut(t){var e=lt.get(t.type);void 0===e&&(e={stringsArray:new WeakMap,key
    * subject to an additional IP rights grant found at
    * http://polymer.github.io/PATENTS.txt
    */
-"undefined"!=typeof window&&(window.litHtmlVersions||(window.litHtmlVersions=[])).push("1.2.1");var ft=function(t){for(var e=arguments.length,n=new Array(e>1?e-1:0),i=1;i<e;i++)n[i-1]=arguments[i];return new Z(t,n,"html",st)},dt=["#0099cd","#ffca5d","#00cd99","#99cd00","#cd0099","#9900cd","#8dd3c7","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#bc80bd","#ccebc5","#ffed6f","#ffffb3","#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#b15928","#64ffda","#00B8D4","#A1887F","#76FF03","#DCE775","#B388FF","#FF80AB","#D81B60","#26A69A","#FFEA00","#6200EA"];dt.push.apply(dt,g(dt.map((function(t){return yt(t,-.3)}))));var pt=dt,vt=pt.map((function(t){return yt(t,-.3)}));function yt(t,e){(t=String(t).replace(/[^0-9a-f]/gi,"")).length<6&&(t=t[0]+t[0]+t[1]+t[1]+t[2]+t[2]),e=e||0;var n,i,r="#";for(i=0;i<3;i++)n=parseInt(t.substr(2*i,2),16),r+=("00"+(n=Math.round(Math.min(Math.max(0,n+n*e),255)).toString(16))).substr(n.length);return r}var mt=pt.map((function(t,e){return{id:e,name:t,hex:t,hoverHex:vt[e]}}));function gt(t){var e=["match",["feature-state","color"]].concat(g(t.map((function(t){return[t.id,t.color]})).reduce((function(t,e){return[].concat(g(t),g(e))}))),["rgba(0, 0, 0, 0)"]);return["case",["boolean",["feature-state","hover"],!1],["match",["feature-state","color"]].concat(g(t.map((function(t){return[t.id,t.hoverColor]})).reduce((function(t,e){return[].concat(g(t),g(e))}))),["#aaaaaa"]),e]}var bt={"line-color":"#777777","line-width":["interpolate",["linear"],["zoom"],0,0,7,1],"line-opacity":.3};u(u({},bt),{},{"line-color":["case",["==",["feature-state","color"],null],"#ff4f49",bt["line-color"]],"line-width":["case",["==",["feature-state","color"],null],4,1],"line-opacity":["case",["==",["feature-state","color"],null],.8,.3]});function At(t,e){var n=function(t){for(var e=0;e<t.length;e++)if(t[e].id.includes("label"))return t[e].id}(t.getStyle().layers);t.addLayer(e,n)}var kt=function(){function t(e,n,r){var o;i(this,t),this.map=e,this.id=n.id,this.sourceId="string"==typeof(o=n.source)||o instanceof String?n.source:n.id,this.type=n.type,this.sourceLayer=n["source-layer"],r?r(e,n):e.addLayer(n),this.getFeature=this.getFeature.bind(this)}return o(t,[{key:"setOpacity",value:function(t){this.setPaintProperty("".concat(this.type,"-opacity"),t)}},{key:"setColor",value:function(t){this.setPaintProperty("".concat(this.type,"-color"),t)}},{key:"getColor",value:function(){return this.getPaintProperty("".concat(this.type,"-color"))}},{key:"setPaintProperties",value:function(t){for(var e in t)this.setPaintProperty(e,t[e])}},{key:"setFeatureState",value:function(t,e){this.map.setFeatureState({source:this.sourceId,sourceLayer:this.sourceLayer,id:t},e)}},{key:"setPaintProperty",value:function(t,e){this.map.setPaintProperty(this.id,t,e)}},{key:"getPaintProperty",value:function(t){return this.map.getPaintProperty(this.id,t)}},{key:"getFeatureState",value:function(t){return this.map.getFeatureState({source:this.sourceId,sourceLayer:this.sourceLayer,id:t})}},{key:"getFeature",value:function(t){return this.map.querySourceFeatures(this.sourceId,{sourceLayer:this.sourceLayer,filter:["==",["id"],t]})[0]}},{key:"queryRenderedFeatures",value:function(){return this.map.queryRenderedFeatures(null,{layers:[this.id]})}},{key:"querySourceFeatures",value:function(){return this.map.querySourceFeatures(this.sourceId,{sourceLayer:this.sourceLayer})}},{key:"getAssignment",value:function(t){return this.getFeatureState(t).color}},{key:"setAssignment",value:function(t,e){this.setFeatureState(t.id,u(u({},t.state),{},{color:e}))}},{key:"on",value:function(t){for(var e,n=arguments.length,i=new Array(n>1?n-1:0),r=1;r<n;r++)i[r-1]=arguments[r];(e=this.map).on.apply(e,[t,this.id].concat(i))}},{key:"off",value:function(t){for(var e,n=arguments.length,i=new Array(n>1?n-1:0),r=1;r<n;r++)i[r-1]=arguments[r];(e=this.map).off.apply(e,[t,this.id].concat(i))}},{key:"untilSourceLoaded",value:function(t){var e=this;if(this.map.isSourceLoaded(this.sourceId))return t();this.map.on("sourcedata",(function n(){return t((function(){return e.map.off("sourcedata",n)}))}))}}]),t}();e.accessToken="pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A";var wt=function t(n,r,o){i(this,t),this.map=new e.Map(u({container:n,style:o,attributionControl:!1,center:[-86,37.83],zoom:3,pitchWithRotate:!1,dragPan:!0,touchZoomRotate:!0},r)),this.nav=new e.NavigationControl,this.map.addControl(this.nav,"top-left"),this.mapboxgl=e};function xt(t,e,n,i){var r,o=k(n);try{for(o.s();!(r=o.n()).done;){var a=r.value;t.addSource(a.sourceLayer,a.source)}}catch(t){o.e(t)}finally{o.f()}var s=function(t,e,n,i){return{units:new kt(t,{id:n.sourceLayer,source:n.sourceLayer,"source-layer":n.sourceLayer,type:"fill",paint:{"fill-color":gt(e),"fill-opacity":.8}},i),unitsBorders:new kt(t,{id:"units-borders",type:"line",source:n.sourceLayer,"source-layer":n.sourceLayer,paint:bt},i)}}(t,e,n.find((function(t){return"fill"===t.type})),i);return{units:s.units,unitsBorders:s.unitsBorders,points:function(t,e){return new kt(t,{id:"units-points",type:"circle",source:e.sourceLayer,"source-layer":e.sourceLayer,paint:{"circle-opacity":0}})}(t,n.find((function(t){return"circle"===t.type})))}}var _t=function(){function t(e){var n=e.key,r=e.name;i(this,t),this.key=n,this.name=r}return o(t,[{key:"getValue",value:function(t){if(void 0!==t.properties)return t.properties[this.key]}}]),t}();function Et(){var t=m(['\n            <span class="part-number" style="background: ','">\n                ',"\n            </span>\n        "]);return Et=function(){return t},t}var St=function(){function t(e,n,r,o){var a=!(arguments.length>4&&void 0!==arguments[4])||arguments[4];i(this,t),this.id=e,this.noun=n,this.displayNumber=r,this.color=o.hex,this.hoverColor=o.hoverHex,this.visible=a}return o(t,[{key:"updateDescription",value:function(t){var e=t.name,n=t.description;this.name=e,this.description=n}},{key:"serialize",value:function(){return{id:this.id,displayNumber:this.displayNumber,name:this.name,description:this.description}}},{key:"renderLabel",value:function(){return ft(Et(),this.color,this.displayNumber)}}]),t}(),Mt=function(){function t(e){i(this,t),this.name=e.name,this.key=e.key,this.sum=e.sum,this.min=e.min,this.max=e.max,this.getValue=this.getValue.bind(this),this.formatValue=this.formatValue.bind(this),this.asMapboxExpression=this.asMapboxExpression.bind(this)}return o(t,[{key:"getValue",value:function(t){return parseFloat(t.properties[this.key])}},{key:"formatValue",value:function(t){return x(this.getValue(t))}},{key:"asMapboxExpression",value:function(){return["to-number",["get",this.key]]}}]),t}(),Ot=function(){function t(e){var n=e.columns,r=e.columnSet,o=e.parts;i(this,t),this.columns=n,this.columnSet=r,this.data=w(o.length),this.sum=_(this.columns.map((function(t){return t.sum}))),this.min=Math.min.apply(Math,g(this.columns.map((function(t){return t.min})))),this.max=Math.max.apply(Math,g(this.columns.map((function(t){return t.max})))),this.getValue=this.getValue.bind(this),this.formatValue=this.formatValue.bind(this),this.asMapboxExpression=this.asMapboxExpression.bind(this),this.update=this.update.bind(this)}return o(t,[{key:"update",value:function(t,e){null!=e&&(this.data[e]+=this.getValue(t)),void 0!==t.state&&void 0!==t.state.color&&null!==t.state.color&&(this.data[t.state.color]-=this.getValue(t))}},{key:"getValue",value:function(t){return _(this.columns.map((function(e){return e.getValue(t)})))}},{key:"formatValue",value:function(t){return x(this.getValue(t))}},{key:"asMapboxExpression",value:function(){var t=["+"];return this.columns.forEach((function(e){t.push(e.asMapboxExpression())})),t}},{key:"total",get:function(){return this.columnSet.total}}]),t}(),Nt=function(t){l(n,t);var e=v(n);function n(t){var r,o=t.columnSet,a=t.parts,s=f(t,["columnSet","parts"]);return i(this,n),(r=e.call(this,s)).columnSet=o,r.data=w(a.length),r.update=r.update.bind(d(r)),r.fractionAsMapboxExpression=r.fractionAsMapboxExpression.bind(d(r)),r.getFractionFromFeature=r.getFractionFromFeature.bind(d(r)),r.getFractionInPart=r.getFractionInPart.bind(d(r)),r.getOverallFraction=r.getOverallFraction.bind(d(r)),r}return o(n,[{key:"getFractionFromFeature",value:function(t){return this.getValue(t)/this.total.getValue(t)}},{key:"getFractionInPart",value:function(t){var e=this.total.data[t];return e>0?this.data[t]/e:0}},{key:"getOverallFraction",value:function(){var t=this.total.sum;return t>0?this.sum/t:0}},{key:"fractionAsMapboxExpression",value:function(){return t=this.asMapboxExpression(),["case",[">",e=this.total.asMapboxExpression(),0],["/",t,e],0];var t,e}},{key:"update",value:function(t,e){null!=e&&(this.data[e]+=this.getValue(t)),void 0!==t.state&&void 0!==t.state.color&&null!==t.state.color&&(this.data[t.state.color]-=this.getValue(t))}},{key:"getAbbreviation",value:function(){return Pt.hasOwnProperty(this.key)?Pt[this.key]:this.name.split(" ")[0]}},{key:"total",get:function(){return this.columnSet.total}}]),n}(Mt),Pt={NH_WHITE:"White",NH_BLACK:"Black",HISP:"Hispanic",NH_ASIAN:"Asian",NH_AMIN:"Native",NH_NHPI:"NHPI",NH_2MORE:"2+",NH_OTHER:"Other",WVAP:"WVAP",BVAP:"BVAP",HVAP:"HVAP",AMINVAP:"Native VAP",NHPIVAP:"NHPI VAP",ASIANVAP:"AVAP",OTHERVAP:"Other VAP",OTHVAP:"Other VAP","2MOREVAP":"2+ VAP"};function Vt(t){var e,n=k(t);try{for(n.s();!(e=n.n()).done;){if("number"!=typeof e.value.sum)return!1}}catch(t){n.e(t)}finally{n.f()}return!0}function Bt(t){return t.sort((function(t,e){return e.sum-t.sum}))}var It=function(t){l(n,t);var e=v(n);function n(t){var r,o,a,s=t.name,u=t.subgroups,l=t.total,c=t.parts;return i(this,n),(r=e.call(this,{subgroups:u,total:l,parts:c})).name=s,r.ideal=r.total.sum/c.length,r.formattedIdeal=x((o=r.ideal,a=2,Math.round(o*Math.pow(10,a))/Math.pow(10,a))),r.update=r.update.bind(d(r)),r.deviations=r.deviations.bind(d(r)),r}return o(n,[{key:"deviations",value:function(){var t=this;return this.total.data.map((function(e){return(e-t.ideal)/t.ideal}))}},{key:"indicesOfMajorSubgroups",value:function(){var t=this;return this.subgroups.map((function(t,e){return e})).sort((function(e,n){return t.subgroups[n].sum-t.subgroups[e].sum})).slice(0,3)}}]),n}(function(){function t(e){var n=this,r=e.subgroups,o=e.total,a=e.parts,s=e.type,l=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];i(this,t),this.type=s,this.subgroups=r?r.map((function(t){return new Nt(u(u({},t),{},{parts:a,columnSet:n}))})):[],l&&Vt(this.subgroups)&&(this.subgroups=Bt(this.subgroups)),this.total=null!=o?new Nt(u(u({},o),{},{parts:a,columnSet:this})):new Ot({columns:this.subgroups,columnSet:this,parts:a}),this.update=this.update.bind(this)}return o(t,[{key:"update",value:function(t,e){this.subgroups.forEach((function(n){return n.update(t,e)})),this.total.update(t,e)}},{key:"columns",get:function(){return[this.total].concat(g(this.subgroups))}}]),t}());function Tt(t,e){t.population=function(t,e){var n=t.columnSets.find((function(t){return"Population"===t.name}));return new It(u(u({},n),{},{parts:e}))}(e,t.parts),t.vap=function(t,e){var n=t.columnSets.find((function(t){return"Voting Age Population"===t.name}));return n?new It(u(u({},n),{},{parts:e})):null}(e,t.parts),t.columns=[t.population.total].concat(g(t.population.subgroups)),t.vap&&(t.columns=[].concat(g(t.columns),g(t.vap.subgroups),[t.vap.total]));var n=[t.population];return t.vap&&n.push(t.vap),n}var Ft=function(){function t(e){var n=e.id,r=e.problem,o=e.idColumn,a=e.parts;if(i(this,t),this.id=n||S(8),this.problem=r,this.assignment={},this.parts=function(t){for(var e=t.name||"District",n=[],i=0;i<t.numberOfParts;i++){var r=i%mt.length;n[i]=new St(i,e,i+1,mt[r])}return n.length>mt.length&&n.slice(1).forEach((function(t){t.visible=!1})),n}(r),a)for(var s=0;s<a.length;s++)this.parts[s].updateDescription(a[s]);"multimember"!==r.type&&"community"!==r.type||this.parts.slice(1).forEach((function(t){t.visible=!1})),"community"===r.type&&this.parts.forEach((function(t){t.name||(t.name="Community ".concat(t.displayNumber))})),this.idColumn=o}return o(t,[{key:"update",value:function(t,e){this.assignment[this.idColumn.getValue(t)]=e}},{key:"serialize",value:function(){return{name:this.name,description:this.description,assignment:this.assignment,id:this.id,idColumn:{key:this.idColumn.key,name:this.idColumn.name},problem:this.problem,parts:this.parts.filter((function(t){return t.visible})).map((function(t){return t.serialize()}))}}}]),t}(),jt=function(){function t(e,n){var r=n.place,o=n.problem,a=n.id,s=n.units,l=f(n,["place","problem","id","units"]);i(this,t),this.unitsRecord=s,this.place=r,this.idColumn=new _t(s.idColumn),s.hasOwnProperty("nameColumn")&&(this.nameColumn=new _t(s.nameColumn)),this.plan=new Ft(u(u({id:a,problem:o},l),{},{idColumn:this.idColumn})),this.initializeMapState(e,s,At),this.columnSets=Tt(this,s),this.subscribers=[],this.update=this.update.bind(this),this.render=this.render.bind(this)}return o(t,[{key:"initializeMapState",value:function(t,e,n){var i=xt(t,this.parts,e.tilesets,n),r=i.units,o=i.unitsBorders,a=i.points;this.units=r,this.unitsBorders=o,this.layers=[r,a],this.map=t}},{key:"update",value:function(t,e){this.columnSets.forEach((function(n){return n.update(t,e)})),this.plan.update(t,e)}},{key:"serialize",value:function(){return u(u({},this.plan.serialize()),{},{placeId:this.place.id,units:this.unitsRecord})}},{key:"subscribe",value:function(t){this.subscribers.push(t),this.render()}},{key:"render",value:function(){var t,e=k(this.subscribers);try{for(e.s();!(t=e.n()).done;){(0,t.value)()}}catch(t){e.e(t)}finally{e.f()}}},{key:"hasExpectedData",value:function(t){if(void 0===t||void 0===t.properties)return!1;var e,n=k(this.columns);try{for(n.s();!(e=n.n()).done;){var i=e.value;if(void 0===t.properties[i.key])return!1}}catch(t){n.e(t)}finally{n.f()}return!0}},{key:"activeParts",get:function(){return this.plan.parts.filter((function(t){return t.visible}))}},{key:"parts",get:function(){return this.plan.parts}},{key:"problem",get:function(){return this.plan.problem}}]),t}();function Ct(){var t=m(['\n    <div class="ui-option">\n        <legend class="ui-label ui-label--row">\n            ','\n        </legend>\n        <div class="slider-container">\n            <input\n                class="slider"\n                type="range"\n                value="','"\n                min="1"\n                max="40"\n                @change=','\n            />\n            <input\n                class="slider-value"\n                type="number"\n                value="','"\n                min="1"\n                max="40"\n                @change=',"\n            />\n        </div>\n    </div>\n"]);return Ct=function(){return t},t}var Lt=function(t,e,n){return ft(Ct(),n?n.title:"Brush Size",t,e,t,e)};function Rt(){var t=m(['\n            <div class="icon-list__item" title="','">\n                <label>','</label>\n                <input\n                    type="radio"\n                    id="tool-','"\n                    name="tool"\n                    value="','"\n                    @change=',"\n                    ?checked=",'\n                />\n                <div class="icon-list__item__radio"></div>\n                ',"\n            </div>\n        "]);return Rt=function(){return t},t}var Dt=function(){function t(e,n,r){i(this,t),this.id=e,this.name=n,this.icon=r,this.active=!1}return o(t,[{key:"activate",value:function(){this.active=!0}},{key:"deactivate",value:function(){this.active=!1}},{key:"render",value:function(t){var e=this;return ft(Rt(),this.name,this.name,this.id,this.id,(function(){return t(e.id)}),this.active,this.icon)}}]),t}();function Ht(){var t=m(["",""]);return Ht=function(){return t},t}function Ut(){var t=m(['<img src="','" alt="Brush" \n            style="display: inline-block; height: 1.75em; z-index: 100;"></img>']);return Ut=function(){return t},t}var Qt=function(t){l(n,t);var e=v(n);function n(t,r){var o;i(this,n);var a=ft(Ut(),"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAABXUlEQVR4Ae3ZEXTDYBiF4UGhUBgMCoNBoVAYDmrDQGFQrNNwfgrDwnBQKASCxcEgEJxTITAMFAPfXgj1bH/W5Kev957z+Dmv3itN0zRN0zRNu6QNsUSBPRJozUbIYSc2OJ3ihCMpTjiS4oQjKU5Yojhhe8UJKxQnbKk4f8swgJMpjuIojuIojuIojuIojuIojuIojuIojuIojuI43afihPeEOlocRQrHUaRwHEUKx1EkV3EesEGBQyPHGrMOkdzEmeAD1iLFuD2SrzhzVLB/KjFtiZR6iTPFEXamEmO4XwHrKIXrJbCeZnC7HaynNdyuhPWUw+0sggNc7hYWQQmXe4RFUMDl3mERZHC3e9SwCFZwtTm+YRHUuPEQZYQ5UlhEb3CxDBZZhbEumt/VSOBqA+xgETzD7VaoYB0csYD7XeP1zFBb3OGiNsQCW3yhhjVK5HjBBJqmaZqmaZrmcz/pIiIIU7ugBgAAAABJRU5ErkJggg==");return(o=e.call(this,"brush","Draw",a)).brush=t,o.colors=r,o.options=new zt(t,r),o}return o(n,[{key:"activate",value:function(){y(c(n.prototype),"activate",this).call(this),this.brush.activate()}},{key:"deactivate",value:function(){y(c(n.prototype),"deactivate",this).call(this),this.brush.deactivate()}}]),n}(Dt),zt=function(){function t(e,n,r){i(this,t),this.brush=e,this.colors=n,this.renderToolbar=r,this.changeRadius=this.changeRadius.bind(this)}return o(t,[{key:"changeRadius",value:function(t){t.stopPropagation();var e=parseInt(t.target.value);this.brush.radius!=e&&(this.brush.radius=e),this.renderToolbar()}},{key:"render",value:function(){return ft(Ht(),Lt(this.brush.radius,this.changeRadius))}}]),t}();function Yt(){var t=m(["\n            ","\n        "]);return Yt=function(){return t},t}function Gt(){var t=m(['<img src="','" alt="Erase" \n            style="display: inline-block; height: 1.75em; z-index: 100;"></img>']);return Gt=function(){return t},t}var Jt=function(t){l(n,t);var e=v(n);function n(t){var r;i(this,n);var o=ft(Gt(),"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABBElEQVRo3u3Yuw7BYBiH8WdmcLorXIxuRjtuSWKjTiM3YBWjSQ3yJY00aL9TX94n+UbJ7y/apkDTNO2fagJz4ARcgSUwjI36tjaQAtnLuQNJbNynWsC6AJ8/49hIG3xtR5TB125EFXxtRtjgo49wgY82wiU++Agf+GAj2sDGE94cbw+7EHjzxB5IxZuzkozPgJtkfAacJeMzYCoZnwING7zP+/ynswe6ile84uXgezb4JsX/HoQ4W6BjgweYScYDHCPgD1j+bPJdAuN3rr5500IyHqDP8+UhBN7qVvmuRDLeNPKEL7pgJyU+H3WELb70AJcjXOArDXAxwhW+8gBN0zTtN3sAFI5CX1O33XwAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDgtMDRUMDI6NDg6NDkrMDA6MDADjPrkAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTA0VDAyOjQ4OjQ5KzAwOjAwctFCWAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=");return(r=e.call(this,"eraser","Erase",o)).brush=t,r.options=new Kt(t),r}return o(n,[{key:"activate",value:function(){y(c(n.prototype),"activate",this).call(this),this.brush.activate(),this.brush.startErasing()}},{key:"deactivate",value:function(){y(c(n.prototype),"deactivate",this).call(this),this.brush.deactivate(),this.brush.stopErasing()}}]),n}(Dt),Kt=function(){function t(e,n){i(this,t),this.brush=e,this.renderToolbar=n,this.changeRadius=this.changeRadius.bind(this)}return o(t,[{key:"changeRadius",value:function(t){t.stopPropagation();var e=parseInt(t.target.value);this.brush.radius!=e&&(this.brush.radius=e),this.renderToolbar()}},{key:"render",value:function(){return ft(Yt(),Lt(this.brush.radius,this.changeRadius,{title:"Eraser Size"}))}}]),t}();function Zt(){var t=m(['<img src="','" alt="Pan" \n            style="display: inline-block; height: 1.65em; z-index: 100;"></img>']);return Zt=function(){return t},t}var Wt=function(t){l(n,t);var e=v(n);function n(){i(this,n);var t=ft(Zt(),"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAABtElEQVR4AezWAWYDURSF4SIIsoCgiwiCIgAUUGQBs4QACugyggK6hCAoAgigKIKiyAIGRTC4/QGlcR6PiTH3HL4N/OOOdzfQTbDBO76xQwPmTXBAXPGG9HtBCA1S7xMh7LKfZBS02U8ySrKfZJTVnOTwN8MKDZaY1gaqOMnB7xFnxB8nLPsPhIFvgU583fvsgfYIYZs9UIsQPrIHirLbBtIPSwfSD0sHKj8skwcqPyyzB4qC1oEKHMiBHMiBHMiBHMiBHKiHOZADOZADOZADOZADDUCSQA7kQA7kQA40caD/m2GLFhfs8QQHYnOcEFccsEgSSMcROrxiniSQjiO0eMY0S6AjosIX1hkCPeAHUemAxdj/QauKSOL/NJ5A9ZHE/2kkgXSkhPQcSc+RCnMkOR3p4kB6a3QO5Eh6jqTnSMU5kp4j6TlST2tGEueM3rYZQaDj7/B7cTSQVoM8MRpIpG+oGw0kaEUjgttLo4HUj9sro4H0HnfqGQ2k3+DjMwYYVA/iwMlmGCQgfDCNTELd4s0wyIAKEK8fBKlmPvhglUEMdIC4Gdpy/UynLsRh6FydCrGOBABk1k0h3bUPJgAAAABJRU5ErkJggg==");return e.call(this,"pan","Pan",t)}return n}(Dt);var Xt=function(t){l(n,t);var e=v(n);function n(t,r,o){var a;return i(this,n),(a=e.call(this,t,r)).color=o,a.coloring=!1,a.locked=!1,a.listeners={colorend:[],colorfeature:[],mouseup:[]},M(["onMouseDown","onMouseUp","onClick","onTouchStart"],d(a)),a}return o(n,[{key:"setColor",value:function(t){this.color=parseInt(t)}},{key:"startErasing",value:function(){this._previousColor=this.color,this.color=null,this.erasing=!0}},{key:"stopErasing",value:function(){this.color=this._previousColor,this.erasing=!1}},{key:"hoverOn",value:function(t){this.hoveredFeatures=t,!0===this.coloring?this.colorFeatures():y(c(n.prototype),"hoverOn",this).call(this,t)}},{key:"colorFeatures",value:function(){var t=this;this.locked&&!this.erasing?this._colorFeatures((function(t){return null===t.state.color||void 0===t.state.color})):this._colorFeatures((function(e){return e.state.color!==t.color}))}},{key:"_colorFeatures",value:function(t){var e,n=new Set,i=k(this.hoveredFeatures);try{for(i.s();!(e=i.n()).done;){var r=e.value;if(t(r)&&!r.state.home){if(!n.has(r.id)){n.add(r.id);var o,a=k(this.listeners.colorfeature);try{for(a.s();!(o=a.n()).done;){(0,o.value)(r,this.color)}}catch(t){a.e(t)}finally{a.f()}}this.layer.setFeatureState(r.id,u(u({},r.state),{},{color:this.color,hover:!0})),r.state.color=this.color}else this.layer.setFeatureState(r.id,u(u({},r.state),{},{hover:!0}))}}catch(t){i.e(t)}finally{i.f()}var s,l=k(this.listeners.colorend);try{for(l.s();!(s=l.n()).done;){(0,s.value)()}}catch(t){l.e(t)}finally{l.f()}}},{key:"onClick",value:function(){this.colorFeatures()}},{key:"onMouseDown",value:function(t){t.preventDefault(),t.originalEvent.preventDefault(),this.coloring=!0,window.addEventListener("mouseup",this.onMouseUp),window.addEventListener("touchend",this.onMouseUp),window.addEventListener("touchcancel",this.onMouseUp)}},{key:"onMouseUp",value:function(){this.coloring=!1,window.removeEventListener("mouseup",this.onMouseUp),window.removeEventListener("touchend",this.onMouseUp),window.removeEventListener("touchcancel",this.onMouseUp);var t,e=k(this.listeners.mouseup);try{for(e.s();!(t=e.n()).done;){(0,t.value)()}}catch(t){e.e(t)}finally{e.f()}}},{key:"onTouchStart",value:function(t){t.points&&t.points.length<=1&&this.onMouseDown(t)}},{key:"onTouchMove",value:function(t){t.preventDefault()}},{key:"activate",value:function(){this.layer.map.getCanvas().classList.add("brush-tool"),y(c(n.prototype),"activate",this).call(this),this.layer.map.dragPan.disable(),this.layer.map.touchZoomRotate.disable(),this.layer.map.doubleClickZoom.disable(),this.layer.on("click",this.onClick),this.layer.map.on("touchstart",this.onTouchStart,{passive:!0}),this.layer.map.on("mousedown",this.onMouseDown),this.layer.map._canvas.addEventListener("touchmove",this.onTouchMove,{capture:!0,passive:!1})}},{key:"deactivate",value:function(){this.layer.map.getCanvas().classList.remove("brush-tool"),y(c(n.prototype),"deactivate",this).call(this),this.layer.map.dragPan.enable(),this.layer.map.doubleClickZoom.enable(),this.layer.map.touchZoomRotate.enable(),this.layer.off("click",this.onClick),this.layer.map.off("touchstart",this.onMouseDown),this.layer.map.off("mousedown",this.onMouseDown)}},{key:"on",value:function(t,e){this.listeners[t].push(e)}}]),n}(function(t){l(n,t);var e=v(n);function n(t,r){var o;return i(this,n),(o=e.call(this,t)).radius=r,o.hoveredFeatures=[],o}return o(n,[{key:"hoverOff",value:function(){var t=this;this.hoveredFeatures.forEach((function(e){t.layer.setFeatureState(e.id,u(u({},e.state),{},{hover:!1}))})),this.hoveredFeatures=[]}},{key:"hoverOn",value:function(t){var e=this;this.hoveredFeatures=t,this.hoveredFeatures.forEach((function(t){e.layer.setFeatureState(t.id,u(u({},t.state),{},{hover:!0}))}))}},{key:"onMouseMove",value:function(t){var e,n,i,r=(e=t.point,n=this.radius,i=[e.x+n,e.y+n],[[e.x-n,e.y-n],i]),o=this.layer.map.queryRenderedFeatures(r,{layers:[this.layer.id]});o.length>0&&(this.hoverOff(),this.hoverOn(o))}}]),n}(function(){function t(e){i(this,t),this.layer=e,this.hoveredFeature=null,this.onMouseMove=this.onMouseMove.bind(this),this.onMouseLeave=this.onMouseLeave.bind(this),this.hoverOff=this.hoverOff.bind(this)}return o(t,[{key:"hoverOff",value:function(){null!==this.hoveredFeature&&(this.layer.setFeatureState(this.hoveredFeature.id,u(u({},this.hoveredFeature.state),{},{hover:!1})),this.hoveredFeature=null)}},{key:"hoverOn",value:function(t){this.hoveredFeature=t,this.layer.setFeatureState(t.id,u(u({},t.state),{},{hover:!0}))}},{key:"onMouseMove",value:function(t){t.features.length>0&&(this.hoverOff(),this.hoverOn(t.features[0]))}},{key:"onMouseLeave",value:function(){this.hoverOff()}},{key:"activate",value:function(){this.layer.on("mousemove",this.onMouseMove),this.layer.on("mouseleave",this.onMouseLeave),this.layer.on("touchmove",this.onMouseMove),this.layer.on("touchend",this.onMouseLeave)}},{key:"deactivate",value:function(){this.layer.off("mousemove",this.onMouseMove),this.layer.off("mouseleave",this.onMouseLeave),this.layer.off("touchmove",this.onMouseMove),this.layer.off("touchend",this.onMouseLeave)}}]),t}()));var qt,$t=function(){function t(e,n){i(this,t),this.reducer=e,this.state=n,this.subscribers=[],M(["dispatch","subscribe"],this)}return o(t,[{key:"dispatch",value:function(t){var e=this,n=this.reducer(this.state,t);n!==this.state&&(this.state=n,this.subscribers.forEach((function(t){return t(e.state,e.dispatch)})))}},{key:"subscribe",value:function(t){this.subscribers.push(t)}}]),t}(),te=function(t,e){var n=t.startNode.parentNode,i=void 0===e?t.endNode:e.startNode,r=n.insertBefore(Y(),i);n.insertBefore(Y(),i);var o=new tt(t.options);return o.insertAfterNode(r),o},ee=function(t,e){return t.setValue(e),t.commit(),t},ne=function(t,e,n){var i=t.startNode.parentNode,r=n?n.startNode:t.endNode,o=e.endNode.nextSibling;o!==r&&function(t,e){for(var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null,i=arguments.length>3&&void 0!==arguments[3]?arguments[3]:null;e!==n;){var r=e.nextSibling;t.insertBefore(e,i),e=r}}(i,e.startNode,o,r)},ie=function(t){j(t.startNode.parentNode,t.startNode,t.endNode.nextSibling)},re=function(t,e,n){for(var i=new Map,r=e;r<=n;r++)i.set(t[r],r);return i},oe=new WeakMap,ae=new WeakMap,se=(qt=function(t,e,n){var i;return void 0===n?n=e:void 0!==e&&(i=e),function(e){if(!(e instanceof tt))throw new Error("repeat can only be used in text bindings");var r,o,a,s=oe.get(e)||[],u=ae.get(e)||[],l=[],c=[],h=[],f=0,d=k(t);try{for(d.s();!(r=d.n()).done;){var p=r.value;h[f]=i?i(p,f):f,c[f]=n(p,f),f++}}catch(t){d.e(t)}finally{d.f()}for(var v=0,y=s.length-1,m=0,g=c.length-1;v<=y&&m<=g;)if(null===s[v])v++;else if(null===s[y])y--;else if(u[v]===h[m])l[m]=ee(s[v],c[m]),v++,m++;else if(u[y]===h[g])l[g]=ee(s[y],c[g]),y--,g--;else if(u[v]===h[g])l[g]=ee(s[v],c[g]),ne(e,s[v],l[g+1]),v++,g--;else if(u[y]===h[m])l[m]=ee(s[y],c[m]),ne(e,s[y],s[v]),y--,m++;else if(void 0===o&&(o=re(h,m,g),a=re(u,v,y)),o.has(u[v]))if(o.has(u[y])){var b=a.get(h[m]),A=void 0!==b?s[b]:null;if(null===A){var w=te(e,s[v]);ee(w,c[m]),l[m]=w}else l[m]=ee(A,c[m]),ne(e,A,s[v]),s[b]=null;m++}else ie(s[y]),y--;else ie(s[v]),v++;for(;m<=g;){var x=te(e,l[g+1]);ee(x,c[m]),l[m++]=x}for(;v<=y;){var _=s[v++];null!==_&&ie(_)}oe.set(e,l),ae.set(e,h)}},function(){var t=qt.apply(void 0,arguments);return I.set(t,!0),t});function ue(){var t=m(['\n    <section\n        class="tool-options ','"\n    >\n        ',"\n    </section>\n"]);return ue=function(){return t},t}function le(){var t=m(['\n        <div class="districtr__mini-toolbar">\n            <nav>\n                <div class="districtr__mini-toolbar-top">\n                    <div class="icon-list">\n                        ',"\n                    </div>\n                </div>\n            </nav>\n            ","\n            </div>\n        </div>\n        "]);return le=function(){return t},t}var ce=function(){function t(e,n){i(this,t),this.tools=[],this.toolsById={},this.menuItems=[],this.renderCallback=n.render,this.render=this.render.bind(this),this.selectTool=this.selectTool.bind(this),this.addTool=this.addTool.bind(this),this.store=e}return o(t,[{key:"selectTool",value:function(t){this.activeTool&&this.activeTool.deactivate(),this.toolsById[t].activate(),this.store.dispatch(P.selectTool({id:t}))}},{key:"addTool",value:function(t){void 0!==t.options&&(t.options.renderToolbar=this.renderCallback),this.toolsById[t.id]=t,this.tools.push(t)}},{key:"setMenuItems",value:function(t){this.menuItems=t}},{key:"render",value:function(){var t,e=this;return ft(le(),se(this.tools,(function(t){return t.id}),(function(t){return t.render(e.selectTool)})),(t=this.activeTool,ft(ue(),void 0!==t.options?"active":"",void 0!==t.options?t.options.render():"")))}},{key:"activeTool",get:function(){return this.toolsById[this.store.state.toolbar.activeTool]}}]),t}();function he(){var t=m(["<h4>An error occurred.</h4>"]);return he=function(){return t},t}var fe=[function(t){var e=t.state,n=t.toolbar,i=new Xt(e.units,10,0);i.on("colorfeature",e.update),i.on("colorend",e.render);for(var r=0,o=[new Wt,new Qt(i,e.parts),new Jt(i)];r<o.length;r++){var a=o[r];n.addTool(a)}n.selectTool("brush")}],de=function(){function t(e,n,r){var o=this;i(this,t),this.render=this.render.bind(this),r=u({style:"mapbox://styles/mapbox/outdoors-v11"},r);var a=document.querySelector(e);a.classList.add("districtr__embed-container");var s=document.createElement("div"),l=S(8);s.setAttribute("id",l),s.style="height: 100%; width: 100%",a.appendChild(s),this.toolbarTarget=document.createElement("div"),a.appendChild(this.toolbarTarget),this.addressMarker=null,this.graph=null,this.showError=n.errors,this.allowProceed=n.allowProceed,fetch(n.graph).then((function(t){return t.json()})).then((function(t){o.graph=t})),fetch(n.url).then((function(t){return t.json()})).then((function(t){o.bounds=t.units.bounds,o.mapState=new wt(l,{bounds:t.units.bounds,fitBoundsOptions:{padding:{top:50,right:50,left:50,bottom:50}}},r.style),o.mapState.map.on("load",(function(){o.mapState.map.setMaxBounds(o.mapState.map.getBounds()),o.state=new jt(o.mapState.map,t,(function(){return null})),o.enableMap=function(){var t=this;if(!this.enabled){this.enabled=!0,this.store=new $t(B,{toolbar:{}}),this.toolbar=new ce(this.store,this);var e,n=k(fe);try{for(n.s();!(e=n.n()).done;){(0,e.value)(this)}}catch(t){n.e(t)}finally{n.f()}this.store.subscribe(this.render),this.state.subscribe(this.render);var i=-1;this.toolbar.toolsById.brush.brush.on("mouseup",(function(){window.clearTimeout(i),i=window.setTimeout(t.checkConnected.bind(t),50)}))}},o.enabled=!1}))})).catch((function(t){console.error(t),ht(ft(he()),a)}))}return o(t,[{key:"render",value:function(){this.toolbarTarget&&this.toolbar&&ht(this.toolbar.render(),this.toolbarTarget)}},{key:"checkConnected",value:function(){var t=this.graph;if(!t)return null;var e=this.state.plan.assignment,n={},i=0;for(var r in e)0==e[r]&&(n[r.slice(5)]=!1,i++);var o=function e(n,i){var r=1;n[i]=!0;var o,a=k(t[i]);try{for(a.s();!(o=a.n()).done;){var s=o.value;!1===n[s]&&(r+=e(n,s))}}catch(t){a.e(t)}finally{a.f()}return r}(n,this.homeBlock.properties.GEOID10.slice(5))===i;return this.showError(o?null:"Your neighborhood must be in one piece only."),this.allowProceed(o),o}},{key:"loadAddress",value:function(t){var n=this,i="https://api.mapbox.com/geocoding/v5/mapbox.places/".concat(encodeURIComponent(t),".json")+"?autocomplete=false&limit=1&bbox="+this.bounds[0][0]+","+this.bounds[0][1]+","+this.bounds[1][0]+","+this.bounds[1][1]+"&access_token=".concat(e.accessToken);fetch(i).then((function(t){return t.json()})).then((function(t){if(0!=t.features.length){n.showError(null),n.enableMap();var i=t.features[0].center;n.addressMarker&&n.addressMarker.remove(),n.addressMarker=new e.Marker({color:"#ff4f49"}).setLngLat(i).addTo(n.map),n.map.easeTo({center:i,zoom:15});var r=n.map.queryRenderedFeatures(n.map.project(i),{layers:[n.state.units.id],validate:!1})[0];r.state.home=!0,n.homeBlock&&n.map.setFeatureState(n.homeBlock,u(u({},n.homeBlock.state),{},{home:!1})),n.state.units.setAssignment(r,0),n.state.plan.assignment[r.properties.GEOID10]=0,n.homeBlock=r}else n.showError("Address not found.")}))}},{key:"map",get:function(){return this.mapState.map}}]),t}();window.Districtr=function(t,e,n){return new de(t,e,n)},t.EmbeddedDistrictr=de,Object.defineProperty(t,"__esModule",{value:!0})}));
+
+  /**
+   * An expression marker with embedded unique key to avoid collision with
+   * possible text in templates.
+   */
+  var marker = "{{lit-".concat(String(Math.random()).slice(2), "}}");
+  /**
+   * An expression marker used text-positions, multi-binding attributes, and
+   * attributes with markup-like text values.
+   */
+
+  var nodeMarker = "<!--".concat(marker, "-->");
+  var markerRegex = new RegExp("".concat(marker, "|").concat(nodeMarker));
+  /**
+   * Suffix appended to all bound attribute names.
+   */
+
+  var boundAttributeSuffix = '$lit$';
+  /**
+   * An updatable Template that tracks the location of dynamic parts.
+   */
+
+  var Template = function Template(result, element) {
+    _classCallCheck(this, Template);
+
+    this.parts = [];
+    this.element = element;
+    var nodesToRemove = [];
+    var stack = []; // Edge needs all 4 parameters present; IE11 needs 3rd parameter to be null
+
+    var walker = document.createTreeWalker(element.content, 133
+    /* NodeFilter.SHOW_{ELEMENT|COMMENT|TEXT} */
+    , null, false); // Keeps track of the last index associated with a part. We try to delete
+    // unnecessary nodes, but we never want to associate two different parts
+    // to the same index. They must have a constant node between.
+
+    var lastPartIndex = 0;
+    var index = -1;
+    var partIndex = 0;
+    var strings = result.strings,
+        length = result.values.length;
+
+    while (partIndex < length) {
+      var node = walker.nextNode();
+
+      if (node === null) {
+        // We've exhausted the content inside a nested template element.
+        // Because we still have parts (the outer for-loop), we know:
+        // - There is a template in the stack
+        // - The walker will find a nextNode outside the template
+        walker.currentNode = stack.pop();
+        continue;
+      }
+
+      index++;
+
+      if (node.nodeType === 1
+      /* Node.ELEMENT_NODE */
+      ) {
+          if (node.hasAttributes()) {
+            var attributes = node.attributes;
+            var _length = attributes.length; // Per
+            // https://developer.mozilla.org/en-US/docs/Web/API/NamedNodeMap,
+            // attributes are not guaranteed to be returned in document order.
+            // In particular, Edge/IE can return them out of order, so we cannot
+            // assume a correspondence between part index and attribute index.
+
+            var count = 0;
+
+            for (var i = 0; i < _length; i++) {
+              if (endsWith(attributes[i].name, boundAttributeSuffix)) {
+                count++;
+              }
+            }
+
+            while (count-- > 0) {
+              // Get the template literal section leading up to the first
+              // expression in this attribute
+              var stringForPart = strings[partIndex]; // Find the attribute name
+
+              var name = lastAttributeNameRegex.exec(stringForPart)[2]; // Find the corresponding attribute
+              // All bound attributes have had a suffix added in
+              // TemplateResult#getHTML to opt out of special attribute
+              // handling. To look up the attribute value we also need to add
+              // the suffix.
+
+              var attributeLookupName = name.toLowerCase() + boundAttributeSuffix;
+              var attributeValue = node.getAttribute(attributeLookupName);
+              node.removeAttribute(attributeLookupName);
+              var statics = attributeValue.split(markerRegex);
+              this.parts.push({
+                type: 'attribute',
+                index: index,
+                name: name,
+                strings: statics
+              });
+              partIndex += statics.length - 1;
+            }
+          }
+
+          if (node.tagName === 'TEMPLATE') {
+            stack.push(node);
+            walker.currentNode = node.content;
+          }
+        } else if (node.nodeType === 3
+      /* Node.TEXT_NODE */
+      ) {
+          var data = node.data;
+
+          if (data.indexOf(marker) >= 0) {
+            var parent = node.parentNode;
+
+            var _strings = data.split(markerRegex);
+
+            var lastIndex = _strings.length - 1; // Generate a new text node for each literal section
+            // These nodes are also used as the markers for node parts
+
+            for (var _i = 0; _i < lastIndex; _i++) {
+              var insert = void 0;
+              var s = _strings[_i];
+
+              if (s === '') {
+                insert = createMarker();
+              } else {
+                var match = lastAttributeNameRegex.exec(s);
+
+                if (match !== null && endsWith(match[2], boundAttributeSuffix)) {
+                  s = s.slice(0, match.index) + match[1] + match[2].slice(0, -boundAttributeSuffix.length) + match[3];
+                }
+
+                insert = document.createTextNode(s);
+              }
+
+              parent.insertBefore(insert, node);
+              this.parts.push({
+                type: 'node',
+                index: ++index
+              });
+            } // If there's no text, we must insert a comment to mark our place.
+            // Else, we can trust it will stick around after cloning.
+
+
+            if (_strings[lastIndex] === '') {
+              parent.insertBefore(createMarker(), node);
+              nodesToRemove.push(node);
+            } else {
+              node.data = _strings[lastIndex];
+            } // We have a part for each match found
+
+
+            partIndex += lastIndex;
+          }
+        } else if (node.nodeType === 8
+      /* Node.COMMENT_NODE */
+      ) {
+          if (node.data === marker) {
+            var _parent = node.parentNode; // Add a new marker node to be the startNode of the Part if any of
+            // the following are true:
+            //  * We don't have a previousSibling
+            //  * The previousSibling is already the start of a previous part
+
+            if (node.previousSibling === null || index === lastPartIndex) {
+              index++;
+
+              _parent.insertBefore(createMarker(), node);
+            }
+
+            lastPartIndex = index;
+            this.parts.push({
+              type: 'node',
+              index: index
+            }); // If we don't have a nextSibling, keep this node so we have an end.
+            // Else, we can remove it to save future costs.
+
+            if (node.nextSibling === null) {
+              node.data = '';
+            } else {
+              nodesToRemove.push(node);
+              index--;
+            }
+
+            partIndex++;
+          } else {
+            var _i2 = -1;
+
+            while ((_i2 = node.data.indexOf(marker, _i2 + 1)) !== -1) {
+              // Comment node has a binding marker inside, make an inactive part
+              // The binding won't work, but subsequent bindings will
+              // TODO (justinfagnani): consider whether it's even worth it to
+              // make bindings in comments work
+              this.parts.push({
+                type: 'node',
+                index: -1
+              });
+              partIndex++;
+            }
+          }
+        }
+    } // Remove text binding nodes after the walk to not disturb the TreeWalker
+
+
+    for (var _i3 = 0, _nodesToRemove = nodesToRemove; _i3 < _nodesToRemove.length; _i3++) {
+      var n = _nodesToRemove[_i3];
+      n.parentNode.removeChild(n);
+    }
+  };
+
+  var endsWith = function endsWith(str, suffix) {
+    var index = str.length - suffix.length;
+    return index >= 0 && str.slice(index) === suffix;
+  };
+
+  var isTemplatePartActive = function isTemplatePartActive(part) {
+    return part.index !== -1;
+  }; // Allows `document.createComment('')` to be renamed for a
+  // small manual size-savings.
+
+  var createMarker = function createMarker() {
+    return document.createComment('');
+  };
+  /**
+   * This regex extracts the attribute name preceding an attribute-position
+   * expression. It does this by matching the syntax allowed for attributes
+   * against the string literal directly preceding the expression, assuming that
+   * the expression is in an attribute-value position.
+   *
+   * See attributes in the HTML spec:
+   * https://www.w3.org/TR/html5/syntax.html#elements-attributes
+   *
+   * " \x09\x0a\x0c\x0d" are HTML space characters:
+   * https://www.w3.org/TR/html5/infrastructure.html#space-characters
+   *
+   * "\0-\x1F\x7F-\x9F" are Unicode control characters, which includes every
+   * space character except " ".
+   *
+   * So an attribute is:
+   *  * The name: any character except a control character, space character, ('),
+   *    ("), ">", "=", or "/"
+   *  * Followed by zero or more space characters
+   *  * Followed by "="
+   *  * Followed by zero or more space characters
+   *  * Followed by:
+   *    * Any character except space, ('), ("), "<", ">", "=", (`), or
+   *    * (") then any non-("), or
+   *    * (') then any non-(')
+   */
+
+  var lastAttributeNameRegex = // eslint-disable-next-line no-control-regex
+  /([ \x09\x0a\x0c\x0d])([^\0-\x1F\x7F-\x9F "'>=/]+)([ \x09\x0a\x0c\x0d]*=[ \x09\x0a\x0c\x0d]*(?:[^ \x09\x0a\x0c\x0d"'`<>=]*|"[^"]*|'[^']*))$/;
+
+  /**
+   * An instance of a `Template` that can be attached to the DOM and updated
+   * with new values.
+   */
+
+  var TemplateInstance = /*#__PURE__*/function () {
+    function TemplateInstance(template, processor, options) {
+      _classCallCheck(this, TemplateInstance);
+
+      this.__parts = [];
+      this.template = template;
+      this.processor = processor;
+      this.options = options;
+    }
+
+    _createClass(TemplateInstance, [{
+      key: "update",
+      value: function update(values) {
+        var i = 0;
+
+        var _iterator = _createForOfIteratorHelper(this.__parts),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var part = _step.value;
+
+            if (part !== undefined) {
+              part.setValue(values[i]);
+            }
+
+            i++;
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+
+        var _iterator2 = _createForOfIteratorHelper(this.__parts),
+            _step2;
+
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var _part = _step2.value;
+
+            if (_part !== undefined) {
+              _part.commit();
+            }
+          }
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
+        }
+      }
+    }, {
+      key: "_clone",
+      value: function _clone() {
+        // There are a number of steps in the lifecycle of a template instance's
+        // DOM fragment:
+        //  1. Clone - create the instance fragment
+        //  2. Adopt - adopt into the main document
+        //  3. Process - find part markers and create parts
+        //  4. Upgrade - upgrade custom elements
+        //  5. Update - set node, attribute, property, etc., values
+        //  6. Connect - connect to the document. Optional and outside of this
+        //     method.
+        //
+        // We have a few constraints on the ordering of these steps:
+        //  * We need to upgrade before updating, so that property values will pass
+        //    through any property setters.
+        //  * We would like to process before upgrading so that we're sure that the
+        //    cloned fragment is inert and not disturbed by self-modifying DOM.
+        //  * We want custom elements to upgrade even in disconnected fragments.
+        //
+        // Given these constraints, with full custom elements support we would
+        // prefer the order: Clone, Process, Adopt, Upgrade, Update, Connect
+        //
+        // But Safari does not implement CustomElementRegistry#upgrade, so we
+        // can not implement that order and still have upgrade-before-update and
+        // upgrade disconnected fragments. So we instead sacrifice the
+        // process-before-upgrade constraint, since in Custom Elements v1 elements
+        // must not modify their light DOM in the constructor. We still have issues
+        // when co-existing with CEv0 elements like Polymer 1, and with polyfills
+        // that don't strictly adhere to the no-modification rule because shadow
+        // DOM, which may be created in the constructor, is emulated by being placed
+        // in the light DOM.
+        //
+        // The resulting order is on native is: Clone, Adopt, Upgrade, Process,
+        // Update, Connect. document.importNode() performs Clone, Adopt, and Upgrade
+        // in one step.
+        //
+        // The Custom Elements v1 polyfill supports upgrade(), so the order when
+        // polyfilled is the more ideal: Clone, Process, Adopt, Upgrade, Update,
+        // Connect.
+        var fragment = isCEPolyfill ? this.template.element.content.cloneNode(true) : document.importNode(this.template.element.content, true);
+        var stack = [];
+        var parts = this.template.parts; // Edge needs all 4 parameters present; IE11 needs 3rd parameter to be null
+
+        var walker = document.createTreeWalker(fragment, 133
+        /* NodeFilter.SHOW_{ELEMENT|COMMENT|TEXT} */
+        , null, false);
+        var partIndex = 0;
+        var nodeIndex = 0;
+        var part;
+        var node = walker.nextNode(); // Loop through all the nodes and parts of a template
+
+        while (partIndex < parts.length) {
+          part = parts[partIndex];
+
+          if (!isTemplatePartActive(part)) {
+            this.__parts.push(undefined);
+
+            partIndex++;
+            continue;
+          } // Progress the tree walker until we find our next part's node.
+          // Note that multiple parts may share the same node (attribute parts
+          // on a single element), so this loop may not run at all.
+
+
+          while (nodeIndex < part.index) {
+            nodeIndex++;
+
+            if (node.nodeName === 'TEMPLATE') {
+              stack.push(node);
+              walker.currentNode = node.content;
+            }
+
+            if ((node = walker.nextNode()) === null) {
+              // We've exhausted the content inside a nested template element.
+              // Because we still have parts (the outer for-loop), we know:
+              // - There is a template in the stack
+              // - The walker will find a nextNode outside the template
+              walker.currentNode = stack.pop();
+              node = walker.nextNode();
+            }
+          } // We've arrived at our part's node.
+
+
+          if (part.type === 'node') {
+            var _part2 = this.processor.handleTextExpression(this.options);
+
+            _part2.insertAfterNode(node.previousSibling);
+
+            this.__parts.push(_part2);
+          } else {
+            var _this$__parts;
+
+            (_this$__parts = this.__parts).push.apply(_this$__parts, _toConsumableArray(this.processor.handleAttributeExpressions(node, part.name, part.strings, this.options)));
+          }
+
+          partIndex++;
+        }
+
+        if (isCEPolyfill) {
+          document.adoptNode(fragment);
+          customElements.upgrade(fragment);
+        }
+
+        return fragment;
+      }
+    }]);
+
+    return TemplateInstance;
+  }();
+
+  var commentMarker = " ".concat(marker, " ");
+  /**
+   * The return type of `html`, which holds a Template and the values from
+   * interpolated expressions.
+   */
+
+  var TemplateResult = /*#__PURE__*/function () {
+    function TemplateResult(strings, values, type, processor) {
+      _classCallCheck(this, TemplateResult);
+
+      this.strings = strings;
+      this.values = values;
+      this.type = type;
+      this.processor = processor;
+    }
+    /**
+     * Returns a string of HTML used to create a `<template>` element.
+     */
+
+
+    _createClass(TemplateResult, [{
+      key: "getHTML",
+      value: function getHTML() {
+        var l = this.strings.length - 1;
+        var html = '';
+        var isCommentBinding = false;
+
+        for (var i = 0; i < l; i++) {
+          var s = this.strings[i]; // For each binding we want to determine the kind of marker to insert
+          // into the template source before it's parsed by the browser's HTML
+          // parser. The marker type is based on whether the expression is in an
+          // attribute, text, or comment position.
+          //   * For node-position bindings we insert a comment with the marker
+          //     sentinel as its text content, like <!--{{lit-guid}}-->.
+          //   * For attribute bindings we insert just the marker sentinel for the
+          //     first binding, so that we support unquoted attribute bindings.
+          //     Subsequent bindings can use a comment marker because multi-binding
+          //     attributes must be quoted.
+          //   * For comment bindings we insert just the marker sentinel so we don't
+          //     close the comment.
+          //
+          // The following code scans the template source, but is *not* an HTML
+          // parser. We don't need to track the tree structure of the HTML, only
+          // whether a binding is inside a comment, and if not, if it appears to be
+          // the first binding in an attribute.
+
+          var commentOpen = s.lastIndexOf('<!--'); // We're in comment position if we have a comment open with no following
+          // comment close. Because <-- can appear in an attribute value there can
+          // be false positives.
+
+          isCommentBinding = (commentOpen > -1 || isCommentBinding) && s.indexOf('-->', commentOpen + 1) === -1; // Check to see if we have an attribute-like sequence preceding the
+          // expression. This can match "name=value" like structures in text,
+          // comments, and attribute values, so there can be false-positives.
+
+          var attributeMatch = lastAttributeNameRegex.exec(s);
+
+          if (attributeMatch === null) {
+            // We're only in this branch if we don't have a attribute-like
+            // preceding sequence. For comments, this guards against unusual
+            // attribute values like <div foo="<!--${'bar'}">. Cases like
+            // <!-- foo=${'bar'}--> are handled correctly in the attribute branch
+            // below.
+            html += s + (isCommentBinding ? commentMarker : nodeMarker);
+          } else {
+            // For attributes we use just a marker sentinel, and also append a
+            // $lit$ suffix to the name to opt-out of attribute-specific parsing
+            // that IE and Edge do for style and certain SVG attributes.
+            html += s.substr(0, attributeMatch.index) + attributeMatch[1] + attributeMatch[2] + boundAttributeSuffix + attributeMatch[3] + marker;
+          }
+        }
+
+        html += this.strings[l];
+        return html;
+      }
+    }, {
+      key: "getTemplateElement",
+      value: function getTemplateElement() {
+        var template = document.createElement('template');
+        template.innerHTML = this.getHTML();
+        return template;
+      }
+    }]);
+
+    return TemplateResult;
+  }();
+
+  var isPrimitive = function isPrimitive(value) {
+    return value === null || !(_typeof(value) === 'object' || typeof value === 'function');
+  };
+  var isIterable = function isIterable(value) {
+    return Array.isArray(value) || // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    !!(value && value[Symbol.iterator]);
+  };
+  /**
+   * Writes attribute values to the DOM for a group of AttributeParts bound to a
+   * single attribute. The value is only set once even if there are multiple parts
+   * for an attribute.
+   */
+
+  var AttributeCommitter = /*#__PURE__*/function () {
+    function AttributeCommitter(element, name, strings) {
+      _classCallCheck(this, AttributeCommitter);
+
+      this.dirty = true;
+      this.element = element;
+      this.name = name;
+      this.strings = strings;
+      this.parts = [];
+
+      for (var i = 0; i < strings.length - 1; i++) {
+        this.parts[i] = this._createPart();
+      }
+    }
+    /**
+     * Creates a single part. Override this to create a differnt type of part.
+     */
+
+
+    _createClass(AttributeCommitter, [{
+      key: "_createPart",
+      value: function _createPart() {
+        return new AttributePart(this);
+      }
+    }, {
+      key: "_getValue",
+      value: function _getValue() {
+        var strings = this.strings;
+        var l = strings.length - 1;
+        var text = '';
+
+        for (var i = 0; i < l; i++) {
+          text += strings[i];
+          var part = this.parts[i];
+
+          if (part !== undefined) {
+            var v = part.value;
+
+            if (isPrimitive(v) || !isIterable(v)) {
+              text += typeof v === 'string' ? v : String(v);
+            } else {
+              var _iterator = _createForOfIteratorHelper(v),
+                  _step;
+
+              try {
+                for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                  var t = _step.value;
+                  text += typeof t === 'string' ? t : String(t);
+                }
+              } catch (err) {
+                _iterator.e(err);
+              } finally {
+                _iterator.f();
+              }
+            }
+          }
+        }
+
+        text += strings[l];
+        return text;
+      }
+    }, {
+      key: "commit",
+      value: function commit() {
+        if (this.dirty) {
+          this.dirty = false;
+          this.element.setAttribute(this.name, this._getValue());
+        }
+      }
+    }]);
+
+    return AttributeCommitter;
+  }();
+  /**
+   * A Part that controls all or part of an attribute value.
+   */
+
+  var AttributePart = /*#__PURE__*/function () {
+    function AttributePart(committer) {
+      _classCallCheck(this, AttributePart);
+
+      this.value = undefined;
+      this.committer = committer;
+    }
+
+    _createClass(AttributePart, [{
+      key: "setValue",
+      value: function setValue(value) {
+        if (value !== noChange && (!isPrimitive(value) || value !== this.value)) {
+          this.value = value; // If the value is a not a directive, dirty the committer so that it'll
+          // call setAttribute. If the value is a directive, it'll dirty the
+          // committer if it calls setValue().
+
+          if (!isDirective(value)) {
+            this.committer.dirty = true;
+          }
+        }
+      }
+    }, {
+      key: "commit",
+      value: function commit() {
+        while (isDirective(this.value)) {
+          var directive = this.value;
+          this.value = noChange;
+          directive(this);
+        }
+
+        if (this.value === noChange) {
+          return;
+        }
+
+        this.committer.commit();
+      }
+    }]);
+
+    return AttributePart;
+  }();
+  /**
+   * A Part that controls a location within a Node tree. Like a Range, NodePart
+   * has start and end locations and can set and update the Nodes between those
+   * locations.
+   *
+   * NodeParts support several value types: primitives, Nodes, TemplateResults,
+   * as well as arrays and iterables of those types.
+   */
+
+  var NodePart = /*#__PURE__*/function () {
+    function NodePart(options) {
+      _classCallCheck(this, NodePart);
+
+      this.value = undefined;
+      this.__pendingValue = undefined;
+      this.options = options;
+    }
+    /**
+     * Appends this part into a container.
+     *
+     * This part must be empty, as its contents are not automatically moved.
+     */
+
+
+    _createClass(NodePart, [{
+      key: "appendInto",
+      value: function appendInto(container) {
+        this.startNode = container.appendChild(createMarker());
+        this.endNode = container.appendChild(createMarker());
+      }
+      /**
+       * Inserts this part after the `ref` node (between `ref` and `ref`'s next
+       * sibling). Both `ref` and its next sibling must be static, unchanging nodes
+       * such as those that appear in a literal section of a template.
+       *
+       * This part must be empty, as its contents are not automatically moved.
+       */
+
+    }, {
+      key: "insertAfterNode",
+      value: function insertAfterNode(ref) {
+        this.startNode = ref;
+        this.endNode = ref.nextSibling;
+      }
+      /**
+       * Appends this part into a parent part.
+       *
+       * This part must be empty, as its contents are not automatically moved.
+       */
+
+    }, {
+      key: "appendIntoPart",
+      value: function appendIntoPart(part) {
+        part.__insert(this.startNode = createMarker());
+
+        part.__insert(this.endNode = createMarker());
+      }
+      /**
+       * Inserts this part after the `ref` part.
+       *
+       * This part must be empty, as its contents are not automatically moved.
+       */
+
+    }, {
+      key: "insertAfterPart",
+      value: function insertAfterPart(ref) {
+        ref.__insert(this.startNode = createMarker());
+
+        this.endNode = ref.endNode;
+        ref.endNode = this.startNode;
+      }
+    }, {
+      key: "setValue",
+      value: function setValue(value) {
+        this.__pendingValue = value;
+      }
+    }, {
+      key: "commit",
+      value: function commit() {
+        if (this.startNode.parentNode === null) {
+          return;
+        }
+
+        while (isDirective(this.__pendingValue)) {
+          var directive = this.__pendingValue;
+          this.__pendingValue = noChange;
+          directive(this);
+        }
+
+        var value = this.__pendingValue;
+
+        if (value === noChange) {
+          return;
+        }
+
+        if (isPrimitive(value)) {
+          if (value !== this.value) {
+            this.__commitText(value);
+          }
+        } else if (value instanceof TemplateResult) {
+          this.__commitTemplateResult(value);
+        } else if (value instanceof Node) {
+          this.__commitNode(value);
+        } else if (isIterable(value)) {
+          this.__commitIterable(value);
+        } else if (value === nothing) {
+          this.value = nothing;
+          this.clear();
+        } else {
+          // Fallback, will render the string representation
+          this.__commitText(value);
+        }
+      }
+    }, {
+      key: "__insert",
+      value: function __insert(node) {
+        this.endNode.parentNode.insertBefore(node, this.endNode);
+      }
+    }, {
+      key: "__commitNode",
+      value: function __commitNode(value) {
+        if (this.value === value) {
+          return;
+        }
+
+        this.clear();
+
+        this.__insert(value);
+
+        this.value = value;
+      }
+    }, {
+      key: "__commitText",
+      value: function __commitText(value) {
+        var node = this.startNode.nextSibling;
+        value = value == null ? '' : value; // If `value` isn't already a string, we explicitly convert it here in case
+        // it can't be implicitly converted - i.e. it's a symbol.
+
+        var valueAsString = typeof value === 'string' ? value : String(value);
+
+        if (node === this.endNode.previousSibling && node.nodeType === 3
+        /* Node.TEXT_NODE */
+        ) {
+            // If we only have a single text node between the markers, we can just
+            // set its value, rather than replacing it.
+            // TODO(justinfagnani): Can we just check if this.value is primitive?
+            node.data = valueAsString;
+          } else {
+          this.__commitNode(document.createTextNode(valueAsString));
+        }
+
+        this.value = value;
+      }
+    }, {
+      key: "__commitTemplateResult",
+      value: function __commitTemplateResult(value) {
+        var template = this.options.templateFactory(value);
+
+        if (this.value instanceof TemplateInstance && this.value.template === template) {
+          this.value.update(value.values);
+        } else {
+          // Make sure we propagate the template processor from the TemplateResult
+          // so that we use its syntax extension, etc. The template factory comes
+          // from the render function options so that it can control template
+          // caching and preprocessing.
+          var instance = new TemplateInstance(template, value.processor, this.options);
+
+          var fragment = instance._clone();
+
+          instance.update(value.values);
+
+          this.__commitNode(fragment);
+
+          this.value = instance;
+        }
+      }
+    }, {
+      key: "__commitIterable",
+      value: function __commitIterable(value) {
+        // For an Iterable, we create a new InstancePart per item, then set its
+        // value to the item. This is a little bit of overhead for every item in
+        // an Iterable, but it lets us recurse easily and efficiently update Arrays
+        // of TemplateResults that will be commonly returned from expressions like:
+        // array.map((i) => html`${i}`), by reusing existing TemplateInstances.
+        // If _value is an array, then the previous render was of an
+        // iterable and _value will contain the NodeParts from the previous
+        // render. If _value is not an array, clear this part and make a new
+        // array for NodeParts.
+        if (!Array.isArray(this.value)) {
+          this.value = [];
+          this.clear();
+        } // Lets us keep track of how many items we stamped so we can clear leftover
+        // items from a previous render
+
+
+        var itemParts = this.value;
+        var partIndex = 0;
+        var itemPart;
+
+        var _iterator2 = _createForOfIteratorHelper(value),
+            _step2;
+
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var item = _step2.value;
+            // Try to reuse an existing part
+            itemPart = itemParts[partIndex]; // If no existing part, create a new one
+
+            if (itemPart === undefined) {
+              itemPart = new NodePart(this.options);
+              itemParts.push(itemPart);
+
+              if (partIndex === 0) {
+                itemPart.appendIntoPart(this);
+              } else {
+                itemPart.insertAfterPart(itemParts[partIndex - 1]);
+              }
+            }
+
+            itemPart.setValue(item);
+            itemPart.commit();
+            partIndex++;
+          }
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
+        }
+
+        if (partIndex < itemParts.length) {
+          // Truncate the parts array so _value reflects the current state
+          itemParts.length = partIndex;
+          this.clear(itemPart && itemPart.endNode);
+        }
+      }
+    }, {
+      key: "clear",
+      value: function clear() {
+        var startNode = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.startNode;
+        removeNodes(this.startNode.parentNode, startNode.nextSibling, this.endNode);
+      }
+    }]);
+
+    return NodePart;
+  }();
+  /**
+   * Implements a boolean attribute, roughly as defined in the HTML
+   * specification.
+   *
+   * If the value is truthy, then the attribute is present with a value of
+   * ''. If the value is falsey, the attribute is removed.
+   */
+
+  var BooleanAttributePart = /*#__PURE__*/function () {
+    function BooleanAttributePart(element, name, strings) {
+      _classCallCheck(this, BooleanAttributePart);
+
+      this.value = undefined;
+      this.__pendingValue = undefined;
+
+      if (strings.length !== 2 || strings[0] !== '' || strings[1] !== '') {
+        throw new Error('Boolean attributes can only contain a single expression');
+      }
+
+      this.element = element;
+      this.name = name;
+      this.strings = strings;
+    }
+
+    _createClass(BooleanAttributePart, [{
+      key: "setValue",
+      value: function setValue(value) {
+        this.__pendingValue = value;
+      }
+    }, {
+      key: "commit",
+      value: function commit() {
+        while (isDirective(this.__pendingValue)) {
+          var directive = this.__pendingValue;
+          this.__pendingValue = noChange;
+          directive(this);
+        }
+
+        if (this.__pendingValue === noChange) {
+          return;
+        }
+
+        var value = !!this.__pendingValue;
+
+        if (this.value !== value) {
+          if (value) {
+            this.element.setAttribute(this.name, '');
+          } else {
+            this.element.removeAttribute(this.name);
+          }
+
+          this.value = value;
+        }
+
+        this.__pendingValue = noChange;
+      }
+    }]);
+
+    return BooleanAttributePart;
+  }();
+  /**
+   * Sets attribute values for PropertyParts, so that the value is only set once
+   * even if there are multiple parts for a property.
+   *
+   * If an expression controls the whole property value, then the value is simply
+   * assigned to the property under control. If there are string literals or
+   * multiple expressions, then the strings are expressions are interpolated into
+   * a string first.
+   */
+
+  var PropertyCommitter = /*#__PURE__*/function (_AttributeCommitter) {
+    _inherits(PropertyCommitter, _AttributeCommitter);
+
+    var _super = _createSuper(PropertyCommitter);
+
+    function PropertyCommitter(element, name, strings) {
+      var _this;
+
+      _classCallCheck(this, PropertyCommitter);
+
+      _this = _super.call(this, element, name, strings);
+      _this.single = strings.length === 2 && strings[0] === '' && strings[1] === '';
+      return _this;
+    }
+
+    _createClass(PropertyCommitter, [{
+      key: "_createPart",
+      value: function _createPart() {
+        return new PropertyPart(this);
+      }
+    }, {
+      key: "_getValue",
+      value: function _getValue() {
+        if (this.single) {
+          return this.parts[0].value;
+        }
+
+        return _get(_getPrototypeOf(PropertyCommitter.prototype), "_getValue", this).call(this);
+      }
+    }, {
+      key: "commit",
+      value: function commit() {
+        if (this.dirty) {
+          this.dirty = false; // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+          this.element[this.name] = this._getValue();
+        }
+      }
+    }]);
+
+    return PropertyCommitter;
+  }(AttributeCommitter);
+  var PropertyPart = /*#__PURE__*/function (_AttributePart) {
+    _inherits(PropertyPart, _AttributePart);
+
+    var _super2 = _createSuper(PropertyPart);
+
+    function PropertyPart() {
+      _classCallCheck(this, PropertyPart);
+
+      return _super2.apply(this, arguments);
+    }
+
+    return PropertyPart;
+  }(AttributePart); // Detect event listener options support. If the `capture` property is read
+  // from the options object, then options are supported. If not, then the third
+  // argument to add/removeEventListener is interpreted as the boolean capture
+  // value so we should only pass the `capture` property.
+
+  var eventOptionsSupported = false; // Wrap into an IIFE because MS Edge <= v41 does not support having try/catch
+  // blocks right into the body of a module
+
+  (function () {
+    try {
+      var options = {
+        get capture() {
+          eventOptionsSupported = true;
+          return false;
+        }
+
+      }; // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+      window.addEventListener('test', options, options); // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+      window.removeEventListener('test', options, options);
+    } catch (_e) {// event options not supported
+    }
+  })();
+
+  var EventPart = /*#__PURE__*/function () {
+    function EventPart(element, eventName, eventContext) {
+      var _this2 = this;
+
+      _classCallCheck(this, EventPart);
+
+      this.value = undefined;
+      this.__pendingValue = undefined;
+      this.element = element;
+      this.eventName = eventName;
+      this.eventContext = eventContext;
+
+      this.__boundHandleEvent = function (e) {
+        return _this2.handleEvent(e);
+      };
+    }
+
+    _createClass(EventPart, [{
+      key: "setValue",
+      value: function setValue(value) {
+        this.__pendingValue = value;
+      }
+    }, {
+      key: "commit",
+      value: function commit() {
+        while (isDirective(this.__pendingValue)) {
+          var directive = this.__pendingValue;
+          this.__pendingValue = noChange;
+          directive(this);
+        }
+
+        if (this.__pendingValue === noChange) {
+          return;
+        }
+
+        var newListener = this.__pendingValue;
+        var oldListener = this.value;
+        var shouldRemoveListener = newListener == null || oldListener != null && (newListener.capture !== oldListener.capture || newListener.once !== oldListener.once || newListener.passive !== oldListener.passive);
+        var shouldAddListener = newListener != null && (oldListener == null || shouldRemoveListener);
+
+        if (shouldRemoveListener) {
+          this.element.removeEventListener(this.eventName, this.__boundHandleEvent, this.__options);
+        }
+
+        if (shouldAddListener) {
+          this.__options = getOptions(newListener);
+          this.element.addEventListener(this.eventName, this.__boundHandleEvent, this.__options);
+        }
+
+        this.value = newListener;
+        this.__pendingValue = noChange;
+      }
+    }, {
+      key: "handleEvent",
+      value: function handleEvent(event) {
+        if (typeof this.value === 'function') {
+          this.value.call(this.eventContext || this.element, event);
+        } else {
+          this.value.handleEvent(event);
+        }
+      }
+    }]);
+
+    return EventPart;
+  }(); // We copy options because of the inconsistent behavior of browsers when reading
+  // the third argument of add/removeEventListener. IE11 doesn't support options
+  // at all. Chrome 41 only reads `capture` if the argument is an object.
+
+  var getOptions = function getOptions(o) {
+    return o && (eventOptionsSupported ? {
+      capture: o.capture,
+      passive: o.passive,
+      once: o.once
+    } : o.capture);
+  };
+
+  /**
+   * Creates Parts when a template is instantiated.
+   */
+
+  var DefaultTemplateProcessor = /*#__PURE__*/function () {
+    function DefaultTemplateProcessor() {
+      _classCallCheck(this, DefaultTemplateProcessor);
+    }
+
+    _createClass(DefaultTemplateProcessor, [{
+      key: "handleAttributeExpressions",
+
+      /**
+       * Create parts for an attribute-position binding, given the event, attribute
+       * name, and string literals.
+       *
+       * @param element The element containing the binding
+       * @param name  The attribute name
+       * @param strings The string literals. There are always at least two strings,
+       *   event for fully-controlled bindings with a single expression.
+       */
+      value: function handleAttributeExpressions(element, name, strings, options) {
+        var prefix = name[0];
+
+        if (prefix === '.') {
+          var _committer = new PropertyCommitter(element, name.slice(1), strings);
+
+          return _committer.parts;
+        }
+
+        if (prefix === '@') {
+          return [new EventPart(element, name.slice(1), options.eventContext)];
+        }
+
+        if (prefix === '?') {
+          return [new BooleanAttributePart(element, name.slice(1), strings)];
+        }
+
+        var committer = new AttributeCommitter(element, name, strings);
+        return committer.parts;
+      }
+      /**
+       * Create parts for a text-position binding.
+       * @param templateFactory
+       */
+
+    }, {
+      key: "handleTextExpression",
+      value: function handleTextExpression(options) {
+        return new NodePart(options);
+      }
+    }]);
+
+    return DefaultTemplateProcessor;
+  }();
+  var defaultTemplateProcessor = new DefaultTemplateProcessor();
+
+  /**
+   * @license
+   * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
+   * This code may only be used under the BSD style license found at
+   * http://polymer.github.io/LICENSE.txt
+   * The complete set of authors may be found at
+   * http://polymer.github.io/AUTHORS.txt
+   * The complete set of contributors may be found at
+   * http://polymer.github.io/CONTRIBUTORS.txt
+   * Code distributed by Google as part of the polymer project is also
+   * subject to an additional IP rights grant found at
+   * http://polymer.github.io/PATENTS.txt
+   */
+  /**
+   * The default TemplateFactory which caches Templates keyed on
+   * result.type and result.strings.
+   */
+
+  function templateFactory(result) {
+    var templateCache = templateCaches.get(result.type);
+
+    if (templateCache === undefined) {
+      templateCache = {
+        stringsArray: new WeakMap(),
+        keyString: new Map()
+      };
+      templateCaches.set(result.type, templateCache);
+    }
+
+    var template = templateCache.stringsArray.get(result.strings);
+
+    if (template !== undefined) {
+      return template;
+    } // If the TemplateStringsArray is new, generate a key from the strings
+    // This key is shared between all templates with identical content
+
+
+    var key = result.strings.join(marker); // Check if we already have a Template for this key
+
+    template = templateCache.keyString.get(key);
+
+    if (template === undefined) {
+      // If we have not seen this key before, create a new Template
+      template = new Template(result, result.getTemplateElement()); // Cache the Template for this key
+
+      templateCache.keyString.set(key, template);
+    } // Cache all future queries for this TemplateStringsArray
+
+
+    templateCache.stringsArray.set(result.strings, template);
+    return template;
+  }
+  var templateCaches = new Map();
+
+  /**
+   * @license
+   * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
+   * This code may only be used under the BSD style license found at
+   * http://polymer.github.io/LICENSE.txt
+   * The complete set of authors may be found at
+   * http://polymer.github.io/AUTHORS.txt
+   * The complete set of contributors may be found at
+   * http://polymer.github.io/CONTRIBUTORS.txt
+   * Code distributed by Google as part of the polymer project is also
+   * subject to an additional IP rights grant found at
+   * http://polymer.github.io/PATENTS.txt
+   */
+  var parts = new WeakMap();
+  /**
+   * Renders a template result or other value to a container.
+   *
+   * To update a container with new values, reevaluate the template literal and
+   * call `render` with the new result.
+   *
+   * @param result Any value renderable by NodePart - typically a TemplateResult
+   *     created by evaluating a template tag like `html` or `svg`.
+   * @param container A DOM parent to render to. The entire contents are either
+   *     replaced, or efficiently updated if the same result type was previous
+   *     rendered there.
+   * @param options RenderOptions for the entire render tree rendered to this
+   *     container. Render options must *not* change between renders to the same
+   *     container, as those changes will not effect previously rendered DOM.
+   */
+
+  var render = function render(result, container, options) {
+    var part = parts.get(container);
+
+    if (part === undefined) {
+      removeNodes(container, container.firstChild);
+      parts.set(container, part = new NodePart(Object.assign({
+        templateFactory: templateFactory
+      }, options)));
+      part.appendInto(container);
+    }
+
+    part.setValue(result);
+    part.commit();
+  };
+
+  /**
+   * @license
+   * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
+   * This code may only be used under the BSD style license found at
+   * http://polymer.github.io/LICENSE.txt
+   * The complete set of authors may be found at
+   * http://polymer.github.io/AUTHORS.txt
+   * The complete set of contributors may be found at
+   * http://polymer.github.io/CONTRIBUTORS.txt
+   * Code distributed by Google as part of the polymer project is also
+   * subject to an additional IP rights grant found at
+   * http://polymer.github.io/PATENTS.txt
+   */
+  // This line will be used in regexes to search for lit-html usage.
+  // TODO(justinfagnani): inject version number at build time
+
+  if (typeof window !== 'undefined') {
+    (window['litHtmlVersions'] || (window['litHtmlVersions'] = [])).push('1.2.1');
+  }
+  /**
+   * Interprets a template literal as an HTML template that can efficiently
+   * render to and update a container.
+   */
+
+
+  var html = function html(strings) {
+    for (var _len = arguments.length, values = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      values[_key - 1] = arguments[_key];
+    }
+
+    return new TemplateResult(strings, values, 'html', defaultTemplateProcessor);
+  };
+
+  /**
+   * Global Districtr color map for districts.
+   *
+   * We might consider using fewer colors and just allowing repetitions,
+   * since a human being can only hold so many colors in their head at
+   * one time.
+   */
+  var _colorScheme = ["#0099cd", "#ffca5d", "#00cd99", "#99cd00", "#cd0099", "#9900cd", // Color brewer:
+  "#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#fdb462", "#b3de69", "#fccde5", // "#d9d9d9", Too gray!
+  "#bc80bd", "#ccebc5", "#ffed6f", "#ffffb3", // other color brewer scheme:
+  "#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c", "#fdbf6f", "#ff7f00", "#cab2d6", "#6a3d9a", //    "#ffff99",
+  "#b15928", // random material design colors:
+  "#64ffda", "#00B8D4", "#A1887F", "#76FF03", "#DCE775", "#B388FF", "#FF80AB", "#D81B60", "#26A69A", "#FFEA00", "#6200EA"];
+
+  _colorScheme.push.apply(_colorScheme, _toConsumableArray(_colorScheme.map(function (hex) {
+    return changeColorLuminance(hex, -0.3);
+  })));
+  /**
+   * District color scheme.
+   */
+
+
+  var colorScheme = _colorScheme;
+  /**
+   * Darker colors for when the user hovers over assigned units.
+   */
+
+  var hoverColorScheme = colorScheme.map(function (hex) {
+    return changeColorLuminance(hex, -0.3);
+  });
+  /**
+   * Adjusts the color luminance. Use it for shading colors.
+   *
+   * I got this from stack overflow to find shaded versions of the
+   * ColorBrewer colors.
+   *
+   * @param {string} hex
+   * @param {number} lum
+   */
+
+  function changeColorLuminance(hex, lum) {
+    // validate hex string
+    hex = String(hex).replace(/[^0-9a-f]/gi, "");
+
+    if (hex.length < 6) {
+      hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+
+    lum = lum || 0; // convert to decimal and change luminosity
+
+    var rgb = "#",
+        c,
+        i;
+
+    for (i = 0; i < 3; i++) {
+      c = parseInt(hex.substr(i * 2, 2), 16);
+      c = Math.round(Math.min(Math.max(0, c + c * lum), 255)).toString(16);
+      rgb += ("00" + c).substr(c.length);
+    }
+
+    return rgb;
+  }
+  /**
+   * Global district color scheme, with both the normal hex and the hoverHex
+   * variations included.
+   */
+
+
+  var districtColors = colorScheme.map(function (hex, i) {
+    return {
+      id: i,
+      name: hex,
+      hex: hex,
+      hoverHex: hoverColorScheme[i]
+    };
+  }); // Right now I'm assuming colors are numbered, and that -1 or null means
+  // a block hasn't been colored. I don't think this is a good system.
+
+  function getUnitColorProperty(parts) {
+    var unitColorStyle = ["match", ["feature-state", "color"]].concat(_toConsumableArray(parts.map(function (part) {
+      return [part.id, part.color];
+    }).reduce(function (list, pair) {
+      return [].concat(_toConsumableArray(list), _toConsumableArray(pair));
+    })), ["rgba(0, 0, 0, 0)"]);
+    var hoveredUnitColorStyle = ["match", ["feature-state", "color"]].concat(_toConsumableArray(parts.map(function (part) {
+      return [part.id, part.hoverColor];
+    }).reduce(function (list, pair) {
+      return [].concat(_toConsumableArray(list), _toConsumableArray(pair));
+    })), ["#aaaaaa"]);
+    var unitColorProperty = ["case", ["boolean", ["feature-state", "hover"], false], hoveredUnitColorStyle, unitColorStyle];
+    return unitColorProperty;
+  }
+  /**
+   * Mapbox color rule for the units layer.
+   */
+
+  var unitBordersPaintProperty = {
+    "line-color": "#777777",
+    "line-width": ["interpolate", ["linear"], ["zoom"], 0, 0, 7, 1],
+    "line-opacity": 0.3
+  };
+  var highlightUnassignedUnitBordersPaintProperty = _objectSpread2(_objectSpread2({}, unitBordersPaintProperty), {}, {
+    "line-color": ["case", ["==", ["feature-state", "color"], null], "#ff4f49", unitBordersPaintProperty["line-color"]],
+    "line-width": ["case", ["==", ["feature-state", "color"], null], 4, 1],
+    "line-opacity": ["case", ["==", ["feature-state", "color"], null], 0.8, 0.3]
+  });
+
+  // while addBelowSymbols gives the right look on the "light" basemap.
+
+  /**
+   * Add the layer to the map below the first label layer (e.g. street names).
+   * @param {mapboxgl.Map} map
+   * @param {Layer} layer
+   */
+
+  function addBelowLabels(map, layer) {
+    var layers = map.getStyle().layers;
+    var firstSymbolId = getFirstLabelId(layers);
+    map.addLayer(layer, firstSymbolId);
+  }
+  /**
+   * @param {Object[]} layers list of layers from the Mapbox map's style
+   * @returns {string} id of the first id with "label" in the name
+   */
+
+  function getFirstLabelId(layers) {
+    for (var i = 0; i < layers.length; i++) {
+      if (layers[i].id.includes("label")) {
+        return layers[i].id;
+      }
+    }
+  }
+  /** A layer on a Mapbox map. */
+
+
+  var Layer = /*#__PURE__*/function () {
+    /**
+     * @param {mapboxgl.Map} map to add the layer to
+     * @param {Object} layer a Layer object obeying the Mapbox style specification
+     * @param {function} [adder] a function (map, layer) -> void that adds the layer
+     *  to the map.
+     */
+    function Layer(map, layer, adder) {
+      _classCallCheck(this, Layer);
+
+      this.map = map;
+      this.id = layer.id;
+      this.sourceId = isString(layer.source) ? layer.source : layer.id;
+      this.type = layer.type;
+      this.sourceLayer = layer["source-layer"];
+
+      if (adder) {
+        adder(map, layer);
+      } else {
+        map.addLayer(layer);
+      }
+
+      this.getFeature = this.getFeature.bind(this);
+    }
+
+    _createClass(Layer, [{
+      key: "setOpacity",
+      value: function setOpacity(opacity) {
+        this.setPaintProperty("".concat(this.type, "-opacity"), opacity);
+      }
+    }, {
+      key: "setColor",
+      value: function setColor(color) {
+        this.setPaintProperty("".concat(this.type, "-color"), color);
+      }
+    }, {
+      key: "getColor",
+      value: function getColor() {
+        return this.getPaintProperty("".concat(this.type, "-color"));
+      }
+    }, {
+      key: "setPaintProperties",
+      value: function setPaintProperties(properties) {
+        for (var name in properties) {
+          this.setPaintProperty(name, properties[name]);
+        }
+      }
+    }, {
+      key: "setFeatureState",
+      value: function setFeatureState(featureId, state) {
+        this.map.setFeatureState({
+          source: this.sourceId,
+          sourceLayer: this.sourceLayer,
+          id: featureId
+        }, state);
+      }
+    }, {
+      key: "setPaintProperty",
+      value: function setPaintProperty(name, value) {
+        this.map.setPaintProperty(this.id, name, value);
+      }
+    }, {
+      key: "getPaintProperty",
+      value: function getPaintProperty(name) {
+        return this.map.getPaintProperty(this.id, name);
+      }
+    }, {
+      key: "getFeatureState",
+      value: function getFeatureState(featureId) {
+        return this.map.getFeatureState({
+          source: this.sourceId,
+          sourceLayer: this.sourceLayer,
+          id: featureId
+        });
+      }
+    }, {
+      key: "getFeature",
+      value: function getFeature(featureId) {
+        var features = this.map.querySourceFeatures(this.sourceId, {
+          sourceLayer: this.sourceLayer,
+          filter: ["==", ["id"], featureId]
+        });
+        return features[0];
+      }
+    }, {
+      key: "queryRenderedFeatures",
+      value: function queryRenderedFeatures() {
+        return this.map.queryRenderedFeatures(null, {
+          layers: [this.id]
+        });
+      }
+    }, {
+      key: "querySourceFeatures",
+      value: function querySourceFeatures() {
+        return this.map.querySourceFeatures(this.sourceId, {
+          sourceLayer: this.sourceLayer
+        });
+      }
+    }, {
+      key: "getAssignment",
+      value: function getAssignment(featureId) {
+        return this.getFeatureState(featureId).color;
+      }
+    }, {
+      key: "setAssignment",
+      value: function setAssignment(feature, part) {
+        this.setFeatureState(feature.id, _objectSpread2(_objectSpread2({}, feature.state), {}, {
+          color: part
+        }));
+      }
+    }, {
+      key: "on",
+      value: function on(type) {
+        var _this$map;
+
+        for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+          args[_key - 1] = arguments[_key];
+        }
+
+        (_this$map = this.map).on.apply(_this$map, [type, this.id].concat(args));
+      }
+    }, {
+      key: "off",
+      value: function off(type) {
+        var _this$map2;
+
+        for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+          args[_key2 - 1] = arguments[_key2];
+        }
+
+        (_this$map2 = this.map).off.apply(_this$map2, [type, this.id].concat(args));
+      }
+    }, {
+      key: "untilSourceLoaded",
+      value: function untilSourceLoaded(callback) {
+        var _this = this;
+
+        if (this.map.isSourceLoaded(this.sourceId)) {
+          return callback();
+        }
+
+        var handler = function handler() {
+          return callback(function () {
+            return _this.map.off("sourcedata", handler);
+          });
+        };
+
+        this.map.on("sourcedata", handler);
+      }
+    }]);
+
+    return Layer;
+  }();
+
+  mapboxgl.accessToken = "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A";
+  var MapState = function MapState(mapContainer, options, mapStyle) {
+    _classCallCheck(this, MapState);
+
+    this.map = new mapboxgl.Map(_objectSpread2({
+      container: mapContainer,
+      style: mapStyle,
+      attributionControl: false,
+      center: [-86.0, 37.83],
+      zoom: 3,
+      pitchWithRotate: false,
+      // dragRotate: false,
+      dragPan: true,
+      touchZoomRotate: true
+    }, options));
+    this.nav = new mapboxgl.NavigationControl();
+    this.map.addControl(this.nav, "top-left");
+    this.mapboxgl = mapboxgl;
+  };
+
+  function addUnits(map, parts, tileset, layerAdder) {
+    var units = new Layer(map, {
+      id: tileset.sourceLayer,
+      source: tileset.sourceLayer,
+      "source-layer": tileset.sourceLayer,
+      type: "fill",
+      paint: {
+        "fill-color": getUnitColorProperty(parts),
+        "fill-opacity": 0.8
+      }
+    }, layerAdder);
+    var unitsBorders = new Layer(map, {
+      id: "units-borders",
+      type: "line",
+      source: tileset.sourceLayer,
+      "source-layer": tileset.sourceLayer,
+      paint: unitBordersPaintProperty
+    }, layerAdder);
+    return {
+      units: units,
+      unitsBorders: unitsBorders
+    };
+  }
+
+  function addPoints(map, tileset) {
+    return new Layer(map, {
+      id: "units-points",
+      type: "circle",
+      source: tileset.sourceLayer,
+      "source-layer": tileset.sourceLayer,
+      paint: {
+        "circle-opacity": 0
+      }
+    });
+  }
+
+  function addLayers(map, parts, tilesets, layerAdder) {
+    var _iterator = _createForOfIteratorHelper(tilesets),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var tileset = _step.value;
+        map.addSource(tileset.sourceLayer, tileset.source);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    var _addUnits = addUnits(map, parts, tilesets.find(function (tileset) {
+      return tileset.type === "fill";
+    }), layerAdder),
+        units = _addUnits.units,
+        unitsBorders = _addUnits.unitsBorders;
+
+    var points = addPoints(map, tilesets.find(function (tileset) {
+      return tileset.type === "circle";
+    }));
+    return {
+      units: units,
+      unitsBorders: unitsBorders,
+      points: points
+    };
+  }
+
+  var IdColumn = /*#__PURE__*/function () {
+    function IdColumn(_ref) {
+      var key = _ref.key,
+          name = _ref.name;
+
+      _classCallCheck(this, IdColumn);
+
+      this.key = key;
+      this.name = name;
+    }
+
+    _createClass(IdColumn, [{
+      key: "getValue",
+      value: function getValue(feature) {
+        if (feature.properties === undefined) {
+          return undefined;
+        }
+
+        return feature.properties[this.key];
+      }
+    }]);
+
+    return IdColumn;
+  }();
+
+  function _templateObject() {
+    var data = _taggedTemplateLiteral(["\n            <span class=\"part-number\" style=\"background: ", "\">\n                ", "\n            </span>\n        "]);
+
+    _templateObject = function _templateObject() {
+      return data;
+    };
+
+    return data;
+  }
+
+  var Part = /*#__PURE__*/function () {
+    function Part(id, noun, displayNumber, color) {
+      var visible = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
+
+      _classCallCheck(this, Part);
+
+      this.id = id;
+      this.noun = noun;
+      this.displayNumber = displayNumber;
+      this.color = color.hex;
+      this.hoverColor = color.hoverHex;
+      this.visible = visible;
+    }
+
+    _createClass(Part, [{
+      key: "updateDescription",
+      value: function updateDescription(_ref) {
+        var name = _ref.name,
+            description = _ref.description;
+        this.name = name;
+        this.description = description;
+      }
+    }, {
+      key: "serialize",
+      value: function serialize() {
+        return {
+          id: this.id,
+          displayNumber: this.displayNumber,
+          name: this.name,
+          description: this.description
+        };
+      }
+    }, {
+      key: "renderLabel",
+      value: function renderLabel() {
+        return html(_templateObject(), this.color, this.displayNumber);
+      }
+    }]);
+
+    return Part;
+  }();
+
+  var NumericalColumn = /*#__PURE__*/function () {
+    function NumericalColumn(columnRecord) {
+      _classCallCheck(this, NumericalColumn);
+
+      this.name = columnRecord.name;
+      this.key = columnRecord.key;
+      this.sum = columnRecord.sum;
+      this.min = columnRecord.min;
+      this.max = columnRecord.max;
+      this.getValue = this.getValue.bind(this);
+      this.formatValue = this.formatValue.bind(this);
+      this.asMapboxExpression = this.asMapboxExpression.bind(this);
+    }
+
+    _createClass(NumericalColumn, [{
+      key: "getValue",
+      value: function getValue(feature) {
+        return parseFloat(feature.properties[this.key]);
+      }
+    }, {
+      key: "formatValue",
+      value: function formatValue(feature) {
+        return numberWithCommas(this.getValue(feature));
+      }
+    }, {
+      key: "asMapboxExpression",
+      value: function asMapboxExpression() {
+        return ["to-number", ["get", this.key]];
+      }
+    }]);
+
+    return NumericalColumn;
+  }();
+  var SumOfColumns = /*#__PURE__*/function () {
+    function SumOfColumns(_ref) {
+      var columns = _ref.columns,
+          columnSet = _ref.columnSet,
+          parts = _ref.parts;
+
+      _classCallCheck(this, SumOfColumns);
+
+      this.columns = columns;
+      this.columnSet = columnSet;
+      this.data = zeros(parts.length);
+      this.sum = sum(this.columns.map(function (col) {
+        return col.sum;
+      }));
+      this.min = Math.min.apply(Math, _toConsumableArray(this.columns.map(function (col) {
+        return col.min;
+      })));
+      this.max = Math.max.apply(Math, _toConsumableArray(this.columns.map(function (col) {
+        return col.max;
+      })));
+      this.getValue = this.getValue.bind(this);
+      this.formatValue = this.formatValue.bind(this);
+      this.asMapboxExpression = this.asMapboxExpression.bind(this);
+      this.update = this.update.bind(this);
+    }
+
+    _createClass(SumOfColumns, [{
+      key: "update",
+      value: function update(feature, color) {
+        if (color !== undefined && color !== null) {
+          this.data[color] += this.getValue(feature);
+        }
+
+        if (feature.state !== undefined && feature.state.color !== undefined && feature.state.color !== null) {
+          this.data[feature.state.color] -= this.getValue(feature);
+        }
+      }
+    }, {
+      key: "getValue",
+      value: function getValue(feature) {
+        return sum(this.columns.map(function (col) {
+          return col.getValue(feature);
+        }));
+      }
+    }, {
+      key: "formatValue",
+      value: function formatValue(feature) {
+        return numberWithCommas(this.getValue(feature));
+      }
+    }, {
+      key: "asMapboxExpression",
+      value: function asMapboxExpression() {
+        var total = ["+"];
+        this.columns.forEach(function (col) {
+          total.push(col.asMapboxExpression());
+        });
+        return total;
+      }
+    }, {
+      key: "total",
+      get: function get() {
+        return this.columnSet.total;
+      }
+    }]);
+
+    return SumOfColumns;
+  }();
+
+  var Subgroup = /*#__PURE__*/function (_NumericalColumn) {
+    _inherits(Subgroup, _NumericalColumn);
+
+    var _super = _createSuper(Subgroup);
+
+    function Subgroup(_ref) {
+      var _this;
+
+      var columnSet = _ref.columnSet,
+          parts = _ref.parts,
+          args = _objectWithoutProperties(_ref, ["columnSet", "parts"]);
+
+      _classCallCheck(this, Subgroup);
+
+      _this = _super.call(this, args);
+      _this.columnSet = columnSet;
+      _this.data = zeros(parts.length);
+      _this.update = _this.update.bind(_assertThisInitialized(_this));
+      _this.fractionAsMapboxExpression = _this.fractionAsMapboxExpression.bind(_assertThisInitialized(_this));
+      _this.getFractionFromFeature = _this.getFractionFromFeature.bind(_assertThisInitialized(_this));
+      _this.getFractionInPart = _this.getFractionInPart.bind(_assertThisInitialized(_this));
+      _this.getOverallFraction = _this.getOverallFraction.bind(_assertThisInitialized(_this));
+      return _this;
+    }
+
+    _createClass(Subgroup, [{
+      key: "getFractionFromFeature",
+      value: function getFractionFromFeature(feature) {
+        return this.getValue(feature) / this.total.getValue(feature);
+      }
+    }, {
+      key: "getFractionInPart",
+      value: function getFractionInPart(partIndex) {
+        var total = this.total.data[partIndex];
+        return total > 0 ? this.data[partIndex] / total : 0;
+      }
+    }, {
+      key: "getOverallFraction",
+      value: function getOverallFraction() {
+        var total = this.total.sum;
+        return total > 0 ? this.sum / total : 0;
+      }
+    }, {
+      key: "fractionAsMapboxExpression",
+      value: function fractionAsMapboxExpression() {
+        return divideOrZeroIfNaN(this.asMapboxExpression(), this.total.asMapboxExpression());
+      }
+    }, {
+      key: "update",
+      value: function update(feature, color) {
+        if (color !== undefined && color !== null) {
+          this.data[color] += this.getValue(feature);
+        }
+
+        if (feature.state !== undefined && feature.state.color !== undefined && feature.state.color !== null) {
+          this.data[feature.state.color] -= this.getValue(feature);
+        }
+      }
+    }, {
+      key: "getAbbreviation",
+      value: function getAbbreviation() {
+        if (ABBREVIATIONS.hasOwnProperty(this.key)) {
+          return ABBREVIATIONS[this.key];
+        } else {
+          return this.name.split(" ")[0];
+        }
+      }
+    }, {
+      key: "total",
+      get: function get() {
+        return this.columnSet.total;
+      }
+    }]);
+
+    return Subgroup;
+  }(NumericalColumn);
+  var ABBREVIATIONS = {
+    NH_WHITE: "White",
+    NH_BLACK: "Black",
+    HISP: "Hispanic",
+    NH_ASIAN: "Asian",
+    NH_AMIN: "Native",
+    NH_NHPI: "NHPI",
+    NH_2MORE: "2+",
+    NH_OTHER: "Other",
+    WVAP: "WVAP",
+    BVAP: "BVAP",
+    HVAP: "HVAP",
+    AMINVAP: "Native VAP",
+    NHPIVAP: "NHPI VAP",
+    ASIANVAP: "AVAP",
+    OTHERVAP: "Other VAP",
+    OTHVAP: "Other VAP",
+    "2MOREVAP": "2+ VAP"
+  };
+
+  var ColumnSet = /*#__PURE__*/function () {
+    function ColumnSet(_ref) {
+      var _this = this;
+
+      var subgroups = _ref.subgroups,
+          total = _ref.total,
+          parts = _ref.parts,
+          type = _ref.type;
+      var sort = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+      _classCallCheck(this, ColumnSet);
+
+      this.type = type;
+      this.subgroups = subgroups ? subgroups.map(function (subgroup) {
+        return new Subgroup(_objectSpread2(_objectSpread2({}, subgroup), {}, {
+          parts: parts,
+          columnSet: _this
+        }));
+      }) : [];
+
+      if (sort && sortable(this.subgroups)) {
+        this.subgroups = sortSubgroups(this.subgroups);
+      }
+
+      if (total !== undefined && total !== null) {
+        this.total = new Subgroup(_objectSpread2(_objectSpread2({}, total), {}, {
+          parts: parts,
+          columnSet: this
+        }));
+      } else {
+        this.total = new SumOfColumns({
+          columns: this.subgroups,
+          columnSet: this,
+          parts: parts
+        });
+      }
+
+      this.update = this.update.bind(this);
+    }
+
+    _createClass(ColumnSet, [{
+      key: "update",
+      value: function update(feature, part) {
+        this.subgroups.forEach(function (subgroup) {
+          return subgroup.update(feature, part);
+        });
+        this.total.update(feature, part);
+      }
+    }, {
+      key: "columns",
+      get: function get() {
+        return [this.total].concat(_toConsumableArray(this.subgroups));
+      }
+    }]);
+
+    return ColumnSet;
+  }();
+
+  function sortable(subgroups) {
+    var _iterator = _createForOfIteratorHelper(subgroups),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var subgroup = _step.value;
+
+        if (typeof subgroup.sum !== "number") {
+          return false;
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    return true;
+  }
+
+  function sortSubgroups(subgroups) {
+    return subgroups.sort(function (s, t) {
+      return t.sum - s.sum;
+    });
+  }
+
+  var Population = /*#__PURE__*/function (_ColumnSet) {
+    _inherits(Population, _ColumnSet);
+
+    var _super = _createSuper(Population);
+
+    function Population(_ref) {
+      var _this;
+
+      var name = _ref.name,
+          subgroups = _ref.subgroups,
+          total = _ref.total,
+          parts = _ref.parts;
+
+      _classCallCheck(this, Population);
+
+      _this = _super.call(this, {
+        subgroups: subgroups,
+        total: total,
+        parts: parts
+      });
+      _this.name = name;
+      _this.ideal = _this.total.sum / parts.length;
+      _this.formattedIdeal = numberWithCommas(roundToDecimal(_this.ideal, 2));
+      _this.update = _this.update.bind(_assertThisInitialized(_this));
+      _this.deviations = _this.deviations.bind(_assertThisInitialized(_this));
+      return _this;
+    }
+
+    _createClass(Population, [{
+      key: "deviations",
+      value: function deviations() {
+        var _this2 = this;
+
+        return this.total.data.map(function (d) {
+          return (d - _this2.ideal) / _this2.ideal;
+        });
+      }
+      /**
+       * Returns the indices of all subgroups with more than 5% of the total
+       * population, sorted largest-to-smallest.
+       */
+
+    }, {
+      key: "indicesOfMajorSubgroups",
+      value: function indicesOfMajorSubgroups() {
+        var _this3 = this;
+
+        return this.subgroups.map(function (subgroup, i) {
+          return i;
+        }) // .filter(i => this.subgroups[i].sum > this.total.sum * 0.05)
+        .sort(function (i, j) {
+          return _this3.subgroups[j].sum - _this3.subgroups[i].sum;
+        }).slice(0, 3);
+      }
+    }]);
+
+    return Population;
+  }(ColumnSet);
+
+  // objects from the Place and DistrictingProblem records provided from the
+  // backend (specified in the YAML config files used when generating tilesets).
+  // This is currently a sort of ad hoc process, where we identify Population and
+  // VAP based on the ColumnSet type and name.  These are saved as
+  // `state.population` and `state.vap`, respectively.
+  // In the future, it would be better to just create the ColumnSets based
+  // on their type without handling them as special cases (so `state.vap`
+  // would not exist, just `state.columnSets` or something). We would
+  // want to configure what charts and overlays we want available for
+  // each type of ColumnSet somewhere---maybe in the records for the place's
+  // Districtr module, or just within the codebase.
+  // The idea is that we should be able to add more ColumnSets (e.g. Under-18
+  // Population) without having to go through all the places in the code
+  // where we use `state.vap` and add code handling `state.under18` or
+  // something.
+
+  function getParts(problem) {
+    var name = problem.name || "District";
+    var parts = [];
+
+    for (var i = 0; i < problem.numberOfParts; i++) {
+      var j = i % districtColors.length;
+      parts[i] = new Part(i, name, i + 1, districtColors[j]);
+    }
+
+    if (parts.length > districtColors.length) {
+      parts.slice(1).forEach(function (p) {
+        p.visible = false;
+      });
+    }
+
+    return parts;
+  }
+
+  function getPopulation(place, parts) {
+    var population = place.columnSets.find(function (columnSet) {
+      return columnSet.name === "Population";
+    });
+    return new Population(_objectSpread2(_objectSpread2({}, population), {}, {
+      parts: parts
+    }));
+  }
+
+  function getVAP(place, parts) {
+    var vap = place.columnSets.find(function (columnSet) {
+      return columnSet.name === "Voting Age Population";
+    });
+
+    if (vap) {
+      return new Population(_objectSpread2(_objectSpread2({}, vap), {}, {
+        parts: parts
+      }));
+    } else {
+      return null;
+    }
+  }
+
+  function getColumnSets(state, unitsRecord) {
+    state.population = getPopulation(unitsRecord, state.parts);
+    state.vap = getVAP(unitsRecord, state.parts);
+    state.columns = [state.population.total].concat(_toConsumableArray(state.population.subgroups));
+
+    if (state.vap) {
+      state.columns = [].concat(_toConsumableArray(state.columns), _toConsumableArray(state.vap.subgroups), [state.vap.total]);
+    }
+
+    var columnSets = [state.population];
+
+    if (state.vap) {
+      columnSets.push(state.vap);
+    }
+
+    return columnSets;
+  }
+
+  var DistrictingPlan = /*#__PURE__*/function () {
+    function DistrictingPlan(_ref) {
+      var id = _ref.id,
+          problem = _ref.problem,
+          idColumn = _ref.idColumn,
+          parts = _ref.parts;
+
+      _classCallCheck(this, DistrictingPlan);
+
+      if (id) {
+        this.id = id;
+      } else {
+        this.id = generateId(8);
+      }
+
+      this.problem = problem;
+      this.assignment = {};
+      this.parts = getParts(problem);
+
+      if (parts) {
+        for (var i = 0; i < parts.length; i++) {
+          this.parts[i].updateDescription(parts[i]);
+        }
+      }
+
+      if (problem.type === "multimember" || problem.type === "community") {
+        this.parts.slice(1).forEach(function (part) {
+          part.visible = false;
+        });
+      }
+
+      if (problem.type === "community") {
+        this.parts.forEach(function (part) {
+          if (!part.name) {
+            part.name = "Community ".concat(part.displayNumber);
+          }
+        });
+      }
+
+      this.idColumn = idColumn;
+    }
+
+    _createClass(DistrictingPlan, [{
+      key: "update",
+      value: function update(feature, part) {
+        this.assignment[this.idColumn.getValue(feature)] = part;
+      }
+    }, {
+      key: "serialize",
+      value: function serialize() {
+        return {
+          name: this.name,
+          description: this.description,
+          assignment: this.assignment,
+          id: this.id,
+          idColumn: {
+            key: this.idColumn.key,
+            name: this.idColumn.name
+          },
+          problem: this.problem,
+          parts: this.parts.filter(function (p) {
+            return p.visible;
+          }).map(function (p) {
+            return p.serialize();
+          })
+        };
+      }
+    }]);
+
+    return DistrictingPlan;
+  }();
+
+  // [ ] MapState (map, layers)
+  // [ ] DistrictData (column sets) ?
+  // [x] DistrictingPlan (assignment, problem, export()) ?
+  // [ ] Units (unitsRecord, reference to layer?) ? <--- really need this one
+  // "place" is mostly split up into these categories now.
+
+  /**
+   * Holds all of the state that needs to be updated after
+   * each brush stroke. (Mainly the Plan assignment and the
+   * population tally.)
+   */
+
+  var State = /*#__PURE__*/function () {
+    function State(map, _ref) {
+      var place = _ref.place,
+          problem = _ref.problem,
+          id = _ref.id,
+          units = _ref.units,
+          args = _objectWithoutProperties(_ref, ["place", "problem", "id", "units"]);
+
+      _classCallCheck(this, State);
+
+      this.unitsRecord = units;
+      this.place = place;
+      this.idColumn = new IdColumn(units.idColumn);
+
+      if (units.hasOwnProperty("nameColumn")) {
+        this.nameColumn = new IdColumn(units.nameColumn);
+      }
+
+      this.plan = new DistrictingPlan(_objectSpread2(_objectSpread2({
+        id: id,
+        problem: problem
+      }, args), {}, {
+        idColumn: this.idColumn
+      }));
+      this.initializeMapState(map, units, addBelowLabels //problem.type === "community" ? addBelowLabels : addBelowSymbols
+      );
+      this.columnSets = getColumnSets(this, units);
+      this.subscribers = [];
+      this.update = this.update.bind(this);
+      this.render = this.render.bind(this);
+    }
+
+    _createClass(State, [{
+      key: "initializeMapState",
+      value: function initializeMapState(map, unitsRecord, layerAdder) {
+        var _addLayers = addLayers(map, this.parts, unitsRecord.tilesets, layerAdder),
+            units = _addLayers.units,
+            unitsBorders = _addLayers.unitsBorders,
+            points = _addLayers.points;
+
+        this.units = units;
+        this.unitsBorders = unitsBorders;
+        this.layers = [units, points];
+        this.map = map;
+      }
+    }, {
+      key: "update",
+      value: function update(feature, part) {
+        this.columnSets.forEach(function (columnSet) {
+          return columnSet.update(feature, part);
+        });
+        this.plan.update(feature, part);
+      }
+    }, {
+      key: "serialize",
+      value: function serialize() {
+        return _objectSpread2(_objectSpread2({}, this.plan.serialize()), {}, {
+          placeId: this.place.id,
+          units: this.unitsRecord
+        });
+      }
+    }, {
+      key: "subscribe",
+      value: function subscribe(f) {
+        this.subscribers.push(f);
+        this.render();
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _iterator = _createForOfIteratorHelper(this.subscribers),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var f = _step.value;
+            f();
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      }
+    }, {
+      key: "hasExpectedData",
+      value: function hasExpectedData(feature) {
+        if (feature === undefined || feature.properties === undefined) {
+          return false;
+        }
+
+        var _iterator2 = _createForOfIteratorHelper(this.columns),
+            _step2;
+
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var column = _step2.value;
+
+            if (feature.properties[column.key] === undefined) {
+              return false;
+            }
+          }
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
+        }
+
+        return true;
+      }
+    }, {
+      key: "activeParts",
+      get: function get() {
+        return this.plan.parts.filter(function (part) {
+          return part.visible;
+        });
+      }
+    }, {
+      key: "parts",
+      get: function get() {
+        return this.plan.parts;
+      }
+    }, {
+      key: "problem",
+      get: function get() {
+        return this.plan.problem;
+      }
+    }]);
+
+    return State;
+  }();
+
+  function _templateObject$1() {
+    var data = _taggedTemplateLiteral(["\n    <div class=\"ui-option\">\n        <legend class=\"ui-label ui-label--row\">\n            ", "\n        </legend>\n        <div class=\"slider-container\">\n            <input\n                class=\"slider\"\n                type=\"range\"\n                value=\"", "\"\n                min=\"1\"\n                max=\"40\"\n                @change=", "\n            />\n            <input\n                class=\"slider-value\"\n                type=\"number\"\n                value=\"", "\"\n                min=\"1\"\n                max=\"40\"\n                @change=", "\n            />\n        </div>\n    </div>\n"]);
+
+    _templateObject$1 = function _templateObject() {
+      return data;
+    };
+
+    return data;
+  }
+  var BrushSlider = (function (radius, onChange, options) {
+    return html(_templateObject$1(), options ? options.title : "Brush Size", radius, onChange, radius, onChange);
+  });
+
+  function _templateObject$2() {
+    var data = _taggedTemplateLiteral(["\n            <div class=\"icon-list__item\" title=\"", "\">\n                <label>", "</label>\n                <input\n                    type=\"radio\"\n                    id=\"tool-", "\"\n                    name=\"tool\"\n                    value=\"", "\"\n                    @change=", "\n                    ?checked=", "\n                />\n                <div class=\"icon-list__item__radio\"></div>\n                ", "\n            </div>\n        "]);
+
+    _templateObject$2 = function _templateObject() {
+      return data;
+    };
+
+    return data;
+  }
+
+  var Tool = /*#__PURE__*/function () {
+    function Tool(id, name, icon) {
+      _classCallCheck(this, Tool);
+
+      this.id = id;
+      this.name = name;
+      this.icon = icon;
+      this.active = false;
+    }
+
+    _createClass(Tool, [{
+      key: "activate",
+      value: function activate() {
+        this.active = true;
+      }
+    }, {
+      key: "deactivate",
+      value: function deactivate() {
+        this.active = false;
+      }
+    }, {
+      key: "render",
+      value: function render(selectTool) {
+        var _this = this;
+
+        return html(_templateObject$2(), this.name, this.name, this.id, this.id, function () {
+          return selectTool(_this.id);
+        }, this.active, this.icon);
+      }
+    }]);
+
+    return Tool;
+  }();
+
+  function _templateObject2() {
+    var data = _taggedTemplateLiteral(["", ""]);
+
+    _templateObject2 = function _templateObject2() {
+      return data;
+    };
+
+    return data;
+  }
+
+  function _templateObject$3() {
+    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Brush\" \n            style=\"display: inline-block; height: 1.75em; z-index: 100;\"></img>"]);
+
+    _templateObject$3 = function _templateObject() {
+      return data;
+    };
+
+    return data;
+  }
+
+  var BrushTool = /*#__PURE__*/function (_Tool) {
+    _inherits(BrushTool, _Tool);
+
+    var _super = _createSuper(BrushTool);
+
+    function BrushTool(brush, colors) {
+      var _this;
+
+      _classCallCheck(this, BrushTool);
+
+      var img_data = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAABXUlEQVR4Ae3ZEXT" + "DYBiF4UGhUBgMCoNBoVAYDmrDQGFQrNNwfgrDwnBQKASCxcEgEJxTITAMFAPfXgj1bH/W5Kev957z+Dmv3itN0zRN0zRNu6QNsUSBPR" + "JozUbIYSc2OJ3ihCMpTjiS4oQjKU5Yojhhe8UJKxQnbKk4f8swgJMpjuIojuIojuIojuIojuIojuIojuIojuIojuI43afihPeEOlocRQ" + "rHUaRwHEUKx1EkV3EesEGBQyPHGrMOkdzEmeAD1iLFuD2SrzhzVLB/KjFtiZR6iTPFEXamEmO4XwHrKIXrJbCeZnC7HaynNdyuhPWUw+0" + "sggNc7hYWQQmXe4RFUMDl3mERZHC3e9SwCFZwtTm+YRHUuPEQZYQ5UlhEb3CxDBZZhbEumt/VSOBqA+xgETzD7VaoYB0csYD7XeP1zFBb" + "3OGiNsQCW3yhhjVK5HjBBJqmaZqmaZrmcz/pIiIIU7ugBgAAAABJRU5ErkJggg==";
+      var icon = html(_templateObject$3(), img_data);
+      _this = _super.call(this, "brush", "Draw", icon);
+      _this.brush = brush;
+      _this.colors = colors;
+      _this.options = new BrushToolOptions(brush, colors);
+      return _this;
+    }
+
+    _createClass(BrushTool, [{
+      key: "activate",
+      value: function activate() {
+        _get(_getPrototypeOf(BrushTool.prototype), "activate", this).call(this);
+
+        this.brush.activate();
+      }
+    }, {
+      key: "deactivate",
+      value: function deactivate() {
+        _get(_getPrototypeOf(BrushTool.prototype), "deactivate", this).call(this);
+
+        this.brush.deactivate();
+      }
+    }]);
+
+    return BrushTool;
+  }(Tool);
+
+  var BrushToolOptions = /*#__PURE__*/function () {
+    function BrushToolOptions(brush, colors, renderToolbar) {
+      _classCallCheck(this, BrushToolOptions);
+
+      this.brush = brush;
+      this.colors = colors;
+      this.renderToolbar = renderToolbar;
+      this.changeRadius = this.changeRadius.bind(this);
+    }
+
+    _createClass(BrushToolOptions, [{
+      key: "changeRadius",
+      value: function changeRadius(e) {
+        e.stopPropagation();
+        var value = parseInt(e.target.value);
+
+        if (this.brush.radius != value) {
+          this.brush.radius = value;
+        }
+
+        this.renderToolbar();
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        return html(_templateObject2(), BrushSlider(this.brush.radius, this.changeRadius));
+      }
+    }]);
+
+    return BrushToolOptions;
+  }();
+
+  function _templateObject2$1() {
+    var data = _taggedTemplateLiteral(["\n            ", "\n        "]);
+
+    _templateObject2$1 = function _templateObject2() {
+      return data;
+    };
+
+    return data;
+  }
+
+  function _templateObject$4() {
+    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Erase\" \n            style=\"display: inline-block; height: 1.75em; z-index: 100;\"></img>"]);
+
+    _templateObject$4 = function _templateObject() {
+      return data;
+    };
+
+    return data;
+  }
+
+  var EraserTool = /*#__PURE__*/function (_Tool) {
+    _inherits(EraserTool, _Tool);
+
+    var _super = _createSuper(EraserTool);
+
+    function EraserTool(brush) {
+      var _this;
+
+      _classCallCheck(this, EraserTool);
+
+      var img_data = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/" + "xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/" + "AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABBElEQVRo3u3Yuw7BYBiH8WdmcLorXIxuRjtuSWKjTiM3YBWjSQ3yJY00aL9TX94n+UbJ7y/" + "apkDTNO2fagJz4ARcgSUwjI36tjaQAtnLuQNJbNynWsC6AJ8/49hIG3xtR5TB125EFXxtRtjgo49wgY82wiU++Agf+GAj2sDGE94cbw+" + "7EHjzxB5IxZuzkozPgJtkfAacJeMzYCoZnwING7zP+/ynswe6ile84uXgezb4JsX/HoQ4W6BjgweYScYDHCPgD1j+bPJdAuN" + "3rr5500IyHqDP8+UhBN7qVvmuRDLeNPKEL7pgJyU+H3WELb70AJcjXOArDXAxwhW+8gBN0zTtN3sAFI5CX1O33XwAAAAldEVYdGRhdG" + "U6Y3JlYXRlADIwMjAtMDgtMDRUMDI6NDg6NDkrMDA6MDADjPrkAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTA0VDAyOjQ4O" + "jQ5KzAwOjAwctFCWAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=";
+      var icon = html(_templateObject$4(), img_data);
+      _this = _super.call(this, "eraser", "Erase", icon);
+      _this.brush = brush;
+      _this.options = new EraserToolOptions(brush);
+      return _this;
+    }
+
+    _createClass(EraserTool, [{
+      key: "activate",
+      value: function activate() {
+        _get(_getPrototypeOf(EraserTool.prototype), "activate", this).call(this);
+
+        this.brush.activate();
+        this.brush.startErasing();
+      }
+    }, {
+      key: "deactivate",
+      value: function deactivate() {
+        _get(_getPrototypeOf(EraserTool.prototype), "deactivate", this).call(this);
+
+        this.brush.deactivate();
+        this.brush.stopErasing();
+      }
+    }]);
+
+    return EraserTool;
+  }(Tool);
+
+  var EraserToolOptions = /*#__PURE__*/function () {
+    function EraserToolOptions(brush, renderToolbar) {
+      _classCallCheck(this, EraserToolOptions);
+
+      this.brush = brush;
+      this.renderToolbar = renderToolbar;
+      this.changeRadius = this.changeRadius.bind(this);
+    }
+
+    _createClass(EraserToolOptions, [{
+      key: "changeRadius",
+      value: function changeRadius(e) {
+        e.stopPropagation();
+        var value = parseInt(e.target.value);
+
+        if (this.brush.radius != value) {
+          this.brush.radius = value;
+        }
+
+        this.renderToolbar();
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        return html(_templateObject2$1(), BrushSlider(this.brush.radius, this.changeRadius, {
+          title: "Eraser Size"
+        }));
+      }
+    }]);
+
+    return EraserToolOptions;
+  }();
+
+  function _templateObject$5() {
+    var data = _taggedTemplateLiteral(["<img src=\"", "\" alt=\"Pan\" \n            style=\"display: inline-block; height: 1.65em; z-index: 100;\"></img>"]);
+
+    _templateObject$5 = function _templateObject() {
+      return data;
+    };
+
+    return data;
+  }
+
+  var PanTool = /*#__PURE__*/function (_Tool) {
+    _inherits(PanTool, _Tool);
+
+    var _super = _createSuper(PanTool);
+
+    function PanTool() {
+      _classCallCheck(this, PanTool);
+
+      var img_data = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAABtElEQVR4Aez" + "WAWYDURSF4SIIsoCgiwiCIgAUUGQBs4QACugyggK6hCAoAgigKIKiyAIGRTC4/QGlcR6PiTH3HL4N/OOOdzfQTbDBO76xQwPmTXBA" + "XPGG9HtBCA1S7xMh7LKfZBS02U8ySrKfZJTVnOTwN8MKDZaY1gaqOMnB7xFnxB8nLPsPhIFvgU583fvs" + "gfYIYZs9UIsQPrIHirLbBtIPSwfSD0sHKj8skwcqPyyzB4qC1oEKHMiBHMiBHMiBHMiBHKiHOZADOZAD" + "OZADOZADDUCSQA7kQA7kQA40caD/m2GLFhfs8QQHYnOcEFccsEgSSMcROrxiniSQjiO0eMY0S6AjosIX" + "1hkCPeAHUemAxdj/QauKSOL/NJ5A9ZHE/2kkgXSkhPQcSc+RCnMkOR3p4kB6a3QO5Eh6jqTnSMU5kp4j" + "6TlST2tGEueM3rYZQaDj7/B7cTSQVoM8MRpIpG+oGw0kaEUjgttLo4HUj9sro4H0HnfqGQ2k3+DjMwYY" + "VA/iwMlmGCQgfDCNTELd4s0wyIAKEK8fBKlmPvhglUEMdIC4Gdpy/UynLsRh6FydCrGOBABk1k0h3bUP" + "JgAAAABJRU5ErkJggg==";
+      var icon = html(_templateObject$5(), img_data);
+      return _super.call(this, "pan", "Pan", icon);
+    }
+
+    return PanTool;
+  }(Tool);
+
+  var Hover = /*#__PURE__*/function () {
+    function Hover(layer) {
+      _classCallCheck(this, Hover);
+
+      this.layer = layer;
+      this.hoveredFeature = null;
+      this.onMouseMove = this.onMouseMove.bind(this);
+      this.onMouseLeave = this.onMouseLeave.bind(this);
+      this.hoverOff = this.hoverOff.bind(this);
+    }
+
+    _createClass(Hover, [{
+      key: "hoverOff",
+      value: function hoverOff() {
+        if (this.hoveredFeature !== null) {
+          this.layer.setFeatureState(this.hoveredFeature.id, _objectSpread2(_objectSpread2({}, this.hoveredFeature.state), {}, {
+            hover: false
+          }));
+          this.hoveredFeature = null;
+        }
+      }
+    }, {
+      key: "hoverOn",
+      value: function hoverOn(feature) {
+        this.hoveredFeature = feature;
+        this.layer.setFeatureState(feature.id, _objectSpread2(_objectSpread2({}, feature.state), {}, {
+          hover: true
+        }));
+      }
+    }, {
+      key: "onMouseMove",
+      value: function onMouseMove(e) {
+        if (e.features.length > 0) {
+          this.hoverOff();
+          this.hoverOn(e.features[0]);
+        }
+      }
+    }, {
+      key: "onMouseLeave",
+      value: function onMouseLeave() {
+        this.hoverOff();
+      }
+    }, {
+      key: "activate",
+      value: function activate() {
+        this.layer.on("mousemove", this.onMouseMove);
+        this.layer.on("mouseleave", this.onMouseLeave);
+        this.layer.on("touchmove", this.onMouseMove);
+        this.layer.on("touchend", this.onMouseLeave);
+      }
+    }, {
+      key: "deactivate",
+      value: function deactivate() {
+        this.layer.off("mousemove", this.onMouseMove);
+        this.layer.off("mouseleave", this.onMouseLeave);
+        this.layer.off("touchmove", this.onMouseMove);
+        this.layer.off("touchend", this.onMouseLeave);
+      }
+    }]);
+
+    return Hover;
+  }();
+  var HoverWithRadius = /*#__PURE__*/function (_Hover) {
+    _inherits(HoverWithRadius, _Hover);
+
+    var _super = _createSuper(HoverWithRadius);
+
+    function HoverWithRadius(layer, radius) {
+      var _this;
+
+      _classCallCheck(this, HoverWithRadius);
+
+      _this = _super.call(this, layer);
+      _this.radius = radius;
+      _this.hoveredFeatures = [];
+      return _this;
+    }
+
+    _createClass(HoverWithRadius, [{
+      key: "hoverOff",
+      value: function hoverOff() {
+        var _this2 = this;
+
+        this.hoveredFeatures.forEach(function (feature) {
+          _this2.layer.setFeatureState(feature.id, _objectSpread2(_objectSpread2({}, feature.state), {}, {
+            hover: false
+          }));
+        });
+        this.hoveredFeatures = [];
+      }
+    }, {
+      key: "hoverOn",
+      value: function hoverOn(features) {
+        var _this3 = this;
+
+        this.hoveredFeatures = features;
+        this.hoveredFeatures.forEach(function (feature) {
+          _this3.layer.setFeatureState(feature.id, _objectSpread2(_objectSpread2({}, feature.state), {}, {
+            hover: true
+          }));
+        });
+      }
+    }, {
+      key: "onMouseMove",
+      value: function onMouseMove(e) {
+        var box = boxAround(e.point, this.radius);
+        var features = this.layer.map.queryRenderedFeatures(box, {
+          layers: [this.layer.id]
+        });
+
+        if (features.length > 0) {
+          this.hoverOff();
+          this.hoverOn(features);
+        }
+      }
+    }]);
+
+    return HoverWithRadius;
+  }(Hover);
+
+  function boxAround(point, radius) {
+    var southwest = [point.x + radius, point.y + radius];
+    var northeast = [point.x - radius, point.y - radius];
+    return [northeast, southwest];
+  }
+
+  var Brush = /*#__PURE__*/function (_HoverWithRadius) {
+    _inherits(Brush, _HoverWithRadius);
+
+    var _super = _createSuper(Brush);
+
+    function Brush(layer, radius, color) {
+      var _this;
+
+      _classCallCheck(this, Brush);
+
+      _this = _super.call(this, layer, radius);
+      _this.color = color;
+      _this.coloring = false;
+      _this.locked = false;
+      _this.listeners = {
+        colorend: [],
+        colorfeature: [],
+        mouseup: []
+      };
+      bindAll(["onMouseDown", "onMouseUp", "onClick", "onTouchStart"], _assertThisInitialized(_this));
+      return _this;
+    }
+
+    _createClass(Brush, [{
+      key: "setColor",
+      value: function setColor(color) {
+        this.color = parseInt(color);
+      }
+    }, {
+      key: "startErasing",
+      value: function startErasing() {
+        this._previousColor = this.color;
+        this.color = null;
+        this.erasing = true;
+      }
+    }, {
+      key: "stopErasing",
+      value: function stopErasing() {
+        this.color = this._previousColor;
+        this.erasing = false;
+      }
+    }, {
+      key: "hoverOn",
+      value: function hoverOn(features) {
+        this.hoveredFeatures = features;
+
+        if (this.coloring === true) {
+          this.colorFeatures();
+        } else {
+          _get(_getPrototypeOf(Brush.prototype), "hoverOn", this).call(this, features);
+        }
+      }
+    }, {
+      key: "colorFeatures",
+      value: function colorFeatures() {
+        var _this2 = this;
+
+        if (this.locked && !this.erasing) {
+          this._colorFeatures(function (feature) {
+            return feature.state.color === null || feature.state.color === undefined;
+          });
+        } else {
+          this._colorFeatures(function (feature) {
+            return feature.state.color !== _this2.color;
+          });
+        }
+      }
+    }, {
+      key: "_colorFeatures",
+      value: function _colorFeatures(filter) {
+        var seenFeatures = new Set();
+
+        var _iterator = _createForOfIteratorHelper(this.hoveredFeatures),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var feature = _step.value;
+
+            if (filter(feature) && !feature.state.home) {
+              if (!seenFeatures.has(feature.id)) {
+                seenFeatures.add(feature.id);
+
+                var _iterator3 = _createForOfIteratorHelper(this.listeners.colorfeature),
+                    _step3;
+
+                try {
+                  for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                    var listener = _step3.value;
+                    listener(feature, this.color);
+                  }
+                } catch (err) {
+                  _iterator3.e(err);
+                } finally {
+                  _iterator3.f();
+                }
+              }
+
+              this.layer.setFeatureState(feature.id, _objectSpread2(_objectSpread2({}, feature.state), {}, {
+                color: this.color,
+                hover: true
+              }));
+              feature.state.color = this.color;
+            } else {
+              this.layer.setFeatureState(feature.id, _objectSpread2(_objectSpread2({}, feature.state), {}, {
+                hover: true
+              }));
+            }
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+
+        var _iterator2 = _createForOfIteratorHelper(this.listeners.colorend),
+            _step2;
+
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var _listener = _step2.value;
+
+            _listener();
+          }
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
+        }
+      }
+    }, {
+      key: "onClick",
+      value: function onClick() {
+        this.colorFeatures();
+      }
+    }, {
+      key: "onMouseDown",
+      value: function onMouseDown(e) {
+        e.preventDefault();
+        e.originalEvent.preventDefault();
+        this.coloring = true;
+        window.addEventListener("mouseup", this.onMouseUp);
+        window.addEventListener("touchend", this.onMouseUp);
+        window.addEventListener("touchcancel", this.onMouseUp);
+      }
+    }, {
+      key: "onMouseUp",
+      value: function onMouseUp() {
+        this.coloring = false;
+        window.removeEventListener("mouseup", this.onMouseUp);
+        window.removeEventListener("touchend", this.onMouseUp);
+        window.removeEventListener("touchcancel", this.onMouseUp);
+
+        var _iterator4 = _createForOfIteratorHelper(this.listeners.mouseup),
+            _step4;
+
+        try {
+          for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+            var listener = _step4.value;
+            listener();
+          }
+        } catch (err) {
+          _iterator4.e(err);
+        } finally {
+          _iterator4.f();
+        }
+      }
+    }, {
+      key: "onTouchStart",
+      value: function onTouchStart(e) {
+        if (e.points && e.points.length <= 1) {
+          this.onMouseDown(e);
+        }
+      }
+    }, {
+      key: "onTouchMove",
+      value: function onTouchMove(e) {
+        e.preventDefault();
+      }
+    }, {
+      key: "activate",
+      value: function activate() {
+        this.layer.map.getCanvas().classList.add("brush-tool");
+
+        _get(_getPrototypeOf(Brush.prototype), "activate", this).call(this);
+
+        this.layer.map.dragPan.disable();
+        this.layer.map.touchZoomRotate.disable();
+        this.layer.map.doubleClickZoom.disable();
+        this.layer.on("click", this.onClick);
+        this.layer.map.on("touchstart", this.onTouchStart, {
+          passive: true
+        });
+        this.layer.map.on("mousedown", this.onMouseDown);
+
+        this.layer.map._canvas.addEventListener("touchmove", this.onTouchMove, {
+          capture: true,
+          passive: false
+        });
+      }
+    }, {
+      key: "deactivate",
+      value: function deactivate() {
+        this.layer.map.getCanvas().classList.remove("brush-tool");
+
+        _get(_getPrototypeOf(Brush.prototype), "deactivate", this).call(this);
+
+        this.layer.map.dragPan.enable();
+        this.layer.map.doubleClickZoom.enable();
+        this.layer.map.touchZoomRotate.enable();
+        this.layer.off("click", this.onClick);
+        this.layer.map.off("touchstart", this.onMouseDown);
+        this.layer.map.off("mousedown", this.onMouseDown);
+      }
+    }, {
+      key: "on",
+      value: function on(event, listener) {
+        this.listeners[event].push(listener);
+      }
+    }]);
+
+    return Brush;
+  }(HoverWithRadius);
+
+  function ToolsPlugin(editor) {
+    var state = editor.state,
+        toolbar = editor.toolbar;
+    var brush = new Brush(state.units, 10, 0);
+    brush.on("colorfeature", state.update);
+    brush.on("colorend", state.render);
+    var tools = [new PanTool(), new BrushTool(brush, state.parts), new EraserTool(brush)];
+
+    for (var _i = 0, _tools = tools; _i < _tools.length; _i++) {
+      var tool = _tools[_i];
+      toolbar.addTool(tool);
+    }
+
+    toolbar.selectTool("brush");
+  }
+
+  var UIStateStore = /*#__PURE__*/function () {
+    function UIStateStore(reducer, initialState) {
+      _classCallCheck(this, UIStateStore);
+
+      this.reducer = reducer;
+      this.state = initialState;
+      this.subscribers = [];
+      bindAll(["dispatch", "subscribe"], this);
+    }
+
+    _createClass(UIStateStore, [{
+      key: "dispatch",
+      value: function dispatch(action) {
+        var _this = this;
+
+        var nextState = this.reducer(this.state, action);
+
+        if (nextState !== this.state) {
+          this.state = nextState;
+          this.subscribers.forEach(function (subscriber) {
+            return subscriber(_this.state, _this.dispatch);
+          });
+        }
+      }
+    }, {
+      key: "subscribe",
+      value: function subscribe(subscriber) {
+        this.subscribers.push(subscriber);
+      }
+    }]);
+
+    return UIStateStore;
+  }();
+
+  // TODO(kschaaf): Refactor into Part API?
+
+  var createAndInsertPart = function createAndInsertPart(containerPart, beforePart) {
+    var container = containerPart.startNode.parentNode;
+    var beforeNode = beforePart === undefined ? containerPart.endNode : beforePart.startNode;
+    var startNode = container.insertBefore(createMarker(), beforeNode);
+    container.insertBefore(createMarker(), beforeNode);
+    var newPart = new NodePart(containerPart.options);
+    newPart.insertAfterNode(startNode);
+    return newPart;
+  };
+
+  var updatePart = function updatePart(part, value) {
+    part.setValue(value);
+    part.commit();
+    return part;
+  };
+
+  var insertPartBefore = function insertPartBefore(containerPart, part, ref) {
+    var container = containerPart.startNode.parentNode;
+    var beforeNode = ref ? ref.startNode : containerPart.endNode;
+    var endNode = part.endNode.nextSibling;
+
+    if (endNode !== beforeNode) {
+      reparentNodes(container, part.startNode, endNode, beforeNode);
+    }
+  };
+
+  var removePart = function removePart(part) {
+    removeNodes(part.startNode.parentNode, part.startNode, part.endNode.nextSibling);
+  }; // Helper for generating a map of array item to its index over a subset
+  // of an array (used to lazily generate `newKeyToIndexMap` and
+  // `oldKeyToIndexMap`)
+
+
+  var generateMap = function generateMap(list, start, end) {
+    var map = new Map();
+
+    for (var i = start; i <= end; i++) {
+      map.set(list[i], i);
+    }
+
+    return map;
+  }; // Stores previous ordered list of parts and map of key to index
+
+
+  var partListCache = new WeakMap();
+  var keyListCache = new WeakMap();
+  /**
+   * A directive that repeats a series of values (usually `TemplateResults`)
+   * generated from an iterable, and updates those items efficiently when the
+   * iterable changes based on user-provided `keys` associated with each item.
+   *
+   * Note that if a `keyFn` is provided, strict key-to-DOM mapping is maintained,
+   * meaning previous DOM for a given key is moved into the new position if
+   * needed, and DOM will never be reused with values for different keys (new DOM
+   * will always be created for new keys). This is generally the most efficient
+   * way to use `repeat` since it performs minimum unnecessary work for insertions
+   * and removals.
+   *
+   * IMPORTANT: If providing a `keyFn`, keys *must* be unique for all items in a
+   * given call to `repeat`. The behavior when two or more items have the same key
+   * is undefined.
+   *
+   * If no `keyFn` is provided, this directive will perform similar to mapping
+   * items to values, and DOM will be reused against potentially different items.
+   */
+
+  var repeat = directive(function (items, keyFnOrTemplate, template) {
+    var keyFn;
+
+    if (template === undefined) {
+      template = keyFnOrTemplate;
+    } else if (keyFnOrTemplate !== undefined) {
+      keyFn = keyFnOrTemplate;
+    }
+
+    return function (containerPart) {
+      if (!(containerPart instanceof NodePart)) {
+        throw new Error('repeat can only be used in text bindings');
+      } // Old part & key lists are retrieved from the last update
+      // (associated with the part for this instance of the directive)
+
+
+      var oldParts = partListCache.get(containerPart) || [];
+      var oldKeys = keyListCache.get(containerPart) || []; // New part list will be built up as we go (either reused from
+      // old parts or created for new keys in this update). This is
+      // saved in the above cache at the end of the update.
+
+      var newParts = []; // New value list is eagerly generated from items along with a
+      // parallel array indicating its key.
+
+      var newValues = [];
+      var newKeys = [];
+      var index = 0;
+
+      var _iterator = _createForOfIteratorHelper(items),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var item = _step.value;
+          newKeys[index] = keyFn ? keyFn(item, index) : index;
+          newValues[index] = template(item, index);
+          index++;
+        } // Maps from key to index for current and previous update; these
+        // are generated lazily only when needed as a performance
+        // optimization, since they are only required for multiple
+        // non-contiguous changes in the list, which are less common.
+
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      var newKeyToIndexMap;
+      var oldKeyToIndexMap; // Head and tail pointers to old parts and new values
+
+      var oldHead = 0;
+      var oldTail = oldParts.length - 1;
+      var newHead = 0;
+      var newTail = newValues.length - 1; // Overview of O(n) reconciliation algorithm (general approach
+      // based on ideas found in ivi, vue, snabbdom, etc.):
+      //
+      // * We start with the list of old parts and new values (and
+      //   arrays of their respective keys), head/tail pointers into
+      //   each, and we build up the new list of parts by updating
+      //   (and when needed, moving) old parts or creating new ones.
+      //   The initial scenario might look like this (for brevity of
+      //   the diagrams, the numbers in the array reflect keys
+      //   associated with the old parts or new values, although keys
+      //   and parts/values are actually stored in parallel arrays
+      //   indexed using the same head/tail pointers):
+      //
+      //      oldHead v                 v oldTail
+      //   oldKeys:  [0, 1, 2, 3, 4, 5, 6]
+      //   newParts: [ ,  ,  ,  ,  ,  ,  ]
+      //   newKeys:  [0, 2, 1, 4, 3, 7, 6] <- reflects the user's new
+      //                                      item order
+      //      newHead ^                 ^ newTail
+      //
+      // * Iterate old & new lists from both sides, updating,
+      //   swapping, or removing parts at the head/tail locations
+      //   until neither head nor tail can move.
+      //
+      // * Example below: keys at head pointers match, so update old
+      //   part 0 in-place (no need to move it) and record part 0 in
+      //   the `newParts` list. The last thing we do is advance the
+      //   `oldHead` and `newHead` pointers (will be reflected in the
+      //   next diagram).
+      //
+      //      oldHead v                 v oldTail
+      //   oldKeys:  [0, 1, 2, 3, 4, 5, 6]
+      //   newParts: [0,  ,  ,  ,  ,  ,  ] <- heads matched: update 0
+      //   newKeys:  [0, 2, 1, 4, 3, 7, 6]    and advance both oldHead
+      //                                      & newHead
+      //      newHead ^                 ^ newTail
+      //
+      // * Example below: head pointers don't match, but tail
+      //   pointers do, so update part 6 in place (no need to move
+      //   it), and record part 6 in the `newParts` list. Last,
+      //   advance the `oldTail` and `oldHead` pointers.
+      //
+      //         oldHead v              v oldTail
+      //   oldKeys:  [0, 1, 2, 3, 4, 5, 6]
+      //   newParts: [0,  ,  ,  ,  ,  , 6] <- tails matched: update 6
+      //   newKeys:  [0, 2, 1, 4, 3, 7, 6]    and advance both oldTail
+      //                                      & newTail
+      //         newHead ^              ^ newTail
+      //
+      // * If neither head nor tail match; next check if one of the
+      //   old head/tail items was removed. We first need to generate
+      //   the reverse map of new keys to index (`newKeyToIndexMap`),
+      //   which is done once lazily as a performance optimization,
+      //   since we only hit this case if multiple non-contiguous
+      //   changes were made. Note that for contiguous removal
+      //   anywhere in the list, the head and tails would advance
+      //   from either end and pass each other before we get to this
+      //   case and removals would be handled in the final while loop
+      //   without needing to generate the map.
+      //
+      // * Example below: The key at `oldTail` was removed (no longer
+      //   in the `newKeyToIndexMap`), so remove that part from the
+      //   DOM and advance just the `oldTail` pointer.
+      //
+      //         oldHead v           v oldTail
+      //   oldKeys:  [0, 1, 2, 3, 4, 5, 6]
+      //   newParts: [0,  ,  ,  ,  ,  , 6] <- 5 not in new map: remove
+      //   newKeys:  [0, 2, 1, 4, 3, 7, 6]    5 and advance oldTail
+      //         newHead ^           ^ newTail
+      //
+      // * Once head and tail cannot move, any mismatches are due to
+      //   either new or moved items; if a new key is in the previous
+      //   "old key to old index" map, move the old part to the new
+      //   location, otherwise create and insert a new part. Note
+      //   that when moving an old part we null its position in the
+      //   oldParts array if it lies between the head and tail so we
+      //   know to skip it when the pointers get there.
+      //
+      // * Example below: neither head nor tail match, and neither
+      //   were removed; so find the `newHead` key in the
+      //   `oldKeyToIndexMap`, and move that old part's DOM into the
+      //   next head position (before `oldParts[oldHead]`). Last,
+      //   null the part in the `oldPart` array since it was
+      //   somewhere in the remaining oldParts still to be scanned
+      //   (between the head and tail pointers) so that we know to
+      //   skip that old part on future iterations.
+      //
+      //         oldHead v        v oldTail
+      //   oldKeys:  [0, 1, -, 3, 4, 5, 6]
+      //   newParts: [0, 2,  ,  ,  ,  , 6] <- stuck: update & move 2
+      //   newKeys:  [0, 2, 1, 4, 3, 7, 6]    into place and advance
+      //                                      newHead
+      //         newHead ^           ^ newTail
+      //
+      // * Note that for moves/insertions like the one above, a part
+      //   inserted at the head pointer is inserted before the
+      //   current `oldParts[oldHead]`, and a part inserted at the
+      //   tail pointer is inserted before `newParts[newTail+1]`. The
+      //   seeming asymmetry lies in the fact that new parts are
+      //   moved into place outside in, so to the right of the head
+      //   pointer are old parts, and to the right of the tail
+      //   pointer are new parts.
+      //
+      // * We always restart back from the top of the algorithm,
+      //   allowing matching and simple updates in place to
+      //   continue...
+      //
+      // * Example below: the head pointers once again match, so
+      //   simply update part 1 and record it in the `newParts`
+      //   array.  Last, advance both head pointers.
+      //
+      //         oldHead v        v oldTail
+      //   oldKeys:  [0, 1, -, 3, 4, 5, 6]
+      //   newParts: [0, 2, 1,  ,  ,  , 6] <- heads matched: update 1
+      //   newKeys:  [0, 2, 1, 4, 3, 7, 6]    and advance both oldHead
+      //                                      & newHead
+      //            newHead ^        ^ newTail
+      //
+      // * As mentioned above, items that were moved as a result of
+      //   being stuck (the final else clause in the code below) are
+      //   marked with null, so we always advance old pointers over
+      //   these so we're comparing the next actual old value on
+      //   either end.
+      //
+      // * Example below: `oldHead` is null (already placed in
+      //   newParts), so advance `oldHead`.
+      //
+      //            oldHead v     v oldTail
+      //   oldKeys:  [0, 1, -, 3, 4, 5, 6] <- old head already used:
+      //   newParts: [0, 2, 1,  ,  ,  , 6]    advance oldHead
+      //   newKeys:  [0, 2, 1, 4, 3, 7, 6]
+      //               newHead ^     ^ newTail
+      //
+      // * Note it's not critical to mark old parts as null when they
+      //   are moved from head to tail or tail to head, since they
+      //   will be outside the pointer range and never visited again.
+      //
+      // * Example below: Here the old tail key matches the new head
+      //   key, so the part at the `oldTail` position and move its
+      //   DOM to the new head position (before `oldParts[oldHead]`).
+      //   Last, advance `oldTail` and `newHead` pointers.
+      //
+      //               oldHead v  v oldTail
+      //   oldKeys:  [0, 1, -, 3, 4, 5, 6]
+      //   newParts: [0, 2, 1, 4,  ,  , 6] <- old tail matches new
+      //   newKeys:  [0, 2, 1, 4, 3, 7, 6]   head: update & move 4,
+      //                                     advance oldTail & newHead
+      //               newHead ^     ^ newTail
+      //
+      // * Example below: Old and new head keys match, so update the
+      //   old head part in place, and advance the `oldHead` and
+      //   `newHead` pointers.
+      //
+      //               oldHead v oldTail
+      //   oldKeys:  [0, 1, -, 3, 4, 5, 6]
+      //   newParts: [0, 2, 1, 4, 3,   ,6] <- heads match: update 3
+      //   newKeys:  [0, 2, 1, 4, 3, 7, 6]    and advance oldHead &
+      //                                      newHead
+      //                  newHead ^  ^ newTail
+      //
+      // * Once the new or old pointers move past each other then all
+      //   we have left is additions (if old list exhausted) or
+      //   removals (if new list exhausted). Those are handled in the
+      //   final while loops at the end.
+      //
+      // * Example below: `oldHead` exceeded `oldTail`, so we're done
+      //   with the main loop.  Create the remaining part and insert
+      //   it at the new head position, and the update is complete.
+      //
+      //                   (oldHead > oldTail)
+      //   oldKeys:  [0, 1, -, 3, 4, 5, 6]
+      //   newParts: [0, 2, 1, 4, 3, 7 ,6] <- create and insert 7
+      //   newKeys:  [0, 2, 1, 4, 3, 7, 6]
+      //                     newHead ^ newTail
+      //
+      // * Note that the order of the if/else clauses is not
+      //   important to the algorithm, as long as the null checks
+      //   come first (to ensure we're always working on valid old
+      //   parts) and that the final else clause comes last (since
+      //   that's where the expensive moves occur). The order of
+      //   remaining clauses is is just a simple guess at which cases
+      //   will be most common.
+      //
+      // * TODO(kschaaf) Note, we could calculate the longest
+      //   increasing subsequence (LIS) of old items in new position,
+      //   and only move those not in the LIS set. However that costs
+      //   O(nlogn) time and adds a bit more code, and only helps
+      //   make rare types of mutations require fewer moves. The
+      //   above handles removes, adds, reversal, swaps, and single
+      //   moves of contiguous items in linear time, in the minimum
+      //   number of moves. As the number of multiple moves where LIS
+      //   might help approaches a random shuffle, the LIS
+      //   optimization becomes less helpful, so it seems not worth
+      //   the code at this point. Could reconsider if a compelling
+      //   case arises.
+
+      while (oldHead <= oldTail && newHead <= newTail) {
+        if (oldParts[oldHead] === null) {
+          // `null` means old part at head has already been used
+          // below; skip
+          oldHead++;
+        } else if (oldParts[oldTail] === null) {
+          // `null` means old part at tail has already been used
+          // below; skip
+          oldTail--;
+        } else if (oldKeys[oldHead] === newKeys[newHead]) {
+          // Old head matches new head; update in place
+          newParts[newHead] = updatePart(oldParts[oldHead], newValues[newHead]);
+          oldHead++;
+          newHead++;
+        } else if (oldKeys[oldTail] === newKeys[newTail]) {
+          // Old tail matches new tail; update in place
+          newParts[newTail] = updatePart(oldParts[oldTail], newValues[newTail]);
+          oldTail--;
+          newTail--;
+        } else if (oldKeys[oldHead] === newKeys[newTail]) {
+          // Old head matches new tail; update and move to new tail
+          newParts[newTail] = updatePart(oldParts[oldHead], newValues[newTail]);
+          insertPartBefore(containerPart, oldParts[oldHead], newParts[newTail + 1]);
+          oldHead++;
+          newTail--;
+        } else if (oldKeys[oldTail] === newKeys[newHead]) {
+          // Old tail matches new head; update and move to new head
+          newParts[newHead] = updatePart(oldParts[oldTail], newValues[newHead]);
+          insertPartBefore(containerPart, oldParts[oldTail], oldParts[oldHead]);
+          oldTail--;
+          newHead++;
+        } else {
+          if (newKeyToIndexMap === undefined) {
+            // Lazily generate key-to-index maps, used for removals &
+            // moves below
+            newKeyToIndexMap = generateMap(newKeys, newHead, newTail);
+            oldKeyToIndexMap = generateMap(oldKeys, oldHead, oldTail);
+          }
+
+          if (!newKeyToIndexMap.has(oldKeys[oldHead])) {
+            // Old head is no longer in new list; remove
+            removePart(oldParts[oldHead]);
+            oldHead++;
+          } else if (!newKeyToIndexMap.has(oldKeys[oldTail])) {
+            // Old tail is no longer in new list; remove
+            removePart(oldParts[oldTail]);
+            oldTail--;
+          } else {
+            // Any mismatches at this point are due to additions or
+            // moves; see if we have an old part we can reuse and move
+            // into place
+            var oldIndex = oldKeyToIndexMap.get(newKeys[newHead]);
+            var oldPart = oldIndex !== undefined ? oldParts[oldIndex] : null;
+
+            if (oldPart === null) {
+              // No old part for this value; create a new one and
+              // insert it
+              var newPart = createAndInsertPart(containerPart, oldParts[oldHead]);
+              updatePart(newPart, newValues[newHead]);
+              newParts[newHead] = newPart;
+            } else {
+              // Reuse old part
+              newParts[newHead] = updatePart(oldPart, newValues[newHead]);
+              insertPartBefore(containerPart, oldPart, oldParts[oldHead]); // This marks the old part as having been used, so that
+              // it will be skipped in the first two checks above
+
+              oldParts[oldIndex] = null;
+            }
+
+            newHead++;
+          }
+        }
+      } // Add parts for any remaining new values
+
+
+      while (newHead <= newTail) {
+        // For all remaining additions, we insert before last new
+        // tail, since old pointers are no longer valid
+        var _newPart = createAndInsertPart(containerPart, newParts[newTail + 1]);
+
+        updatePart(_newPart, newValues[newHead]);
+        newParts[newHead++] = _newPart;
+      } // Remove any remaining unused old parts
+
+
+      while (oldHead <= oldTail) {
+        var _oldPart = oldParts[oldHead++];
+
+        if (_oldPart !== null) {
+          removePart(_oldPart);
+        }
+      } // Save order of new parts for next round
+
+
+      partListCache.set(containerPart, newParts);
+      keyListCache.set(containerPart, newKeys);
+    };
+  });
+
+  function _templateObject$6() {
+    var data = _taggedTemplateLiteral(["\n    <section\n        class=\"tool-options ", "\"\n    >\n        ", "\n    </section>\n"]);
+
+    _templateObject$6 = function _templateObject() {
+      return data;
+    };
+
+    return data;
+  }
+  var OptionsContainer = (function (activeTool) {
+    return html(_templateObject$6(), activeTool.options !== undefined ? "active" : "", activeTool.options !== undefined ? activeTool.options.render() : "");
+  });
+
+  function _templateObject$7() {
+    var data = _taggedTemplateLiteral(["\n        <div class=\"districtr__mini-toolbar\">\n            <nav>\n                <div class=\"districtr__mini-toolbar-top\">\n                    <div class=\"icon-list\">\n                        ", "\n                    </div>\n                </div>\n            </nav>\n            ", "\n            </div>\n        </div>\n        "]);
+
+    _templateObject$7 = function _templateObject() {
+      return data;
+    };
+
+    return data;
+  }
+
+  var MiniToolbar = /*#__PURE__*/function () {
+    function MiniToolbar(store, editor) {
+      _classCallCheck(this, MiniToolbar);
+
+      this.tools = [];
+      this.toolsById = {};
+      this.menuItems = [];
+      this.renderCallback = editor.render;
+      this.render = this.render.bind(this);
+      this.selectTool = this.selectTool.bind(this);
+      this.addTool = this.addTool.bind(this);
+      this.store = store;
+    }
+
+    _createClass(MiniToolbar, [{
+      key: "selectTool",
+      value: function selectTool(toolId) {
+        if (this.activeTool) {
+          this.activeTool.deactivate();
+        }
+
+        this.toolsById[toolId].activate();
+        this.store.dispatch(actions.selectTool({
+          id: toolId
+        }));
+      }
+    }, {
+      key: "addTool",
+      value: function addTool(tool) {
+        if (tool.options !== undefined) {
+          tool.options.renderToolbar = this.renderCallback;
+        }
+
+        this.toolsById[tool.id] = tool;
+        this.tools.push(tool);
+      }
+    }, {
+      key: "setMenuItems",
+      value: function setMenuItems(menuItems) {
+        this.menuItems = menuItems;
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this = this;
+
+        return html(_templateObject$7(), repeat(this.tools, function (tool) {
+          return tool.id;
+        }, function (tool) {
+          return tool.render(_this.selectTool);
+        }), OptionsContainer(this.activeTool));
+      }
+    }, {
+      key: "activeTool",
+      get: function get() {
+        return this.toolsById[this.store.state.toolbar.activeTool];
+      }
+    }]);
+
+    return MiniToolbar;
+  }();
+
+  function _templateObject$8() {
+    var data = _taggedTemplateLiteral(["<h4>An error occurred.</h4>"]);
+
+    _templateObject$8 = function _templateObject() {
+      return data;
+    };
+
+    return data;
+  }
+  var plugins = [ToolsPlugin];
+  var EmbeddedDistrictr = /*#__PURE__*/function () {
+    function EmbeddedDistrictr(target, module, options) {
+      var _this = this;
+
+      _classCallCheck(this, EmbeddedDistrictr);
+
+      this.render = this.render.bind(this);
+      options = _objectSpread2({
+        style: "mapbox://styles/mapbox/outdoors-v11"
+      }, options);
+      var targetElement = document.querySelector(target);
+      targetElement.classList.add("districtr__embed-container");
+      var mapContainer = document.createElement("div");
+      var mapContainerId = generateId(8);
+      mapContainer.setAttribute("id", mapContainerId);
+      mapContainer.style = "height: 100%; width: 100%";
+      targetElement.appendChild(mapContainer);
+      this.toolbarTarget = document.createElement("div");
+      targetElement.appendChild(this.toolbarTarget);
+      this.addressMarker = null;
+      this.graph = null;
+      this.showError = module.errors;
+      this.allowProceed = module.allowProceed;
+      fetch(module.graph).then(function (r) {
+        return r.json();
+      }).then(function (g) {
+        _this.graph = g;
+      });
+      fetch(module.url).then(function (r) {
+        return r.json();
+      }).then(function (context) {
+        _this.bounds = context.units.bounds;
+        _this.mapState = new MapState(mapContainerId, {
+          bounds: context.units.bounds,
+          fitBoundsOptions: {
+            padding: {
+              top: 50,
+              right: 50,
+              left: 50,
+              bottom: 50
+            }
+          }
+        }, options.style);
+
+        _this.mapState.map.on("load", function () {
+          _this.mapState.map.setMaxBounds(_this.mapState.map.getBounds());
+
+          _this.state = new State(_this.mapState.map, context, function () {
+            return null;
+          }); // delayed enabling
+
+          _this.enableMap = function () {
+            if (this.enabled) return;else this.enabled = true;
+            this.store = new UIStateStore(reducer, {
+              toolbar: {}
+            });
+            this.toolbar = new MiniToolbar(this.store, this);
+
+            var _iterator = _createForOfIteratorHelper(plugins),
+                _step;
+
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                var plugin = _step.value;
+                plugin(this);
+              }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
+
+            this.store.subscribe(this.render);
+            this.state.subscribe(this.render); // contiguity check
+
+            var msg_box = document.createElement("div");
+            msg_box.id = "ns__msg-draw";
+            msg_box.className = "ns__msg";
+            msg_box.style.margin = "0";
+            msg_box.style.borderRadius = "0";
+            msg_box.hidden = true;
+            this.toolbarTarget.prepend(msg_box);
+            var timeout_id = -1;
+            var cb = this.checkConnected.bind(this, msg_box);
+            this.toolbar.toolsById.brush.brush.on("mouseup", function () {
+              window.clearTimeout(timeout_id);
+              timeout_id = window.setTimeout(cb, 50);
+            });
+          };
+
+          _this.enabled = false;
+        });
+      }).catch(function (e) {
+        console.error(e);
+
+        render(html(_templateObject$8()), targetElement);
+      });
+    }
+
+    _createClass(EmbeddedDistrictr, [{
+      key: "render",
+      value: function render$1() {
+        if (!this.toolbarTarget || !this.toolbar) {
+          return;
+        }
+
+        render(this.toolbar.render(), this.toolbarTarget);
+      }
+    }, {
+      key: "checkConnected",
+      value: function checkConnected(msg_box) {
+        var graph = this.graph;
+        if (!graph) return null;
+        var assignment = this.state.plan.assignment;
+        var visited = {};
+        var total = 0;
+
+        for (var id in assignment) {
+          if (assignment[id] != 0) continue;
+          visited[id.slice(5)] = false; // CHANGE once not LITTLE ROCK
+
+          total++;
+        }
+
+        var walkNeighborhood = function walkNeighborhood(visited, node) {
+          var desc = 1;
+          visited[node] = true;
+
+          var _iterator2 = _createForOfIteratorHelper(graph[node]),
+              _step2;
+
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var nbor = _step2.value;
+
+              if (visited[nbor] === false) {
+                desc += walkNeighborhood(visited, nbor);
+              }
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
+
+          return desc;
+        };
+
+        var root = this.homeBlock.properties.GEOID10.slice(5);
+        var found = walkNeighborhood(visited, root);
+        var ok = found === total;
+
+        if (ok) {
+          msg_box.hidden = true;
+          msg_box.innerHTML = null;
+        } else {
+          msg_box.hidden = false;
+          msg_box.innerHTML = "Your neighborhood must be in one piece only.";
+        }
+
+        this.allowProceed(ok);
+        return ok;
+      }
+    }, {
+      key: "loadAddress",
+      value: function loadAddress(str) {
+        var _this2 = this;
+
+        var url = "https://api.mapbox.com/geocoding/v5/mapbox.places/".concat(encodeURIComponent(str), ".json") + "?autocomplete=false&limit=1&bbox=" + this.bounds[0][0] + "," + this.bounds[0][1] + "," + this.bounds[1][0] + "," + this.bounds[1][1] + "&access_token=".concat(mapboxgl.accessToken);
+        fetch(url).then(function (x) {
+          return x.json();
+        }).then(function (d) {
+          if (d.features.length == 0) {
+            _this2.showError("Address not found.");
+
+            return;
+          } else {
+            _this2.showError(null);
+
+            _this2.enableMap();
+          }
+
+          var center = d.features[0].center; // put down marker
+
+          if (!!_this2.addressMarker) _this2.addressMarker.remove();
+          _this2.addressMarker = new mapboxgl.Marker({
+            color: "#ff4f49"
+          }).setLngLat(center).addTo(_this2.map); // zoom to
+
+          _this2.map.easeTo({
+            center: center,
+            zoom: 15
+          }); // color block
+
+
+          var block = _this2.map.queryRenderedFeatures(_this2.map.project(center), {
+            layers: [_this2.state.units.id],
+            validate: false
+          })[0];
+
+          block.state.home = true;
+
+          if (!!_this2.homeBlock) {
+            _this2.map.setFeatureState(_this2.homeBlock, _objectSpread2(_objectSpread2({}, _this2.homeBlock.state), {}, {
+              home: false
+            }));
+          }
+
+          _this2.state.units.setAssignment(block, 0);
+
+          _this2.state.plan.assignment[block.properties.GEOID10] = 0;
+          _this2.homeBlock = block;
+        });
+      }
+    }, {
+      key: "map",
+      get: function get() {
+        return this.mapState.map;
+      }
+    }]);
+
+    return EmbeddedDistrictr;
+  }();
+
+  window.Districtr = function (target, module, options) {
+    return new EmbeddedDistrictr(target, module, options);
+  };
+
+  window.showError = function (msg) {
+    var sel = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "#ns__msg-search";
+    var msg_box = document.querySelector(sel);
+
+    if (msg !== null) {
+      msg_box.hidden = false;
+      msg_box.innerHTML = msg;
+    } else {
+      msg_box.hidden = true;
+      msg_box.innerHTML = "&nbsp;";
+    }
+  };
+
+  exports.EmbeddedDistrictr = EmbeddedDistrictr;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
+
+})));

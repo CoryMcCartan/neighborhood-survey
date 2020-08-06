@@ -1,18 +1,6 @@
 Qualtrics.SurveyEngine.addOnload(function() {
     this.disableNextButton();
 
-    let msg_box = document.querySelector("#ns__msg");
-    function showError(msg) {
-        if (msg !== null) {
-            msg_box.innerHTML = msg;
-            msg_box.hidden = false;
-        } else {
-            msg_box.innerHTML = null;
-            msg_box.hidden = true;
-        }
-    }
-
-
     var baseurl = "https://corymccartan.github.io/neighborhood-survey/"; 
     // TODO make local
     window.map = window.Districtr("#ns__container", {

@@ -23,6 +23,8 @@
                 <button id="ns__address-go" class="form-button" style="margin: 0.5em">Go</button>
             </p>
 
+            <div id="ns__msg-search" hidden class="ns__msg">&nbsp;</div>
+
             <h2>Draw your neighborhood</h2>
 
             <p>
@@ -31,25 +33,12 @@
             </p>
 
             <div id="ns__container"></div>
-
-            <div id="ns__msg" hidden class="ns__msg" style="margin-top: -1em"></div>
         </form>
 
         <script>
             /* DO NOT INCLUDE IN QUALTRICS */
             $ = s => document.querySelector(s);
-            let msg_box = document.querySelector("#ns__msg");
             /* END DO NOT INCLUDE */
-
-            function showError(msg) {
-                if (msg !== null) {
-                    msg_box.innerHTML = msg;
-                    msg_box.hidden = false;
-                } else {
-                    msg_box.innerHTML = null;
-                    msg_box.hidden = true;
-                }
-            }
 
             window.map = window.Districtr("#ns__container", {
                 url: "assets/little-rock.json",

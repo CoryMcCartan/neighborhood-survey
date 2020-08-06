@@ -88,10 +88,19 @@ export class EmbeddedDistrictr {
                         this.state.subscribe(this.render);
 
                         // contiguity check
+                        let msg_box = document.createElement("div");
+                        msg_box.id = "ns__msg-draw";
+                        msg_box.className = "ns__msg";
+                        msg_box.style.margin = "0";
+                        msg_box.style.borderRadius = "0";
+                        msg_box.hidden = true;
+                        this.toolbarTarget.prepend(msg_box);
+
                         let timeout_id = -1;
+                        let cb = this.checkConnected.bind(this, msg_box);
                         this.toolbar.toolsById.brush.brush.on("mouseup", () => {
                             window.clearTimeout(timeout_id);
-                            timeout_id = window.setTimeout(this.checkConnected.bind(this), 50);
+                            timeout_id = window.setTimeout(cb, 50);
                         });
                     };
                     this.enabled = false;
@@ -117,7 +126,7 @@ export class EmbeddedDistrictr {
         render(this.toolbar.render(), this.toolbarTarget);
     }
 
-    checkConnected() {
+    checkConnected(msg_box) {
         let graph = this.graph;
         if (!graph) return null;
         let assignment = this.state.plan.assignment;
@@ -144,7 +153,13 @@ export class EmbeddedDistrictr {
         let root = this.homeBlock.properties.GEOID10.slice(5);
         let found = walkNeighborhood(visited, root);
         let ok = found === total;
-        this.showError(!ok ?  "Your neighborhood must be in one piece only." : null);
+        if (ok) {
+            msg_box.hidden = true;
+            msg_box.innerHTML = null;
+        } else {
+            msg_box.hidden = false;
+            msg_box.innerHTML = "Your neighborhood must be in one piece only.";
+        }
         this.allowProceed(ok);
 
         return ok;
@@ -206,4 +221,16 @@ export class EmbeddedDistrictr {
 window.Districtr = (target, module, options) =>
     new EmbeddedDistrictr(target, module, options);
 
+
+window.showError = function(msg, sel="#ns__msg-search") {
+    let msg_box = document.querySelector(sel);
+
+    if (msg !== null) {
+        msg_box.hidden = false;
+        msg_box.innerHTML = msg;
+    } else {
+        msg_box.hidden = true;
+        msg_box.innerHTML = "&nbsp;";
+    }
+};
 
