@@ -47,3 +47,4 @@ spec$placeId = TILESET_ID
 spec$units$bounds = matrix(st_bbox(d), nrow=2, byrow=T)
 spec$units$tilesets$source.url = str_glue("mapbox://{MAPBOX_USERNAME}.{TILESET_ID}")
 write_json(spec, paste0("assets/", TILESET_ID, ".json"))
+cat("Specification written.\n")
