@@ -3,7 +3,24 @@
 An web map on which survey participants can draw a region, embeddable in Qualtrics.
 
 ## To Create Your Own Map
-_Coming soon._
+First, open `R/make_tileset.R` and edit the first few lines to specify the
+state (`STATE`) and counties (`COUNTIES`) you wish to generate a map for, a
+short name (`TILESET_ID`) for the generated map, and your Mapbox username
+(`MAPBOX_USERNAME`) and secret key with uploads permissions set
+(`MAPBOX_SECRET_TOKEN`).
+
+Then run the entire file.  This will take a long time, especially if the map
+area is large. Ultimately, a tileset will be uploaded to Mapbox containing the
+Census blocks and associated variables. The script will also produce a JSON
+file containing the appropriate specification for the embedded map, and an
+adjacency graph. Both will be outputted to the `assets/` folder.
+
+Second, host the adjacency graph and specification JSON online. Running
+`npm run build` will build a mockup embedded map and associated files into
+the `docs/` directory, which can be hosted on GitHub free of charge. (Go to the
+Settings tab and select the option to host from the `docs/` directory). 
+You will need the URLs to both of these files to embed the map into a Qualtrics
+survey.
 
 ## To Embed in Qualtrics
 

@@ -19,6 +19,6 @@ export default function plugins(targets, development = false) {
             ],
             exclude: /node_modules\/(?!(lit-html))/
         }),
-        development ? false : terser()
+        development ? false : terser({output: {comments: false}})
     ].filter(Boolean);
 }
