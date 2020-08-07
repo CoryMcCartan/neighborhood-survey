@@ -5,6 +5,10 @@ dist/**
 *.tmp
 *.bak
 *.Rproj
+*.rds
+*.mbtiles
+R/*.pdf
+R/data/
 
 # Logs
 logs

@@ -2,13 +2,13 @@ var map;
 
 var MAPBOX_TOKEN = "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A";
 var BASEURL = "https://corymccartan.github.io/neighborhood-survey/assets/";
-var DEFAULT_CITY = "little_rock";
+var DEFAULT_CITY = "boston";
 
 Qualtrics.SurveyEngine.addOnload(function() {
     this.disableNextButton();
 
     var city = Qualtrics.SurveyEngine.getEmbeddedData("city_group");
-    if (city.trim === "") city = DEFAULT_CITY;
+    if (city === null || city.trim() === "") city = DEFAULT_CITY;
     map = window.MapDraw("#ns__container", {
         token: MAPBOX_TOKEN,
         url: BASEURL + city + ".json",

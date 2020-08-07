@@ -47,6 +47,7 @@ export class EmbeddedDistrictr {
             .then(r => r.json())
             .then(context => {
                 this.bounds = context.units.bounds;
+                this.zoomTo = context.units.zoomTo || 14;
 
                 this.mapState = new MapState(
                     mapContainerId,
@@ -64,9 +65,9 @@ export class EmbeddedDistrictr {
                     options.style
                 );
                 this.mapState.map.on("load", () => {
-                    this.mapState.map.setMaxBounds(
-                        this.mapState.map.getBounds()
-                    );
+                    //this.mapState.map.setMaxBounds(
+                    //    this.mapState.map.getBounds()
+                    //);
                     this.state = new State(
                         this.mapState.map,
                         context,
@@ -136,7 +137,7 @@ export class EmbeddedDistrictr {
         let total = 0;
         for (let id in assignment) {
             if (assignment[id] != 0) continue;
-            visited[id.slice(5)] = false; // CHANGE once not LITTLE ROCK
+            visited[id] = false;
             total++;
         }
         
@@ -151,7 +152,7 @@ export class EmbeddedDistrictr {
             return desc;
         };
 
-        let root = this.homeBlock.properties.GEOID10.slice(5);
+        let root = this.homeBlock.id;
         let found = walkNeighborhood(visited, root);
         let ok = found === total;
         if (ok) {
@@ -193,27 +194,40 @@ export class EmbeddedDistrictr {
                     .setLngLat(center)
                     .addTo(this.map);
                 
+                // color block once zoomed
+                let colorBlock = (function() {
+                    let block = this.map.queryRenderedFeatures(
+                        this.map.project(center),
+                        { layers: [this.state.units.id], validate: false }
+                    )[0];
+                    // keep trying until we have it
+                    if (!block) {
+                        setTimeout(colorBlock, 250);
+                        return;
+                    }
+
+                    block.state.home = true;
+                    if (!!this.homeBlock) {
+                        this.map.setFeatureState(this.homeBlock, {
+                            ...this.homeBlock.state,
+                            home: false
+                        });
+                    }
+                    this.state.units.setAssignment(block, 0);
+                    this.state.plan.assignment[block.id] = 0;
+                    this.homeBlock = block;
+                }).bind(this);
+
+                this.map.once("moveend", () => {
+                    setTimeout(colorBlock, 250);
+                });
+
                 // zoom to
                 this.map.easeTo({ 
                     center,
-                    zoom: 15,
+                    zoom: this.zoomTo,
                 });
 
-                // color block
-                let block = this.map.queryRenderedFeatures(
-                    this.map.project(center),
-                    { layers: [this.state.units.id], validate: false }
-                )[0];
-                block.state.home = true;
-                if (!!this.homeBlock) {
-                    this.map.setFeatureState(this.homeBlock, {
-                        ...this.homeBlock.state,
-                        home: false
-                    });
-                }
-                this.state.units.setAssignment(block, 0);
-                this.state.plan.assignment[block.properties.GEOID10] = 0;
-                this.homeBlock = block;
             });
     }
 

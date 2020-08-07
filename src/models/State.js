@@ -48,6 +48,11 @@ export default class State {
         return this.plan.parts.filter(part => part.visible);
     }
     initializeMapState(map, unitsRecord, layerAdder) {
+        for (let tileset of unitsRecord.tilesets) {
+            tileset.source.promoteId = {};
+            tileset.source.promoteId[tileset.sourceLayer] = unitsRecord.idColumn.key;
+        }
+
         const { units, unitsBorders, points } = addLayers(
             map,
             this.parts,

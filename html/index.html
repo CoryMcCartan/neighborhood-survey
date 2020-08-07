@@ -17,8 +17,7 @@
         <form id="root" action="javascript:void(0);">
             <h3>Enter your address</h3>
             <p style="display: flex; flex-direction: row;">
-                <input type="search" id="ns__address-box" 
-                    placeholder="e.g. '617 S Louisiana'" autofocus />
+                <input type="search" id="ns__address-box" autofocus />
                 <button id="ns__address-go">Go</button>
             </p>
 
@@ -41,8 +40,10 @@
 
             window.map = window.MapDraw("#ns__container", {
                 token: "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A",
-                url: "assets/little-rock.json",
-                graph: "assets/little-rock_graph.json",
+                //url: "assets/little-rock.json",
+                //graph: "assets/little-rock_graph.json",
+                url: "assets/boston.json",
+                graph: "assets/boston_graph.json",
                 errors: showError,
                 allowProceed: function() {}
             });

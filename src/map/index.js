@@ -8,10 +8,8 @@ export class MapState {
             container: mapContainer,
             style: mapStyle,
             attributionControl: false,
-            center: [-86.0, 37.83],
-            zoom: 3,
+            minZoom: 10,
             pitchWithRotate: false,
-            // dragRotate: false,
             dragPan: true,
             touchZoomRotate: true,
             ...options
@@ -75,11 +73,12 @@ export function addLayers(map, parts, tilesets, layerAdder) {
         tilesets.find(tileset => tileset.type === "fill"),
         layerAdder
     );
-    const points = addPoints(
-        map,
-        tilesets.find(tileset => tileset.type === "circle"),
-        layerAdder
-    );
+    const points = false;
+    //const points = addPoints(
+    //    map,
+    //    tilesets.find(tileset => tileset.type === "circle"),
+    //    layerAdder
+    //);
 
     return { units, unitsBorders, points };
 }

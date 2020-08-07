@@ -1,0 +1,36 @@
+{
+    "assignment": {},
+    "idColumn": {
+        "key": "GEOID",
+        "name": "GEOID"
+    },
+    "problem": {
+        "numberOfParts": 1,
+        "name": "Neighborhood",
+        "pluralNoun": "Neighborhoods"
+    },
+    "parts": [{ "id": 0, "displayNumber": 1}],
+    "placeId": "boston",
+    "units": {
+        "name": "Blocks",
+        "unitType": "Blocks",
+        "id": "blocks",
+        "columnSets": [],
+        "idColumn": {
+            "key": "GEOID",
+            "name": "GEOID"
+        },
+        "bounds": [[-71.3,42.2],[-70.8,42.5]],
+        "zoomTo": 14,
+        "tilesets": [
+            {
+                "type": "fill",
+                "source": {
+                    "type": "vector",
+                    "url": "mapbox://cmccartan.boston_blocks_v2"
+                },
+                "sourceLayer": "blocks"
+            }
+        ]
+    }
+}
