@@ -212,6 +212,8 @@ export class EmbeddedDistrictr {
                             ...this.homeBlock.state,
                             home: false
                         });
+                        this.state.units.setAssignment(this.homeBlock, 0);
+                        this.state.plan.assignment[this.homeBlock.id] = null;
                     }
                     this.state.units.setAssignment(block, 0);
                     this.state.plan.assignment[block.id] = 0;
