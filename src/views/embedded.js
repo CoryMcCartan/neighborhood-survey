@@ -62,12 +62,13 @@ export class EmbeddedDistrictr {
                             }
                         }
                     },
-                    options.style
+                    options.style,
                 );
                 this.mapState.map.on("load", () => {
                     //this.mapState.map.setMaxBounds(
                     //    this.mapState.map.getBounds()
                     //);
+                    context.showOverlay = module.showOverlay;
                     this.state = new State(
                         this.mapState.map,
                         context,
@@ -136,7 +137,7 @@ export class EmbeddedDistrictr {
         let visited = {};
         let total = 0;
         for (let id in assignment) {
-            if (assignment[id] != 0) continue;
+            if (assignment[id] !== 0) continue;
             visited[id] = false;
             total++;
         }
@@ -200,11 +201,6 @@ export class EmbeddedDistrictr {
                         this.map.project(center),
                         { layers: [this.state.units.id], validate: false }
                     )[0];
-                    // keep trying until we have it
-                    if (!block) {
-                        setTimeout(colorBlock, 250);
-                        return;
-                    }
 
                     block.state.home = true;
                     if (!!this.homeBlock) {
@@ -220,9 +216,7 @@ export class EmbeddedDistrictr {
                     this.homeBlock = block;
                 }).bind(this);
 
-                this.map.once("moveend", () => {
-                    setTimeout(colorBlock, 250);
-                });
+                this.state.layers[0].untilSourceLoaded(colorBlock);
 
                 // zoom to
                 this.map.easeTo({ 
@@ -235,7 +229,7 @@ export class EmbeddedDistrictr {
 
     getNeighborhood() {
         let assignment = this.state.plan.assignment;
-        return Object.keys(assignment).filter(b => assignment[b] == 0).join(",");
+        return Object.keys(assignment).filter(b => assignment[b] === 0).join(",");
     }
 }
 

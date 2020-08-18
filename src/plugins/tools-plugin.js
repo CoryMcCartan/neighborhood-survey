@@ -12,7 +12,7 @@ export default function ToolsPlugin(editor) {
 
     let tools = [
         new PanTool(),
-        new BrushTool(brush, state.parts),
+        new BrushTool(brush),
         new EraserTool(brush)
     ];
 

@@ -3,7 +3,7 @@ import BrushSlider from "./BrushSlider";
 import Tool from "./Tool";
 
 export default class BrushTool extends Tool {
-    constructor(brush, colors) {
+    constructor(brush) {
         const img_data = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAABXUlEQVR4Ae3ZEXT" +
             "DYBiF4UGhUBgMCoNBoVAYDmrDQGFQrNNwfgrDwnBQKASCxcEgEJxTITAMFAPfXgj1bH/W5Kev957z+Dmv3itN0zRN0zRNu6QNsUSBPR" +
             "JozUbIYSc2OJ3ihCMpTjiS4oQjKU5Yojhhe8UJKxQnbKk4f8swgJMpjuIojuIojuIojuIojuIojuIojuIojuIojuI43afihPeEOlocRQ" +
@@ -14,8 +14,7 @@ export default class BrushTool extends Tool {
             style="display: inline-block; height: 26px !important; z-index: 100;"></img>`;
         super("brush", "Draw", icon);
         this.brush = brush;
-        this.colors = colors;
-        this.options = new BrushToolOptions(brush, colors);
+        this.options = new BrushToolOptions(brush);
     }
     activate() {
         super.activate();
@@ -28,9 +27,8 @@ export default class BrushTool extends Tool {
 }
 
 class BrushToolOptions {
-    constructor(brush, colors, renderToolbar) {
+    constructor(brush, renderToolbar) {
         this.brush = brush;
-        this.colors = colors;
         this.renderToolbar = renderToolbar;
         this.changeRadius = this.changeRadius.bind(this);
     }

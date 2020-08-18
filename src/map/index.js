@@ -1,5 +1,4 @@
 import mapboxgl from "mapbox-gl";
-import { unitBordersPaintProperty, getUnitColorProperty } from "../colors";
 import Layer from "./Layer";
 
 export class MapState {
@@ -20,7 +19,12 @@ export class MapState {
     }
 }
 
-function addUnits(map, parts, tileset, layerAdder) {
+function addUnits(map, tileset, layerAdder) {
+    //const block_color = "#0099cd";
+    const block_color = "#202f24";
+    const block_color_hover = "#000000";
+    const gen_color_hover = "#777777";
+
     const units = new Layer(
         map,
         {
@@ -29,8 +33,14 @@ function addUnits(map, parts, tileset, layerAdder) {
             "source-layer": tileset.sourceLayer,
             type: "fill",
             paint: {
-                "fill-color": getUnitColorProperty(parts),
-                "fill-opacity": 0.8
+                "fill-color": ["case",
+                    ["boolean", ["feature-state", "hover"], false],
+                    ["match", ["feature-state", "color"], 0, 
+                        block_color_hover, gen_color_hover],
+                    ["match", ["feature-state", "color"], 0, 
+                        block_color, "rgba(0, 0, 0, 0)"]
+                ],
+                "fill-opacity": 0.55
             }
         },
         layerAdder
@@ -42,7 +52,11 @@ function addUnits(map, parts, tileset, layerAdder) {
             type: "line",
             source: tileset.sourceLayer,
             "source-layer": tileset.sourceLayer,
-            paint: unitBordersPaintProperty
+            paint: {
+                "line-color": "#444444",
+                "line-width": ["interpolate", ["linear"], ["zoom"], 9.5, 0, 17, 2],
+                "line-opacity": 0.2
+            }
         },
         layerAdder
     );
@@ -50,35 +64,40 @@ function addUnits(map, parts, tileset, layerAdder) {
     return { units, unitsBorders };
 }
 
-function addPoints(map, tileset) {
-    return new Layer(map, {
-        id: "units-points",
-        type: "circle",
-        source: tileset.sourceLayer,
-        "source-layer": tileset.sourceLayer,
-        paint: {
-            "circle-opacity": 0
-        }
-    });
-}
+function addOverlay(map, tileset, layerAdder) {
+    const color_dem = "rgba(30, 60, 210, 0.375)";
+    const color_gop = "rgba(210, 30, 20, 0.475)";
+    const midpt = 0.45;
 
-export function addLayers(map, parts, tilesets, layerAdder) {
-    for (let tileset of tilesets) {
-        map.addSource(tileset.sourceLayer, tileset.source);
-    }
-
-    const { units, unitsBorders } = addUnits(
+    return new Layer(
         map,
-        parts,
-        tilesets.find(tileset => tileset.type === "fill"),
+        {
+            id: "ovrlay",
+            source: tileset.sourceLayer,
+            "source-layer": tileset.sourceLayer,
+            type: "fill",
+            paint: {
+                "fill-color": ["interpolate-hcl", 
+                    ["linear"], 
+                    ["case", ["==", ["get", "pop"], 0], 
+                        midpt,
+                        ["/", ["get", "pop_white"], ["get", "pop"]], // value
+                    ],
+                    0, color_dem,
+                    midpt, "rgba(255, 255, 255, 0)",
+                    1, color_gop
+                ]
+            }
+        },
         layerAdder
     );
-    const points = false;
-    //const points = addPoints(
-    //    map,
-    //    tilesets.find(tileset => tileset.type === "circle"),
-    //    layerAdder
-    //);
+}
 
-    return { units, unitsBorders, points };
+export function addLayers(map, tileset, layerAdder, showOverlay=false) {
+    map.addSource(tileset.sourceLayer, tileset.source);
+
+    const overlay = showOverlay ? addOverlay(map, tileset, layerAdder) : null;
+    const { units, unitsBorders } = addUnits(map, tileset, layerAdder);
+
+    return { units, unitsBorders, overlay };
 }

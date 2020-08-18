@@ -1,8 +1,8 @@
-STATE = "MA"
-COUNTIES = c("Suffolk", "Middlesex", "Norfolk", "Essex", "Plymouth")
-TILESET_ID = "boston"
-MAPBOX_SECRET_TOKEN = ""
-MAPBOX_USERNAME = ""
+STATE = "NY"
+COUNTIES = c("New York", "Bronx", "Kings", "Queens", "Richmond")
+TILESET_ID = "nyc"
+MAPBOX_SECRET_TOKEN = Sys.getenv("MAPBOX_SECRET_TOKEN")
+MAPBOX_USERNAME = "cmccartan"
 
 library(tidycensus)
 library(tidyverse)
@@ -19,9 +19,12 @@ d = get_decennial("block", variables=vars, state=STATE, county=COUNTIES,
                   output="wide", geometry=T)
 cat("Census data downloaded.\n")
 
+# remove Ellis Island and the Statue of Liberty
+d = filter(d, !(GEOID %in% c("360610001001001", "360610001001000")))
+
 {
 g = poly2nb(d, queen=F)
-ids = d$GEOID
+ids = str_sub(d$GEOID, 4)
 class(g) = "list"
 names(g) = ids
 g = map(g, ~ ids[.])
@@ -31,9 +34,11 @@ write_json(g, paste0("assets/", TILESET_ID, "_graph.json"))
 cat("Adjacency graph created.\n")
 
 mbtile_name = paste0("R/data/", TILESET_ID, ".mbtiles")
-tippecanoe(d, mbtile_name, layer_name="blocks",
+d %>%
+    mutate(GEOID = str_sub(GEOID, 4)) %>%
+tippecanoe(mbtile_name, layer_name="blocks",
            min_zoom=10, max_zoom=12,
-           other_options="--coalesce-densest-as-needed --detect-shared-borders --use-attribute-for-id=GEOID")
+           other_options="--coalesce-densest-as-needed --detect-shared-borders")
 cat("Vector tiles created.\n")
 
 
@@ -44,6 +49,6 @@ cat("Tileset uploaded.\n")
 
 spec = read_json("assets/boston.json", simplifyVector=T)
 spec$units$bounds = matrix(st_bbox(d), nrow=2, byrow=T)
-spec$units$tilesets$source.url = str_glue("mapbox://{MAPBOX_USERNAME}.{TILESET_ID}")
-write_json(spec, paste0("assets/", TILESET_ID, ".json"))
+spec$units$tilesets$source$url = str_glue("mapbox://{MAPBOX_USERNAME}.{TILESET_ID}")
+write_json(spec, paste0("assets/", TILESET_ID, ".json"), auto_unbox=T)
 cat("Specification written.\n")

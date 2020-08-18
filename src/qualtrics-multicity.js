@@ -2,18 +2,23 @@ var map;
 
 var MAPBOX_TOKEN = "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A";
 var BASEURL = "https://corymccartan.github.io/neighborhood-survey/assets/";
-var DEFAULT_CITY = "boston";
+var DEFAULT_CITY = "nyc";
 
 Qualtrics.SurveyEngine.addOnload(function() {
     this.disableNextButton();
 
     var city = Qualtrics.SurveyEngine.getEmbeddedData("city_group");
     if (city === null || city.trim() === "") city = DEFAULT_CITY;
+
+    var showOverlay = Qualtrics.SurveyEngine.getEmbeddedData("overlay");
+    if (showOverlay.trim() === "") showOverlay = null;
+
     map = window.MapDraw("#ns__container", {
         token: MAPBOX_TOKEN,
         url: BASEURL + city + ".json",
         graph: BASEURL + city + "_graph.json",
-        errors: showError,
+        showOverlay: showOverlay,
+        errors: window.showError,
         allowProceed: (function(allow) {
             if (allow) this.enableNextButton();
             else this.disableNextButton();
