@@ -11,7 +11,8 @@ Qualtrics.SurveyEngine.addOnload(function() {
     if (city === null || city.trim() === "") city = DEFAULT_CITY;
 
     var showOverlay = Qualtrics.SurveyEngine.getEmbeddedData("overlay");
-    if (showOverlay.trim() === "") showOverlay = null;
+    if (showOverlay !== null && showOverlay.trim() === "") showOverlay = null;
+    if (showOverlay !== null) showOverlay = showOverlay == "true";
 
     map = window.MapDraw("#ns__container", {
         token: MAPBOX_TOKEN,
