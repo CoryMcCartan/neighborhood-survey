@@ -29,6 +29,7 @@
     max-height: 75vh;
     margin: 1rem 0;
     border: 1px solid $outline-grey;
+    overscroll-behavior: none;
 }
 
 .ns__msg {
@@ -120,7 +121,11 @@ input[type="search"]::-webkit-search-decoration {
 }
 
 .stop-scrolling { 
-    height: 100%; 
-    overflow: hidden; 
+    overflow: hidden !important; 
     -webkit-overflow-scrolling: auto;
+}
+
+body {
+    height: 100vh;
+    overscroll-behavior: none;
 }

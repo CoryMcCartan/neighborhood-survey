@@ -89,7 +89,9 @@ export default class Brush extends HoverWithRadius {
         window.removeEventListener("mouseup", this.onMouseUp);
         window.removeEventListener("touchend", this.onMouseUp);
         window.removeEventListener("touchcancel", this.onMouseUp);
-        document.body.classList.remove("stop-scrolling");
+        setTimeout(() => {
+            document.body.classList.remove("stop-scrolling");
+        }, 60);
         for (let listener of this.listeners.mouseup) {
             listener();
         }
