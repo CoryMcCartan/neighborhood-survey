@@ -284,7 +284,7 @@ window.UnivariateOverlay = function(opts) {
                     opts.denominator || ["get", "pop"]], // value
             ],
             0, "rgba(255, 255, 255, 0)",
-            1, opts.color || "#c0cc10",
+            1, opts.color || "#c0ba10",
         ],
         "fill-opacity": opts.opacity || 0.375,
     };
