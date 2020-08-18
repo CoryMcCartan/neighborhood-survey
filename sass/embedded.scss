@@ -134,6 +134,8 @@ body {
 #QID5 .QuestionText p span, #QID5 .QuestionText p {
     font-size: 11pt !important;
     line-height: 1.15 !important;
+    font-family: unset !important;
+    color: unset !important;
 }
 
 .QuestionText p, .QuestionText {
