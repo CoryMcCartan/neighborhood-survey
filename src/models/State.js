@@ -10,7 +10,7 @@ import DistrictingPlan from "./DistrictingPlan";
  * population tally.)
  */
 export default class State {
-    constructor(map, { id, units, showOverlay, ...args }) {
+    constructor(map, { id, units, showOverlay, overlayRule, ...args }) {
         this.unitsRecord = units;
         this.idColumn = new IdColumn(units.idColumn);
         this.plan = new DistrictingPlan({
@@ -23,7 +23,8 @@ export default class State {
             map,
             units,
             addBelowLabels,
-            showOverlay
+            showOverlay,
+            overlayRule,
         );
 
         this.subscribers = [];
@@ -31,7 +32,7 @@ export default class State {
         this.update = this.update.bind(this);
         this.render = this.render.bind(this);
     }
-    initializeMapState(map, unitsRecord, layerAdder, showOverlay) {
+    initializeMapState(map, unitsRecord, layerAdder, showOverlay, overlayRule) {
         unitsRecord.tileset.source.promoteId = {};
         unitsRecord.tileset.source.promoteId[unitsRecord.tileset.sourceLayer] = unitsRecord.idColumn.key;
 
@@ -39,7 +40,8 @@ export default class State {
             map,
             unitsRecord.tileset,
             layerAdder,
-            showOverlay
+            showOverlay,
+            overlayRule,
         );
 
         this.units = units;

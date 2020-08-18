@@ -14,11 +14,28 @@ Qualtrics.SurveyEngine.addOnload(function() {
     if (showOverlay !== null && showOverlay.trim() === "") showOverlay = null;
     if (showOverlay !== null) showOverlay = showOverlay == "true";
 
+    var overlays = {
+        partisan: BivariateOverlay({
+            numerator: ["get", "pop_white"], 
+            midpt: 0.4
+        }),
+        race: UnivariateOverlay({
+            numerator: ["-", ["get", "pop"], ["get", "pop_white"]]
+        }),
+    };
+    var overlayType = Qualtrics.SurveyEngine.getEmbeddedData("overlay_type");
+    if (overlayType == null || overlayType.trim() === "") overlayType = "partisan";
+
+    var zoomTo = Qualtrics.SurveyEngine.getEmbeddedData("start_zoom");
+    if (zoomTo == null || zoomTo.trim() === "") zoomTo = 14;
+
     map = window.MapDraw("#ns__container", {
         token: MAPBOX_TOKEN,
         url: BASEURL + city + ".json",
         graph: BASEURL + city + "_graph.json",
         showOverlay: showOverlay,
+        overlayRule: overlays[overlayType],
+        zoomTo: zoomTo,
         errors: window.showError,
         allowProceed: (function(allow) {
             if (allow) this.enableNextButton();

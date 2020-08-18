@@ -76,3 +76,23 @@ and the selected block group IDs will be saved in the `neighborhood` field.
 Finally, go to "Survey Flow" and add a "Set Embedded Data" element **before**
 the question with the map. Inside, add a field for `neighborhood` and one for
 `home_address`.
+
+## Other Options
+The code in `src/qualtrics-advanced.js` provides more options, which may be
+customized using Qualtrics embedded data (which can in turn be set by URL parameters,
+for example, `?overlay=true&overlay_type=partisan&start_zoom=13`).
+
+The supported options are:
+
+- Set `overlay` to `true`/`false` to turn on and off a colored overlay
+- Set `overlay_type` to `partisan` or `race` to show a partisan or race overlay.
+The code in `qualtrics-advanced.js` may need to be customized so that the demographic
+variable names match those expected. Additional types can also be added, and are
+implemented using 
+[Mapbox styling expressions](https://docs.mapbox.com/mapbox-gl-js/style-spec/expressions/). 
+We provide the helper functions `BivariateOverlay` and `UnivariateOverlay` to
+create styling functions; look at `src/views/embedded.js`.
+- Set `city_group` to the name of the city you'd like to use (this requires that
+you have appropriate tilesets and adjancency graphs uploaded).
+- Set `start_zoom` to set the original zoom level. The default is 14.
+

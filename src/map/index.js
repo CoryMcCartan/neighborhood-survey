@@ -64,11 +64,7 @@ function addUnits(map, tileset, layerAdder) {
     return { units, unitsBorders };
 }
 
-function addOverlay(map, tileset, layerAdder) {
-    const color_dem = "rgba(30, 60, 210, 0.375)";
-    const color_gop = "rgba(210, 30, 20, 0.475)";
-    const midpt = 0.45;
-
+function addOverlay(map, tileset, layerAdder, overlayRule) {
     return new Layer(
         map,
         {
@@ -76,27 +72,18 @@ function addOverlay(map, tileset, layerAdder) {
             source: tileset.sourceLayer,
             "source-layer": tileset.sourceLayer,
             type: "fill",
-            paint: {
-                "fill-color": ["interpolate-hcl", 
-                    ["linear"], 
-                    ["case", ["==", ["get", "pop"], 0], 
-                        midpt,
-                        ["/", ["get", "pop_white"], ["get", "pop"]], // value
-                    ],
-                    0, color_dem,
-                    midpt, "rgba(255, 255, 255, 0)",
-                    1, color_gop
-                ]
-            }
+            paint: overlayRule,
         },
         layerAdder
     );
 }
 
-export function addLayers(map, tileset, layerAdder, showOverlay=false) {
+export function addLayers(map, tileset, layerAdder, 
+                              showOverlay=false, overlayRule={}) {
     map.addSource(tileset.sourceLayer, tileset.source);
 
-    const overlay = showOverlay ? addOverlay(map, tileset, layerAdder) : null;
+    const overlay = showOverlay ? 
+        addOverlay(map, tileset, layerAdder, overlayRule) : null;
     const { units, unitsBorders } = addUnits(map, tileset, layerAdder);
 
     return { units, unitsBorders, overlay };

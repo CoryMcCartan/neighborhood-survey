@@ -47,7 +47,7 @@ export class EmbeddedDistrictr {
             .then(r => r.json())
             .then(context => {
                 this.bounds = context.units.bounds;
-                this.zoomTo = context.units.zoomTo || 14;
+                this.zoomTo = module.zoomTo || context.units.zoomTo || 14;
 
                 this.mapState = new MapState(
                     mapContainerId,
@@ -69,6 +69,8 @@ export class EmbeddedDistrictr {
                     //    this.mapState.map.getBounds()
                     //);
                     context.showOverlay = module.showOverlay;
+                    context.overlayRule = module.overlayRule;
+
                     this.state = new State(
                         this.mapState.map,
                         context,
@@ -249,4 +251,42 @@ window.showError = function(msg, sel="#ns__msg-search") {
         msg_box.innerHTML = "&nbsp;";
     }
 };
+
+
+/*
+ * Overlay styles
+ */
+
+window.BivariateOverlay = function(opts) {
+    return {
+        "fill-color": ["interpolate-hcl", 
+            ["linear"], 
+            ["case", ["==", opts.denominator || ["get", "pop"], 0], 
+                opts.midpt || 0.5,
+                ["/", opts.numerator || ["get", "dem"], 
+                    opts.denominator || ["get", "pop"]], // value
+            ],
+            0, opts.colorLow || "rgb(30, 60, 210)",
+            opts.midpt || 0.5, "rgba(255, 255, 255, 0)",
+            1, opts.colorHigh || "rgb(210, 30, 20)",
+        ],
+        "fill-opacity": opts.opacity || 0.375,
+    };
+}
+
+window.UnivariateOverlay = function(opts) {
+    return {
+        "fill-color": ["interpolate-hcl", 
+            ["linear"], 
+            ["case", ["==", opts.denominator || ["get", "pop"], 0], 
+                0,
+                ["/", opts.numerator || ["get", "dem"], 
+                    opts.denominator || ["get", "pop"]], // value
+            ],
+            0, "rgba(255, 255, 255, 0)",
+            1, opts.color || "#c0cc10",
+        ],
+        "fill-opacity": opts.opacity || 0.375,
+    };
+}
 

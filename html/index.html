@@ -21,7 +21,7 @@
                 <button id="ns__address-go">Go</button>
             </p>
 
-            <div id="ns__msg-search" hidden class="ns__msg"></div>
+            <div id="ns__msg-search" hidden class="ns__msg"></div><br />
 
             <h3 style="margin-top: 0.5em">Draw your neighborhood</h3>
 
@@ -34,14 +34,29 @@
         </form>
 
         <script>
-            /* DO NOT INCLUDE IN QUALTRICS */
             $ = s => document.querySelector(s);
-            /* END DO NOT INCLUDE */
 
             let params = new URLSearchParams(location.search);
             let showOverlay = null;
             if (params.has("overlay")) 
                 showOverlay = params.get("overlay") == "true";
+
+            let overlays = {
+                partisan: BivariateOverlay({
+                    numerator: ["get", "pop_white"], 
+                    midpt: 0.4
+                }),
+                race: UnivariateOverlay({
+                    numerator: ["-", ["get", "pop"], ["get", "pop_white"]],
+                }),
+            };
+            let overlayType = "partisan";
+            if (params.has("overlay_type")) 
+                overlayType = params.get("overlay_type");
+
+            let zoomTo = 14;
+            if (params.has("start_zoom")) 
+                zoomTo = +params.get("start_zoom");
 
             window.map = window.MapDraw("#ns__container", {
                 token: "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A",
@@ -50,6 +65,8 @@
                 errors: showError,
                 allowProceed: function() {},
                 showOverlay,
+                overlayRule: overlays[overlayType],
+                zoomTo,
             });
 
             function addressSearch() {
