@@ -15,10 +15,7 @@ Qualtrics.SurveyEngine.addOnload(function() {
     if (showOverlay !== null) showOverlay = showOverlay == "true";
 
     var overlays = {
-        partisan: BivariateOverlay({
-            numerator: ["get", "pop_white"], 
-            midpt: 0.4
-        }),
+        partisan: BivariateOverlay(),
         race: UnivariateOverlay({
             numerator: ["-", ["get", "pop"], ["get", "pop_white"]]
         }),

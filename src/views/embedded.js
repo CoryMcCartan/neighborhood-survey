@@ -263,7 +263,7 @@ window.BivariateOverlay = function(opts) {
             ["linear"], 
             ["case", ["==", opts.denominator || ["get", "pop"], 0], 
                 opts.midpt || 0.5,
-                ["/", opts.numerator || ["get", "dem"], 
+                ["/", opts.numerator || ["get", "gop"], 
                     opts.denominator || ["get", "pop"]], // value
             ],
             0, opts.colorLow || "rgb(30, 60, 210)",

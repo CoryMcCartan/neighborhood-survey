@@ -46,10 +46,51 @@
                     numerator: ["get", "pop_white"], 
                     midpt: 0.4
                 }),
-                race: UnivariateOverlay({
-                    numerator: ["-", ["get", "pop"], ["get", "pop_white"]],
+                partisan_hidden: BivariateOverlay({
+                    numerator: ["get", "pop_white"], 
+                    midpt: 0.4,
+                    colorLow: "#5b4",
+                    colorHigh: "#b3c",
+                    opacity: 0.35,
                 }),
+                race: {
+                    "fill-color": ["case",
+                        ["==", ["get", "pop"], 0], "rgba(255, 255, 255, 0)",
+
+                        ["all",
+                            [">", ["get", "pop_black"], ["get", "pop_white"]],
+                            [">", ["*", 2, ["get", "pop_black"]], 
+                                ["-", ["get", "pop"], ["get", "pop_white"]]]
+                        ], [
+                            "interpolate-hcl", ["linear"], 
+                            ["/", ["get", "pop_black"], ["get", "pop"]], // value
+                            0.35, "rgba(255, 255, 255, 0)",
+                            1, "#b09a00",
+                        ],
+
+                        ["all",
+                            [">", ["get", "pop_white"], ["get", "pop_black"]],
+                            [">", ["*", 2, ["get", "pop_white"]], 
+                                ["-", ["get", "pop"], ["get", "pop_black"]]]
+                        ], [
+                            "interpolate-hcl", ["linear"], 
+                            ["/", ["get", "pop_white"], ["get", "pop"]], // value
+                            0.4, "rgba(255, 255, 255, 0)",
+                            1, "#c44075",
+                        ],
+
+                        [
+                            "interpolate-hcl", ["linear"], 
+                            ["-", 1, ["/", ["+", ["get", "pop_white"], ["get", "pop_black"]], 
+                                ["get", "pop"]]], // value
+                            0.35, "rgba(255, 255, 255, 0)",
+                            1, "#10a0d5",
+                        ]
+                    ],
+                    "fill-opacity": 0.4,
+                },
             };
+            overlays.race_hidden = overlays.race;
             let overlayType = "partisan";
             if (params.has("overlay_type")) 
                 overlayType = params.get("overlay_type");
