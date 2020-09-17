@@ -218,7 +218,9 @@ export class EmbeddedDistrictr {
                     this.homeBlock = block;
                 }).bind(this);
 
-                this.state.layers[0].untilSourceLoaded(colorBlock);
+                this.map.once("zoomend", () => {
+                    this.state.layers[0].untilSourceLoaded(colorBlock);
+                });
 
                 // zoom to
                 this.map.easeTo({ 
