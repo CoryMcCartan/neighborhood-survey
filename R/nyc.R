@@ -19,8 +19,21 @@ d = get_decennial("block", variables=vars, state=STATE, county=COUNTIES,
                   output="wide", geometry=T)
 cat("Census data downloaded.\n")
 
+
 # remove Ellis Island and the Statue of Liberty
 d = filter(d, !(GEOID %in% c("360610001001001", "360610001001000")))
+
+# add partisanship info
+part_d = read_csv("R/data/ny-block-partisanship.csv", col_types="cdddd") %>%
+    transmute(GEOID=vb.tsmart_census_id, dem=(dems+0.5)/(registrants+1))
+# fill in missing partisanship info
+jd = left_join(d, part_d, by="GEOID")
+pop_mis = str_sub(jd$GEOID[jd$pop > 20 & is.na(jd$dem)], 4)
+fill_val = map_dbl(pop_mis, ~ mean(jd$dem[jd$GEOID %in% str_c("360", g[[.]])], na.rm=T))
+jd$dem[match(str_c("360", pop_mis), jd$GEOID)] = fill_val
+jd$dem = coalesce(jd$dem, 0.5)
+
+d = jd
 
 {
 g = poly2nb(d, queen=F)

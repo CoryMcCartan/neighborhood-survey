@@ -1,23 +1,23 @@
-var map; 
+        
+        var map; 
 
 var MAPBOX_TOKEN = "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A";
-var BASEURL = "https://corymccartan.github.io/neighborhood-survey/assets/";
+var BASEURL = "https://cdn.jsdelivr.net/gh/CoryMcCartan/neighborhood-survey/docs/assets/";
 
 Qualtrics.SurveyEngine.addOnload(function() {
     this.disableNextButton();
 
     let overlays = {
-        P: BivariateOverlay({
-            numerator: ["get", "pop_white"], 
-            midpt: 0.4
-        }),
-        PH: BivariateOverlay({
-            numerator: ["get", "pop_white"], 
-            midpt: 0.4,
-            colorLow: "#5b4",
-            colorHigh: "#b3c",
-            opacity: 0.35,
-        }),
+        P: {
+            "fill-color": ["interpolate-hcl", 
+                ["linear"], 
+                ["get", "dem"],
+                0.1, "#c44075",
+                0.5, "rgba(255, 255, 255, 0)",
+                1, "#b09a00",
+            ],
+            "fill-opacity": 0.45,
+        },
         R: {
             "fill-color": ["case",
                 ["==", ["get", "pop"], 0], "rgba(255, 255, 255, 0)",
@@ -56,6 +56,7 @@ Qualtrics.SurveyEngine.addOnload(function() {
         },
     };
     overlays.RH = overlays.R;
+    overlays.PH = overlays.P;
     overlays.C = overlays.P;
 
     var group = Qualtrics.SurveyEngine.getEmbeddedData("group");
@@ -100,4 +101,3 @@ Qualtrics.SurveyEngine.addOnReady(function() {
 Qualtrics.SurveyEngine.addOnPageSubmit(function() {
     Qualtrics.SurveyEngine.setEmbeddedData("neighborhood", map.getNeighborhood());
 });
-
