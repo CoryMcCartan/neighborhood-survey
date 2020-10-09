@@ -229,12 +229,14 @@ export class EmbeddedDistrictr {
                     .addTo(this.map);
                 
                 // color block once zoomed
+                let colored = false;
                 let colorBlock = (function() {
                     let block = this.map.queryRenderedFeatures(
                         this.map.project(center),
                         { layers: [this.state.units.id], validate: false }
                     )[0];
-                    if (!block) return;
+                    if (!block || colored) return;
+                    colored = true;
 
                     if (!!this.homeBlock) {
                         this.map.setFeatureState(this.homeBlock, {
@@ -248,7 +250,6 @@ export class EmbeddedDistrictr {
                     this.state.plan.assignment[block.id] = 0;
                     this.homeBlock = block;
                     block.state.home = true;
-                    console.log(this.homeBlock.id);
                 }).bind(this);
 
                 this.map.once("moveend", () => {
