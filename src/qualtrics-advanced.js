@@ -43,11 +43,12 @@ Qualtrics.SurveyEngine.addOnload(function() {
 
 Qualtrics.SurveyEngine.addOnReady(function() {
     function addressSearch() {
-        var query = jQuery("#ns__address-box").val();
+        var box = jQuery("#ns__address-box")
+        var query = box.val();
         if (query.trim() == "") return;
 
         Qualtrics.SurveyEngine.setEmbeddedData("home_address", query.trim());
-        map.loadAddress(query);
+        map.loadAddress(query, box[0]);
     }
 
     jQuery("#ns__address-go").on("click", addressSearch);
