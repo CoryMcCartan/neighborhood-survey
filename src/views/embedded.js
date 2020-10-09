@@ -243,13 +243,19 @@ export class EmbeddedDistrictr {
                             ...this.homeBlock.state,
                             home: false
                         });
-                        this.clearNeighborhood.call(this);
+                        this.clearNeighborhood.call(this, false);
+                        console.log("INSIDE");
                     }
 
                     this.state.units.setAssignment(block, 0);
                     this.state.plan.assignment[block.id] = 0;
                     this.homeBlock = block;
                     block.state.home = true;
+                    this.map.setFeatureState(block, {
+                        ...block.state,
+                        home: true
+                    });
+                    console.log("OUTSIDE");
                 }).bind(this);
 
                 this.map.once("moveend", () => {
@@ -270,13 +276,13 @@ export class EmbeddedDistrictr {
         return Object.keys(assignment).filter(b => assignment[b] === 0).join(",");
     }
 
-    clearNeighborhood() {
+    clearNeighborhood(keepHome=true) {
         let ids = Object.keys(this.state.plan.assignment);
         let features = map.state.units.querySourceFeatures()
             .filter(x => ids.includes(x.id));
         features.map(x => this.state.units.setAssignment(x, null));
         ids.map(x => { this.state.plan.assignment[x] = null });
-        if (!!this.homeBlock) {
+        if (!!this.homeBlock && keepHome) {
             console.log(this.homeBlock.id);
             this.state.units.setAssignment(this.homeBlock, 0);
             this.state.plan.assignment[this.homeBlock.id] = 0;
