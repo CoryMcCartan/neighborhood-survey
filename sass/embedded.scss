@@ -59,16 +59,31 @@
     background: $districtr-red;
 }
 
-#ns__address-go:hover {
+#ns__clear-all {
+    color: white;
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+    font-weight: 400;
+    font-family: $font-family;
+    font-size: 1.2rem;
+
+    transition: all ease 40ms;
+
+    border-radius: 0.25rem;
+    background: $districtr-red;
+}
+
+#ns__address-go:hover, #ns__clear-all:hover {
     cursor: pointer;
     background: $districtr-red-dark;
 }
 
-#ns__address-go:active {
+#ns__address-go:active, #ns__clear-all:active {
     background: $districtr-red-dark;
 }
 
-#ns__address-go:focus {
+#ns__address-go:focus, #ns__clear-all:focus {
     box-shadow: $focus-shadow;
 }
 

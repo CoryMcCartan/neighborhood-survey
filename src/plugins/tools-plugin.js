@@ -19,5 +19,5 @@ export default function ToolsPlugin(editor) {
     for (let tool of tools) {
         toolbar.addTool(tool);
     }
-    toolbar.selectTool("brush");
+    toolbar.selectTool("pan");
 }

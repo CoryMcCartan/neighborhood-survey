@@ -92,6 +92,14 @@ export class EmbeddedDistrictr {
                         this.store.subscribe(this.render);
                         this.state.subscribe(this.render);
 
+                        this.map.boxZoom.enable();
+                        this.map.scrollZoom.enable();
+                        this.map.dragPan.enable();
+                        this.map.dragRotate.enable();
+                        this.map.keyboard.enable();
+                        this.map.doubleClickZoom.enable();
+                        this.map.touchZoomRotate.enable();
+
                         // contiguity check
                         let msg_box = document.createElement("div");
                         msg_box.id = "ns__msg-draw";
@@ -107,8 +115,28 @@ export class EmbeddedDistrictr {
                             window.clearTimeout(timeout_id);
                             timeout_id = window.setTimeout(cb, 50);
                         });
+
+                        let clear_btn = document.querySelector("#ns__clear-all");
+                        clear_btn.hidden = false;
+                        clear_btn.addEventListener("click", () => {
+                            this.clearNeighborhood.call(this);
+                            window.setTimeout(cb, 50);
+                        });
                     };
-                    this.enabled = false;
+
+                    this.disableMap = function() {
+                        this.enabled = false;
+
+                        this.map.boxZoom.disable();
+                        this.map.scrollZoom.disable();
+                        this.map.dragPan.disable();
+                        this.map.dragRotate.disable();
+                        this.map.keyboard.disable();
+                        this.map.doubleClickZoom.disable();
+                        this.map.touchZoomRotate.disable();
+                    };
+
+                    this.disableMap();
                 });
             })
             .catch(e => {
@@ -170,7 +198,7 @@ export class EmbeddedDistrictr {
         return ok;
     }
 
-    loadAddress(str) {
+    loadAddress(str, searchBox) {
         let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(str)}.json` + 
             `?autocomplete=false&limit=1&bbox=` +
             this.bounds[0][0] + "," +
@@ -190,6 +218,9 @@ export class EmbeddedDistrictr {
                     this.enableMap();
                 }
 
+                if (!!searchBox)
+                    searchBox.value = d.features[0].place_name;
+
                 let center = d.features[0].center;
                 // put down marker
                 if (!!this.addressMarker) this.addressMarker.remove();
@@ -203,22 +234,24 @@ export class EmbeddedDistrictr {
                         this.map.project(center),
                         { layers: [this.state.units.id], validate: false }
                     )[0];
+                    if (!block) return;
 
-                    block.state.home = true;
                     if (!!this.homeBlock) {
                         this.map.setFeatureState(this.homeBlock, {
                             ...this.homeBlock.state,
                             home: false
                         });
-                        this.state.units.setAssignment(this.homeBlock, null);
-                        this.state.plan.assignment[this.homeBlock.id] = null;
+                        this.clearNeighborhood.call(this);
                     }
+
                     this.state.units.setAssignment(block, 0);
                     this.state.plan.assignment[block.id] = 0;
                     this.homeBlock = block;
+                    block.state.home = true;
+                    console.log(this.homeBlock.id);
                 }).bind(this);
 
-                this.map.once("zoomend", () => {
+                this.map.once("moveend", () => {
                     this.state.layers[0].untilSourceLoaded(colorBlock);
                 });
 
@@ -234,6 +267,19 @@ export class EmbeddedDistrictr {
     getNeighborhood() {
         let assignment = this.state.plan.assignment;
         return Object.keys(assignment).filter(b => assignment[b] === 0).join(",");
+    }
+
+    clearNeighborhood() {
+        let ids = Object.keys(this.state.plan.assignment);
+        let features = map.state.units.querySourceFeatures()
+            .filter(x => ids.includes(x.id));
+        features.map(x => this.state.units.setAssignment(x, null));
+        ids.map(x => { this.state.plan.assignment[x] = null });
+        if (!!this.homeBlock) {
+            console.log(this.homeBlock.id);
+            this.state.units.setAssignment(this.homeBlock, 0);
+            this.state.plan.assignment[this.homeBlock.id] = 0;
+        }
     }
 }
 
