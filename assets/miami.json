@@ -1,0 +1,1 @@
+{"units":{"name":"Blocks","id":"blocks","idColumn":{"key":"GEOID","name":"GEOID"},"bounds":[[-80.8862,25.1374],[-79.9743,26.9709]],"zoomTo":14,"tileset":{"type":"fill","source":{"type":"vector","url":"mapbox://cmccartan.miami"},"sourceLayer":"blocks"}}}

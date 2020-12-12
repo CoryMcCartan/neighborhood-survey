@@ -1,5 +1,4 @@
-        
-        var map; 
+var map; 
 
 var MAPBOX_TOKEN = "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A";
 var BASEURL = "https://cdn.jsdelivr.net/gh/CoryMcCartan/neighborhood-survey/docs/assets/";
@@ -12,7 +11,7 @@ Qualtrics.SurveyEngine.addOnload(function() {
             "fill-color": ["interpolate-hcl", 
                 ["linear"], 
                 ["get", "dem"],
-                0.1, "#c44075",
+                0.2, "#c44075",
                 0.5, "rgba(255, 255, 255, 0)",
                 1, "#b09a00",
             ],
@@ -82,7 +81,7 @@ Qualtrics.SurveyEngine.addOnload(function() {
 
 Qualtrics.SurveyEngine.addOnReady(function() {
     function addressSearch() {
-        var box = jQuery("#ns__address-box")
+		var box = jQuery("#ns__address-box")
         var query = box.val();
         if (query.trim() == "") return;
 

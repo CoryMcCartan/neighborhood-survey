@@ -1,37 +1,79 @@
 var map; 
 
 var MAPBOX_TOKEN = "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A";
-var BASEURL = "https://corymccartan.github.io/neighborhood-survey/assets/";
-var DEFAULT_CITY = "nyc";
+var BASEURL = "https://cdn.jsdelivr.net/gh/CoryMcCartan/neighborhood-survey/docs/assets/";
+var DEFAULT_CITY = "new-york";
 
 Qualtrics.SurveyEngine.addOnload(function() {
     this.disableNextButton();
 
-    var city = Qualtrics.SurveyEngine.getEmbeddedData("city_group");
-    if (city === null || city.trim() === "") city = DEFAULT_CITY;
+    let overlays = {
+        P: {
+            "fill-color": ["interpolate-hcl", 
+                ["linear"], 
+                ["get", "dem"],
+                0.2, "#c44075",
+                0.5, "rgba(255, 255, 255, 0)",
+                1, "#b09a00",
+            ],
+            "fill-opacity": 0.45,
+        },
+        R: {
+            "fill-color": ["case",
+                ["==", ["get", "pop"], 0], "rgba(255, 255, 255, 0)",
 
-    var showOverlay = Qualtrics.SurveyEngine.getEmbeddedData("overlay");
-    if (showOverlay !== null && showOverlay.trim() === "") showOverlay = null;
-    if (showOverlay !== null) showOverlay = showOverlay == "true";
+                ["all",
+                    [">", ["get", "pop_black"], ["get", "pop_white"]],
+                    [">", ["*", 2, ["get", "pop_black"]], 
+                        ["-", ["get", "pop"], ["get", "pop_white"]]]
+                ], [
+                    "interpolate-hcl", ["linear"], 
+                    ["/", ["get", "pop_black"], ["get", "pop"]], // value
+                    0.35, "rgba(255, 255, 255, 0)",
+                    1, "#b09a00",
+                ],
 
-    var overlays = {
-        partisan: BivariateOverlay(),
-        race: UnivariateOverlay({
-            numerator: ["-", ["get", "pop"], ["get", "pop_white"]]
-        }),
+                ["all",
+                    [">", ["get", "pop_white"], ["get", "pop_black"]],
+                    [">", ["*", 2, ["get", "pop_white"]], 
+                        ["-", ["get", "pop"], ["get", "pop_black"]]]
+                ], [
+                    "interpolate-hcl", ["linear"], 
+                    ["/", ["get", "pop_white"], ["get", "pop"]], // value
+                    0.4, "rgba(255, 255, 255, 0)",
+                    1, "#c44075",
+                ],
+
+                [
+                    "interpolate-hcl", ["linear"], 
+                    ["-", 1, ["/", ["+", ["get", "pop_white"], ["get", "pop_black"]], 
+                        ["get", "pop"]]], // value
+                    0.35, "rgba(255, 255, 255, 0)",
+                    1, "#10a0d5",
+                ]
+            ],
+            "fill-opacity": 0.4,
+        },
     };
-    var overlayType = Qualtrics.SurveyEngine.getEmbeddedData("overlay_type");
-    if (overlayType == null || overlayType.trim() === "") overlayType = "partisan";
+    overlays.RH = overlays.R;
+    overlays.PH = overlays.P;
+    overlays.C = overlays.P;
+
+    var group = Qualtrics.SurveyEngine.getEmbeddedData("group");
+    if (group == null || group.trim() === "") group = "C";
 
     var zoomTo = Qualtrics.SurveyEngine.getEmbeddedData("start_zoom");
     if (zoomTo == null || zoomTo.trim() === "") zoomTo = 14;
+
+    var city = Qualtrics.SurveyEngine.getEmbeddedData("city_group");
+    if (city === null || city.trim() === "") city = DEFAULT_CITY;
 
     map = window.MapDraw("#ns__container", {
         token: MAPBOX_TOKEN,
         url: BASEURL + city + ".json",
         graph: BASEURL + city + "_graph.json",
-        showOverlay: showOverlay,
-        overlayRule: overlays[overlayType],
+        showOverlay: group != "C",
+        overlayRule: overlays[group],
         zoomTo: zoomTo,
         errors: window.showError,
         allowProceed: (function(allow) {

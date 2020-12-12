@@ -1,0 +1,1 @@
+{"units":{"name":"Blocks","id":"blocks","idColumn":{"key":"GEOID","name":"GEOID"},"bounds":[[-113.3344,32.5012],[-110.4484,34.0482]],"zoomTo":14,"tileset":{"type":"fill","source":{"type":"vector","url":"mapbox://cmccartan.phoenix"},"sourceLayer":"blocks"}}}
