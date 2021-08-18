@@ -12,8 +12,8 @@ library(jsonlite)
 library(mapboxapi)
 
 # Census variables you wish to include in the tileset
-vars = c(pop="H006001", pop_white="H006002", pop_black="H006003",
-         pop_hisp="H007010")
+vars = c(pop="P009001", pop_white="P009005", pop_black="P009006",
+         pop_hisp="P009002")
 
 d = get_decennial("block", variables=vars, state=STATE, county=COUNTIES,
                   output="wide", geometry=T)

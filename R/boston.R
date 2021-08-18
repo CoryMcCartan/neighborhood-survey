@@ -5,8 +5,8 @@ library(spdep)
 library(jsonlite)
 library(mapboxapi)
 
-vars = c(pop="H006001", pop_white="H006002", pop_black="H006003",
-         pop_hisp="H007010", necta="NECTADIV", subd="COUSUB")
+vars = c(pop="P009001", pop_white="P009005", pop_black="P009006",
+         pop_hisp="P009002", necta="NECTADIV", subd="COUSUB")
 
 d = get_decennial("block", variables=vars, state="MA",
                   county=c("Suffolk", "Middlesex", "Norfolk", "Essex", "Plymouth"),
