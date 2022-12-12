@@ -7,7 +7,6 @@ MAPBOX_USERNAME = ""
 library(tidycensus)
 library(tidyverse)
 library(sf)
-library(spdep)
 library(jsonlite)
 library(mapboxapi)
 
@@ -20,9 +19,8 @@ d = get_decennial("block", variables=vars, state=STATE, county=COUNTIES,
 cat("Census data downloaded.\n")
 
 {
-g = poly2nb(d, queen=F)
+g = geomander::adjacency(d)
 ids = d$GEOID
-class(g) = "list"
 names(g) = ids
 g = map(g, ~ ids[.])
 
