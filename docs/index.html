@@ -27,9 +27,9 @@
 
             <p>
                 Use the brush tool
-                <img alt="Brush" style="display: inline-block; margin-bottom: -2px; height: 18px !important; z-index: 100;"
+                <img alt="Brush" style="display: inline-block; margin-bottom: -2px; height: 18px !important; z-index: 100;" 
                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAABXUlEQVR4Ae3ZEXTDYBiF4UGhUBgMCoNBoVAYDmrDQGFQrNNwfgrDwnBQKASCxcEgEJxTITAMFAPfXgj1bH/W5Kev957z+Dmv3itN0zRN0zRNu6QNsUSBPRJozUbIYSc2OJ3ihCMpTjiS4oQjKU5Yojhhe8UJKxQnbKk4f8swgJMpjuIojuIojuIojuIojuIojuIojuIojuIojuI43afihPeEOlocRQrHUaRwHEUKx1EkV3EesEGBQyPHGrMOkdzEmeAD1iLFuD2SrzhzVLB/KjFtiZR6iTPFEXamEmO4XwHrKIXrJbCeZnC7HaynNdyuhPWUw+0sggNc7hYWQQmXe4RFUMDl3mERZHC3e9SwCFZwtTm+YRHUuPEQZYQ5UlhEb3CxDBZZhbEumt/VSOBqA+xgETzD7VaoYB0csYD7XeP1zFBb3OGiNsQCW3yhhjVK5HjBBJqmaZqmaZrmcz/pIiIIU7ugBgAAAABJRU5ErkJggg==">
-                to draw your neighborhood, and the eraser
+                to draw your neighborhood, and the eraser 
                 <img alt="Erase" style="display: inline-block; margin-bottom: -3px; height: 18px !important; z-index: 100;"
                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABBElEQVRo3u3Yuw7BYBiH8WdmcLorXIxuRjtuSWKjTiM3YBWjSQ3yJY00aL9TX94n+UbJ7y/apkDTNO2fagJz4ARcgSUwjI36tjaQAtnLuQNJbNynWsC6AJ8/49hIG3xtR5TB125EFXxtRtjgo49wgY82wiU++Agf+GAj2sDGE94cbw+7EHjzxB5IxZuzkozPgJtkfAacJeMzYCoZnwING7zP+/ynswe6ile84uXgezb4JsX/HoQ4W6BjgweYScYDHCPgD1j+bPJdAuN3rr5500IyHqDP8+UhBN7qVvmuRDLeNPKEL7pgJyU+H3WELb70AJcjXOArDXAxwhW+8gBN0zTtN3sAFI5CX1O33XwAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDgtMDRUMDI6NDg6NDkrMDA6MDADjPrkAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTA0VDAyOjQ4OjQ5KzAwOjAwctFCWAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=">
                 to make corrections.
@@ -42,11 +42,80 @@
         <script>
             $ = s => document.querySelector(s);
 
+            let params = new URLSearchParams(location.search);
+            let showOverlay = null;
+            if (params.has("overlay")) 
+                showOverlay = params.get("overlay") == "true";
+
+            let overlays = {
+                P: {
+                    "fill-color": ["interpolate-hcl", 
+                        ["linear"], 
+                        ["get", "dem"],
+                        0.1, "#c44075",
+                        0.5, "rgba(255, 255, 255, 0)",
+                        1, "#b09a00",
+                    ],
+                    "fill-opacity": 0.45,
+                },
+                R: {
+                    "fill-color": ["case",
+                        ["==", ["get", "pop"], 0], "rgba(255, 255, 255, 0)",
+
+                        ["all",
+                            [">", ["get", "pop_black"], ["get", "pop_white"]],
+                            [">", ["*", 2, ["get", "pop_black"]], 
+                                ["-", ["get", "pop"], ["get", "pop_white"]]]
+                        ], [
+                            "interpolate-hcl", ["linear"], 
+                            ["/", ["get", "pop_black"], ["get", "pop"]], // value
+                            0.35, "rgba(255, 255, 255, 0)",
+                            1, "#b09a00",
+                        ],
+
+                        ["all",
+                            [">", ["get", "pop_white"], ["get", "pop_black"]],
+                            [">", ["*", 2, ["get", "pop_white"]], 
+                                ["-", ["get", "pop"], ["get", "pop_black"]]]
+                        ], [
+                            "interpolate-hcl", ["linear"], 
+                            ["/", ["get", "pop_white"], ["get", "pop"]], // value
+                            0.4, "rgba(255, 255, 255, 0)",
+                            1, "#c44075",
+                        ],
+
+                        [
+                            "interpolate-hcl", ["linear"], 
+                            ["-", 1, ["/", ["+", ["get", "pop_white"], ["get", "pop_black"]], 
+                                ["get", "pop"]]], // value
+                            0.35, "rgba(255, 255, 255, 0)",
+                            1, "#10a0d5",
+                        ]
+                    ],
+                    "fill-opacity": 0.4,
+                },
+            };
+            overlays.RH = overlays.R;
+            overlays.PH = overlays.P;
+            overlays.C = overlays.P;
+
+            let overlayType = "P";
+            if (params.has("overlay_type")) 
+                overlayType = params.get("overlay_type");
+
+            let zoomTo = 14;
+            if (params.has("start_zoom")) 
+                zoomTo = +params.get("start_zoom");
+
             window.map = window.MapDraw("#ns__container", {
                 token: "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A",
-                url:   "assets/nyc-council.json",
+                url:   "assets/nyc.json",
+                graph: "assets/nyc_graph.json",
                 errors: showError,
-                allowProceed: function() {}
+                allowProceed: function() {},
+                showOverlay,
+                overlayRule: overlays[overlayType],
+                zoomTo,
             });
 
             function addressSearch() {

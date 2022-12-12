@@ -192,7 +192,6 @@ export class EmbeddedDistrictr {
                             home: false
                         });
                         this.clearNeighborhood.call(this, false);
-                        console.log("INSIDE");
                     }
 
                     this.state.units.setAssignment(block, 0);
@@ -203,7 +202,6 @@ export class EmbeddedDistrictr {
                         ...block.state,
                         home: true
                     });
-                    console.log("OUTSIDE");
                 }).bind(this);
 
                 this.map.once("moveend", () => {

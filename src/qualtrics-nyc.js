@@ -1,7 +1,7 @@
 var map;
 
 var MAPBOX_TOKEN = "pk.eyJ1IjoiY21jY2FydGFuIiwiYSI6ImNrZGdkdW9waTA1eGEycmxycnQzZ3o4c3kifQ.v_XViAm-nItfHgx0J3Xg3A";
-var SPECIFICATION = "https://corymccartan.github.io/neighborhood-survey/assets/nyc-council.json";
+var SPECIFICATION = "https://cdn.jsdelivr.net/gh/CoryMcCartan/neighborhood-survey@nyc/assets/nyc-council.json";
 
 Qualtrics.SurveyEngine.addOnload(function() {
     this.disableNextButton();
