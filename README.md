@@ -1,4 +1,4 @@
-# Neighborhood Survey Code
+# Neighborhood Survey Collection Tool
 
 An web map on which survey participants can draw a region, embeddable in Qualtrics.
 
