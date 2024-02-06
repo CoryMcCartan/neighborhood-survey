@@ -2,7 +2,7 @@
 
 An web map on which survey participants can draw a region, embeddable in Qualtrics.
 
-**Looking for the R package to fit a model to collected neighborhoods?** See [`CoryMcCartan/nbhdmodel`](https://github.com/CoryMcCartan/nbhdmodel>).
+**Looking for the R package to fit a model to collected neighborhoods?** See [`CoryMcCartan/nbhdmodel`](https://github.com/CoryMcCartan/nbhdmodel).
 
 ## To Create Your Own Map
 First, open `R/make_tileset.R` and edit the first few lines to specify the
