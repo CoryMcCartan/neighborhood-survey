@@ -1,6 +1,6 @@
 # Neighborhood Survey Collection Tool
 
-An web map on which survey participants can draw a region, embeddable in Qualtrics.
+An web map on which survey participants can draw a region, embeddable in Qualtrics, as described in ["Measuring and Modeling Neighborhoods"](https://doi.org/10.1017/S0003055423001429).
 
 **Looking for the R package to fit a model to collected neighborhoods?** See [`CoryMcCartan/nbhdmodel`](https://github.com/CoryMcCartan/nbhdmodel).
 
